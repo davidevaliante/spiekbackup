@@ -1,0 +1,44 @@
+@import 'slotpage';
+@import 'aams';
+@import 'homepage';
+@import 'addarticle';
+@import 'addrow';
+@import 'slotpage';
+@import 'listdescriptionbanner';
+@import 'slotcard';
+@import 'shorthandmenu';
+@import 'extra';
+@import 'bonuscard';
+@import 'producerdropdown';
+@import 'burger_menu';
+
+html, body {
+    height: 100%;
+  }
+
+.columns {
+    display: flex;
+    justify-content: space-around;
+}
+
+.column-centered {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+}
+
+.column-align-start-center{
+    display: flex;
+  align-items: center;
+}
+
+.row-centered-spaced{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+

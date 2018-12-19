@@ -1,0 +1,5 @@
+/* Cambia tutti i dropdown con scrolling ma causa react semantic ui non ci posso fa un cazzo
+*/
+.ui.scrolling.dropdown .menu {
+  max-height: 65vh;
+}

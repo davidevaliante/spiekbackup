@@ -1,0 +1,86 @@
+.header-slot-text{
+    margin-bottom: 3.6rem;
+    font-size: 400%;
+    line-height: 6rem;
+    color:rgb(235, 38, 19);
+    letter-spacing: 1.6rem;
+    font-family: 'Lato', 'Raleway', sans-serif;
+    font-weight: 900;
+    animation-name: moveInLeft;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+
+}
+
+@media only screen and (max-width: 805px) {
+    .header-slot-text {
+        font-size: 200%;
+        line-height: 2.5rem;
+        margin-bottom: 1.5rem;
+        letter-spacing: 0.5rem;
+    }
+}
+
+.slot-page_list{
+    padding-top: 5em;
+    padding-bottom: 5em;
+}
+.slot-playbutton{
+    display: flex;
+    justify-content: center;
+    padding-top: 3rem;
+}
+
+.dimmer-layout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.fast-buttons-layout {
+    display: inline-flex;
+    justify-content: space-between;
+}
+
+.fast-button{
+    margin-right: 1.6rem;
+}
+
+.align-center-fullpage{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+}
+
+.description-alignment{
+    display: flex;           /* establish flex container */
+    flex-direction: column;  /* make main axis vertical */
+    justify-content: center; /* center items vertically, in this case */
+    align-items: center;     /* center items horizontally, in this case */
+    height:80vh;
+}
+
+.tip-tec-card{
+    padding:0.8rem;
+    text-align: start;
+    display: flex;
+    font-size: 120%;
+    flex-direction: column;
+    align-content: center;
+    line-height: 1.5rem;
+}
+
+.tip-tec-row{
+    display: flex;
+}
+
+.text-type{
+        font-size: 2rem;
+        font-family: 'Raleway';
+        color: rgba(255, 255, 255, 0.5);
+
+        
+
+}

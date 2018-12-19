@@ -1,0 +1,21 @@
+.shorthand-container-style {
+    display: flex;
+    flex-direction: column;
+}
+
+.big-buttons-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+
+}
+
+.small-buttons-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.nopadding {
+	padding: 0!important;
+}

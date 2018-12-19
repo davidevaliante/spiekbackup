@@ -1,0 +1,19 @@
+{
+  "rules": {
+    ".read": true,
+    ".write": true,
+    "Slots": {
+      ".indexOn": [
+        "time"
+      ]
+    },
+    "SlotsCard": {
+      "$language": {
+        ".indexOn": [
+          "time",
+          "type"
+        ]
+      }
+    }
+  }
+}

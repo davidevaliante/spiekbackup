@@ -1,0 +1,72 @@
+.extra{
+    font-family: 'Raleway', 'Arial', sans-serif;
+    background:white;
+    padding: 4rem;
+    width: 70%;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+
+    
+    h1 {
+        color: black;
+        font-family: 'Raleway', 'Arial', sans-serif;
+
+    }
+
+    h3 {
+        color: black;
+        font-family: 'Raleway', 'Arial', sans-serif;
+
+    }
+
+}
+
+.extra-card-pointer:hover{
+    cursor: pointer; 
+}
+
+.extra-title-input{
+    padding: .5rem;
+}
+
+.extra-header{
+    text-align: center;
+    padding:2rem; 
+}
+
+.extra-bg{
+    background: url('https://firebasestorage.googleapis.com/v0/b/spike-2481d.appspot.com/o/Mix%2Fbonus_article_bg.jpg?alt=media&token=a46e2bf8-4f76-4c10-a48f-cfad0f93f1fb');
+    background-size: cover;
+    min-height: 800px;
+}
+
+.extra-flex-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+}
+
+.extra-content{
+    padding-top: 9rem;
+    padding-bottom: 6rem;
+}
+
+.extra-button-left{
+    position: fixed;
+    width: 10%;
+    left: 7vw;
+    top: 50vh;
+}
+
+.extra-button-right{
+    position: fixed;
+    width: 10%;
+    left: 82%;
+    top: 50vh;
+}
+
+.marginTop{
+    margin-top: 2rem;
+}
