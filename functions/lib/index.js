@@ -64,7 +64,8 @@ exports.onSlotAdded = functions.database.ref('/Slots/{language}/{pushId}/')
     };
     const slotMenu = {
         name: newSlot.name,
-        description: `${lodash_1.truncate(removeHtmlFrom(newSlot.description), { 'length': 60 })}`
+        description: `${lodash_1.truncate(removeHtmlFrom(newSlot.description), { 'length': 60 })}`,
+        type: newSlot.type
     };
     return admin.database().ref(`/SlotsCard/${context.params.language}/${context.params.pushId}`).set(slotCard)
         .then(() => admin.database().ref(`/SlotsMenu/${context.params.language}/${context.params.pushId}`).set(slotMenu));
@@ -88,7 +89,8 @@ exports.onSlotUpdated = functions.database.ref('/Slots/{language}/{editedId}/')
     const slotMenu = {
         name: newSlot.name,
         image: `${baseImageUrl}thumb_${slotSizes[0]}_${baseName}?alt=media`,
-        description: `${lodash_1.truncate(removeHtmlFrom(newSlot.description), { 'length': 60 })}`
+        description: `${lodash_1.truncate(removeHtmlFrom(newSlot.description), { 'length': 60 })}`,
+        type: newSlot.type
     };
     return admin.database().ref(`/SlotsCard/${context.params.language}/${context.params.editedId}`).set(slotCard).then(() => admin.database().ref(`/SlotsMenu/${context.params.language}/${context.params.editedId}`).set(slotMenu));
 });

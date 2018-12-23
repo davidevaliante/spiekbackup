@@ -6,28 +6,42 @@ import RandomBonus from './RandomBonus'
 // router e redux
 import { connect } from 'react-redux'
 import { setUserNotPlaying } from '../../reducers/PlayModeReducer'
+import { Embed } from 'semantic-ui-react-single/Embed'
+import { Container } from 'semantic-ui-react-single/Container'
+import { Responsive } from 'semantic-ui-react-single/Responsive'
+import {MobileView} from 'react-device-detect'
 
 const PlayDimmer = (props) => {
 
     return (
-        <div>
-            <Dimmer
-                page
-                active={props.isPlaying}
-                onClickOutside={() => props.dispatch(setUserNotPlaying())} >
-                <div>
-                    <iframe
-                        style={{ position: 'absolute', right: '25%', top: '11%' }}
-                        title='test'
-                        width='900'
-                        height='500'
-                        src={props.url}/>
-                    <div style={{ position: 'absolute', left: '77%', top: '39%' }}>
+        <Dimmer
+            active={props.isPlaying}
+            onClickOutside={() => props.dispatch(setUserNotPlaying())}
+            page>
+            <Container>
+
+               
+                
+                <Embed
+                    active
+                    url={props.url} />
+                <Responsive minWidth={600}>
+                    <Container style={{ paddingLeft: "35%", paddingTop: "1%" }} >
                         <RandomBonus bonus={props.bonusList} />
-                    </div>
-                </div>
-            </Dimmer>
-        </div>
+                    </Container>
+                </Responsive>
+                <Responsive maxWidth={600}>
+                    <Container style={{ paddingTop: "10%" }} >
+                        <RandomBonus bonus={props.bonusList} />
+                    </Container>
+                </Responsive>
+
+                {<MobileView style={{marginTop:"5%"}}>
+                        Ruota lo schermo del telefono per un esperienza di gioco migliore
+                </MobileView>}
+            </Container>
+        </Dimmer>
+
     )
 }
 

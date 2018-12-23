@@ -6840,6 +6840,11 @@ react-dev-utils@^5.0.1:
     strip-ansi "3.0.1"
     text-table "0.2.0"
 
+react-device-detect@^1.6.1:
+  version "1.6.1"
+  resolved "https://registry.yarnpkg.com/react-device-detect/-/react-device-detect-1.6.1.tgz#3730e74e25fd79be19ac99fc6a07e751255b9232"
+  integrity sha512-TTmKu3JK3W7gWrjnm4K1OS0v5CMtkFtG4pIrQvZ8mJu6xvqfmXnkMO5jkh3Tz2homaFYIaJ6Pzbx4E51mg5neA==
+
 react-dom-core@0.0.3:
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/react-dom-core/-/react-dom-core-0.0.3.tgz#422d8efac874bed36731c3128281d33b346dd2af"
@@ -6931,6 +6936,11 @@ react-rte@^0.16.1:
     draft-js-import-markdown ">=0.3.0"
     draft-js-utils ">=0.2.0"
     immutable "^3.8.1"
+
+react-screen-orientation@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/react-screen-orientation/-/react-screen-orientation-0.0.3.tgz#ae8482f9823b088b9b1790004509311f4cebc6f3"
+  integrity sha512-M7wI/uyv2vP+6ZNcw3Bp30NVf8xyST2k66wghYvE+8+/NExRxAcHiJs2FzJBUcIjMJs0YgCn1KxSvtIao3Luyw==
 
 react-side-effect@^1.1.0:
   version "1.1.5"

@@ -2,26 +2,29 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import HomePage from '../components/HomeComponents/HomePage'
-import AdminDashboard from './../admin/AdminDashboard';
-import AddSlot from '../admin/Slots/AddSlot';
-import AddBonus from '../admin/Bonus/AddBonus';
-import AddProducer from '../admin/Producer/AddProducer';
-import AddArticle from '../admin/AddArticle';
+
+// import AdminDashboard from './../admin/AdminDashboard';
+// import AddSlot from '../admin/Slots/AddSlot';
+// import AddBonus from '../admin/Bonus/AddBonus';
+// import AddProducer from '../admin/Producer/AddProducer';
+// import AddArticle from '../admin/AddArticle';
+// import SlotPreview from '../admin/Slots/SlotPreview'
+// import SlotDashboard from "../admin/Slots/SlotDashboard";
+// import EditSlot from "../admin/Slots/EditSlot";
+// import BonusDashboard from "../admin/Bonus/BonusDashboard"
+// import AddExtraFromHtml from '../admin/Extra/AddExtraFromHtml'
+// import BonusArticle from '../components/Extra/BonusArticle'
+// import ProducerDashboard from "../admin/Producer/ProducerDashboard";
+// import ExtraDashBoard from '../admin/Extra/ExtraDashboard'
+
 import Test from './Test'
 import SlotPage from '../components/SlotPageComponents/SlotPage';
 import { PAGES, ROUTE } from "../enums/Constants";
-import AboutPage from '../components/AboutPage'
-import SlotDashboard from "../admin/Slots/SlotDashboard";
 import NotFound from "../components/NotFound"
-import EditSlot from "../admin/Slots/EditSlot";
-import BonusDashboard from "../admin/Bonus/BonusDashboard"
-import AddExtraFromHtml from '../admin/Extra/AddExtraFromHtml'
-import BonusArticle from '../components/Extra/BonusArticle'
+import AboutPage from '../components/AboutPage'
 import ProducerPage from "../components/ProducerComponents/ProducerPage";
-import ProducerDashboard from "../admin/Producer/ProducerDashboard";
-import ExtraDashBoard from '../admin/Extra/ExtraDashboard'
+
 import Article from '../components/Extra/Article'
-import SlotPreview from '../admin/Slots/SlotPreview'
 
 const AppRouter = () => {
 
@@ -50,8 +53,8 @@ const AppRouter = () => {
                     { /* HOME filtered by producers */}
                     <Route path={ROUTE.PRODUCER} component={HomePage} />
 
-                    
-                    <Route path={ROUTE.ADMIN} component={AdminDashboard} exact={true} />
+
+                    { /*                  <Route path={ROUTE.ADMIN} component={AdminDashboard} exact={true} />
                     <Route path={ROUTE.ADMINSLOT} component={SlotDashboard} />
                     <Route path={ROUTE.ADMINBONUS} component={BonusDashboard} />
                     <Route path={ROUTE.ADMINPRODUCER} component={ProducerDashboard} />
@@ -68,10 +71,9 @@ const AppRouter = () => {
                     <Route path={ROUTE.EDITBONUS} component={AddBonus} />
                     <Route path={ROUTE.EDITPRODUCER} component={AddProducer} />
                     <Route path={ROUTE.EDITEXTRA} component={AddExtraFromHtml} />
-                    
 
-                    { /* test */}
-                    <Route path='/test' component={Test} />
+
+                    <Route path='/test' component={Test} /> */}
 
                     {/* Error */}
                     <Route path={ROUTE.ERROR404} component={NotFound} />
