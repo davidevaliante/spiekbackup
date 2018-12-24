@@ -42,19 +42,21 @@ class PlayDimmer extends Component {
                     active={this.props.isPlaying}
                     onClickOutside={() => this.props.dispatch(setUserNotPlaying())}
                     page>
-                    <Container>
-                        <Embed
-                            iframe={{
-                                style: {
-                                    paddingBottom: 30,
-                                    backgroundColor: "#000000",
-                                },
-                            }}
-                            active
-                            url={this.props.url} />
-                        <ClosableBonusCard
-                            bonus={this.props.bonusList} />
-                    </Container>
+                    <div style={{ background: 'black', width: '100%', height: '100%' }}>
+                        <Container>
+                            <Embed
+                                iframe={{
+                                    style: {
+                                        paddingBottom: 30,
+                                        backgroundColor: "#000000",
+                                    },
+                                }}
+                                active
+                                url={this.props.url} />
+                            <ClosableBonusCard
+                                bonus={this.props.bonusList} />
+                        </Container>
+                    </div>
                 </Dimmer>
             </Responsive>
         </div>
@@ -65,6 +67,7 @@ class PlayDimmer extends Component {
             active={this.props.isPlaying}
             onClickOutside={() => this.props.dispatch(setUserNotPlaying())}
             page>
+
             <Container>
                 <Responsive minWidth={600}>
                     <Embed
@@ -84,7 +87,7 @@ class PlayDimmer extends Component {
                 </Responsive>
 
                 {<MobileView style={{ marginTop: "5%" }}>
-                    Ruota lo schermo del telefono per un esperienza di gioco migliore
+                    Ruota lo schermo del telefono per un' esperienza di gioco migliore
             </MobileView>}
             </Container>
         </Dimmer>
