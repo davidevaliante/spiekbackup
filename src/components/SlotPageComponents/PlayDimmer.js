@@ -44,6 +44,12 @@ class PlayDimmer extends Component {
                     page>
                     <Container>
                         <Embed
+                            iframe={{
+                                style: {
+                                    paddingBottom: 30,
+                                    backgroundColor: "#000000",
+                                },
+                            }}
                             active
                             url={this.props.url} />
                         <ClosableBonusCard
