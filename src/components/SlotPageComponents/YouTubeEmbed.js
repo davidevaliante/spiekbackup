@@ -1,11 +1,11 @@
 import React from 'react'
 // semantic
-import {Header} from 'semantic-ui-react-single/Header'
+import { Header } from 'semantic-ui-react-single/Header'
 // mix
 // static
 import '../../static/slot-icon.svg'
-import {Responsive} from "semantic-ui-react-single/Responsive";
-import {RESPONSIVE_RESOLUTION} from "../../enums/Constants";
+import { Responsive } from "semantic-ui-react-single/Responsive";
+import { RESPONSIVE_RESOLUTION } from "../../enums/Constants";
 
 const YouTubeEmbed = (props) => {
 
@@ -15,7 +15,7 @@ const YouTubeEmbed = (props) => {
 
     return (
         <div className='column-centered' style={{ marginBottom: '4rem' }} >
-            <Header color='red' style={{ fontSize: '2rem', marginBottom: '2rem', cursor: 'pointer', fontFamily: 'Raleway' }} onClick={() => handleClick()}>Rimani sempre aggiornato, iscriviti al mio canale YouTube</Header>
+            <Header color='red' style={{ fontSize: '2rem', marginBottom: '2rem', cursor: 'pointer', fontFamily: 'Raleway' }} onClick={() => handleClick()}>{props.desc ? props.desc : 'Rimani sempre aggiornato, iscriviti al mio canale YouTube'}</Header>
             <Responsive maxWidth={RESPONSIVE_RESOLUTION.SMALL}>
                 <iframe
                     title='ytcontent'
@@ -26,7 +26,7 @@ const YouTubeEmbed = (props) => {
 
             </Responsive>
             <Responsive minWidth={RESPONSIVE_RESOLUTION.SMALL + 1}
-                        maxWidth={RESPONSIVE_RESOLUTION.MEDIUM}>
+                maxWidth={RESPONSIVE_RESOLUTION.MEDIUM}>
                 <iframe
                     title='ytcontent'
                     width='420'
@@ -35,7 +35,7 @@ const YouTubeEmbed = (props) => {
                 </iframe>
             </Responsive>
             <Responsive minWidth={RESPONSIVE_RESOLUTION.MEDIUM + 1}
-                        maxWidth={RESPONSIVE_RESOLUTION.LARGE}>
+                maxWidth={RESPONSIVE_RESOLUTION.LARGE}>
                 <iframe
                     title='ytcontent'
                     width='800'

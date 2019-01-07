@@ -38,20 +38,12 @@ class ListDescriptionBanner extends Component {
         }
         return (
             <div id='descriptionBanner' className='description-banner-container'>
-                <Responsive minWidth={RESPONSIVE_RESOLUTION.MEDIUM}>
-                    <div className='description-banner-red'>
-                        <div className='white-line scale-in-hor-right'/>
-                        <div>
-                            <h2 className="tracking-in-contract"
-                                style={{ fontFamily: 'Raleway, sans-serif' }}>I migliori bonus</h2>
-                        </div>
-                    </div>
-                </Responsive>
+
 
                 <div className='description-banner-black'>
                     <h2 className="tracking-in-contract"
                         style={{ fontFamily: 'Raleway, sans-serif' }}>{text}</h2>
-                    <div className='white-line scale-in-hor-left'/>
+                    <div className='white-line scale-in-hor-left' />
                 </div>
             </div>
         )

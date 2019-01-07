@@ -63,10 +63,10 @@ class SlotPage extends Component {
                 })
             })
         }
-
-        if (prevState.currentSlot.linkYoutube) {
-            this.setState({ currentSlot: { ...this.state.currentSlot, linkYoutube: undefined } })
-        }
+        /* 
+                if (prevState.currentSlot.linkYoutube) {
+                    this.setState({ currentSlot: { ...this.state.currentSlot, linkYoutube: undefined } })
+                } */
     }
 
     componentWillUnmount() {
@@ -81,6 +81,8 @@ class SlotPage extends Component {
     render() {
         const { currentSlot } = this.state
         const { isPlaying, isLoading } = this.props
+        console.log(currentSlot.linkYoutube);
+
         return (
             <div>
                 <Helmet>
@@ -139,7 +141,9 @@ class SlotPage extends Component {
                     <SlotPageBonusList bonusList={currentSlot.bonus} />
 
                     {currentSlot.linkYoutube &&
-                        <YouTubeEmbed src={this.getYoutubeEmbedSource()} />
+                        <YouTubeEmbed
+                            desc={currentSlot.linkYoutubeDescription}
+                            src={this.getYoutubeEmbedSource()} />
                     }
                     <Footer />
                 </Dimmer.Dimmable>

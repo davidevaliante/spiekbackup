@@ -55,8 +55,10 @@ const HomeBody = ({ orderHandler, slotorder, type, handleContextRef, stickyConte
                     offset={80}>
 
                     <Responsive minWidth={600} >
-
-                        <BonusList maxNumber={15} maxbonusToShow={3} />
+                        <div style={{ background: 'red' }}>
+                            <h1 style={{ color: 'white', textAlign: 'center', padding: '5%', marginBottom: '30px' }}>I Migliori Bonus</h1>
+                        </div>
+                        <BonusList maxNumber={15} maxbonusToShow={4} />
 
                     </Responsive>
 

@@ -81,14 +81,14 @@ class NavbarSearchBar extends Component {
             <div>
                 <Search
                     color='red'
-                    size='mini'
                     category
                     noResultsMessage='Nessun risultato'
                     loading={isLoading}
+                    placeholder='Cerca'
                     onResultSelect={this.handleResultSelect}
                     onSearchChange={debounce(this.handleSearchChange, 400, { leading: true })}
                     results={results}
-                    value={value} >
+                    value={value} >Cerca
                 </Search>
             </div>
         )

@@ -96,6 +96,8 @@ class Navbar extends Component {
                         <div className='sticky-pro'>
 
                             <Menu
+                                inverted
+                                color='grey'
                                 stackable
                                 size='large'>
                                 <Menu.Item
@@ -151,12 +153,16 @@ class Navbar extends Component {
                         onBottomPassed={this.showFixedMenu}
                         onBottomPassedReverse={this.hideFixedMenu}>
                         <Menu
+                            color='#2c2c2c'
                             style={{ zIndex: 99, paddingRight: '12rem' }}
                             fixed='top'
-                            inverted={!this.state.fixed}
-                            secondary={!this.state.fixed}
+                            inverted
+                            // inverted={!this.state.fixed}
+                            // secondary={!this.state.fixed}
                             size='large'>
-                            <Menu.Item style={{ visibility: this.state.fixed ? 'visible' : 'hidden' }}>
+                            <Menu.Item
+                            // style={{ visibility: this.state.fixed ? 'visible' : 'hidden' }}
+                            >
                                 <img src={logo} alt='spike-logo' />
                             </Menu.Item>
                             <Menu.Item

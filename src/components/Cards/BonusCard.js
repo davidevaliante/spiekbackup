@@ -28,13 +28,14 @@ const BonusCard = (props) => {
                     <Card color='red'>
                         <Card.Content>
                             <Card.Header>
-                                {lowerCase(props.bonus.bonus)}
+                                <div className='vertical-center'>
+                                    <Image style={{ height: '4.3rem', objectFit: 'cover' }} src={getImageLinkFromName('bonus', props.bonus.name)} />
+                                </div>
                             </Card.Header>
                         </Card.Content>
                         <Card.Content extra>
-                            <div className='vertical-center'>
-                                <Image style={{ height: '4.3rem', objectFit: 'cover' }} src={getImageLinkFromName('bonus', props.bonus.name)} />
-                            </div>
+                            {lowerCase(props.bonus.bonus)}
+
                         </Card.Content>
                     </Card>
                 </div>

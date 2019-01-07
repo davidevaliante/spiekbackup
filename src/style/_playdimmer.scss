@@ -1,0 +1,17 @@
+.floating-top-right {
+    position: relative; 
+    display: inline-block; 
+    vertical-align: top;
+}
+
+.left-sidebar {
+    display: inline-block; 
+    position: absolute;
+    margin-left: 60px;
+}
+
+.centered-play-embed {
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+}

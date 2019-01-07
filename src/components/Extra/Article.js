@@ -142,6 +142,10 @@ class Article extends Component {
                                     <Icon name='arrow right' />
                                 </Button.Content>
                             </Responsive>
+                            <h4 style={{ color: 'white', fontSize: '75%' }}>Il gioco è vietato ai minori e può causare dipendenza patologica.
+
+                            Verifica la probabilità di vincita su <a href="https://www.agenziadoganemonopoli.gov.it/portale/">www.aams.gov.it</a>
+                                <br></br>Gioca responsabilmente</h4>
                         </div>
                     }
                 </Visibility>
@@ -156,12 +160,12 @@ class Article extends Component {
                         <Container className="marginTop">
                             <ButtonGroup widths="5">
 
-                                <Responsive 
-                                    as={Button} 
-                                    maxWidth={1037} 
-                                    onClick={() => this.goBack()} 
-                                    size='large' 
-                                    animated 
+                                <Responsive
+                                    as={Button}
+                                    maxWidth={1037}
+                                    onClick={() => this.goBack()}
+                                    size='large'
+                                    animated
                                     className="extra-button-left-bottom"  >
                                     <Button.Content visible>Torna Indietro</Button.Content>
                                     <Button.Content hidden inverted>
@@ -170,19 +174,21 @@ class Article extends Component {
                                 </Responsive>
 
                                 {this.state.bonus &&
-                                    <Responsive 
-                                        as={Button} 
-                                        maxWidth={1037} 
-                                        nClick={() => this.goToBonus()} 
-                                        size='large' 
-                                        animated 
-                                        className=".extra-button-right-bottom"  >
-                                        <Button.Content visible>Vai al bonus</Button.Content>
-                                        <Button.Content hidden inverted>
-                                            <Icon name='arrow right' />
-                                        </Button.Content>
-                                    </Responsive>
+                                    <div>
+                                        <Responsive
+                                            as={Button}
+                                            maxWidth={1037}
+                                            onClick={() => this.goToBonus()}
+                                            size='large'
+                                            animated
+                                            className=".extra-button-right-bottom"  >
+                                            <Button.Content visible>Vai al bonus</Button.Content>
+                                            <Button.Content hidden inverted>
+                                                <Icon name='arrow right' />
+                                            </Button.Content>
+                                        </Responsive>
 
+                                    </div>
                                 }
                             </ButtonGroup>
                         </Container>

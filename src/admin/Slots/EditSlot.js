@@ -170,6 +170,14 @@ class EditSlot extends React.Component {
             errorList.push('linkYoutube');
             this.setState({ shouldDisplayErrors: true, emptyFields: errorList })
         }
+
+        const linkYoutubeDescription = document.getElementById('linkYoutubeDescription').value.trim();
+        if (!linkYoutubeDescription) {
+            let errorList = this.state.emptyFields;
+            errorList.push('linkYoutubeDescription');
+            this.setState({ shouldDisplayErrors: true, emptyFields: errorList })
+        }
+
         const linkPlay = document.getElementById('linkPlay').value.trim();
         if (!linkPlay) {
             let errorList = this.state.emptyFields;
@@ -215,6 +223,7 @@ class EditSlot extends React.Component {
             name: name,
             producer: producer,
             linkYoutube: linkYoutube,
+            linkYoutubeDescription: linkYoutubeDescription,
             linkPlay: linkPlay,
             bonus: BONUS,
             description: description,
@@ -300,6 +309,16 @@ class EditSlot extends React.Component {
                                 control={Input}
                                 label='YouTube Link'
                                 placeholder='YouTube Link...' />
+
+
+                            <Form.Field
+                                id='linkYoutubeDescription'
+                                error={this.state.shouldDisplayErrors && this.state.emptyFields.includes('linkYoutubeDescription')}
+                                control={Input}
+                                defaultValue={currentSlot.linkYoutubeDescription}
+                                label='Titolo Video Youtube'
+                                placeholder='Titolo video youtube' />
+
                             <Form.Field
                                 id='linkPlay'
                                 defaultValue={currentSlot.linkPlay}

@@ -27,6 +27,10 @@ import { updateSlotPreview } from '../../reducers/SlotPreviewReducer'
 
 class AddSlot extends Component {
 
+    componentDidMount() {
+        document.getElementById('linkYoutubeDescription').value = `Rimani sempre aggiornato, iscriviti al mio canale YouTube`;
+    }
+
     state = {
         slotTypeOptions: [
             { key: 'one', value: SLOT_TYPES.BAR, text: 'Slot da bar' },
@@ -97,6 +101,14 @@ class AddSlot extends Component {
             errorList.push('linkYoutube');
             this.setState({ shouldDisplayErrors: true, emptyFields: errorList })
         }
+
+        const linkYoutubeDescription = document.getElementById('linkYoutubeDescription').value.trim();
+        if (!linkYoutubeDescription) {
+            let errorList = this.state.emptyFields;
+            errorList.push('linkYoutubeDescription');
+            this.setState({ shouldDisplayErrors: true, emptyFields: errorList })
+        }
+
         const linkPlay = document.getElementById('linkPlay').value.trim();
         if (!linkPlay) {
             let errorList = this.state.emptyFields;
@@ -146,6 +158,7 @@ class AddSlot extends Component {
             name: name,
             producer: producer,
             linkYoutube: linkYoutube,
+            linkYoutubeDescription: linkYoutubeDescription,
             linkPlay: linkPlay,
             bonus: BONUS,
             description: description,
@@ -329,6 +342,16 @@ class AddSlot extends Component {
                                 control={Input}
                                 label='YouTube Video Link'
                                 placeholder='YouTube Link...' />
+
+
+                            <Form.Field
+                                id='linkYoutubeDescription'
+                                error={this.state.shouldDisplayErrors && this.state.emptyFields.includes('linkYoutubeDescription')}
+                                onChange={() => this.resetErrorOn('linkYoutube')}
+                                control={Input}
+                                label='Titolo Video Youtube'
+                                placeholder='Titolo video youtube' />
+
                             <Form.Field
                                 id='linkPlay'
                                 error={this.state.shouldDisplayErrors && this.state.emptyFields.includes('linkPlay')}
@@ -418,7 +441,7 @@ class AddSlot extends Component {
                             </Form.Field>
                         </Form.Group>
 
-                       {/*  <Form.Field
+                        {/*  <Form.Field
                             style={{ width: '100%' }}
                             onClick={this.preview}
                             control={Button}>

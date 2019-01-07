@@ -34,8 +34,6 @@ const ShortHandMenu = (props) => {
         } else {
             props.dispatch(setUserPlaying())
         }
-
-        // props.dispatch(setUserPlaying()
     }
 
 
@@ -46,56 +44,87 @@ const ShortHandMenu = (props) => {
                     <List style={{ margin: '0 auto' }}>
                         <List.Item>
                             <Button
+                                id='descShortHand'
                                 style={buttonsStyle}
                                 inverted
                                 color='red'
-                                onClick={() => smoothScrollTo('slot-page-description')}>
+                                onClick={() => {
+                                    smoothScrollTo('slot-page-description')
+                                    document.getElementById('descShortHand').blur()
+                                }}>
                                 Descrizione
                             </Button>
                         </List.Item>
 
                         <List.Item>
                             <Button
+                                id='tipsShortHand'
                                 style={buttonsStyle}
                                 inverted
                                 color='red'
-                                onClick={() => smoothScrollTo('slot-tips-list')}>
+                                active={false}
+                                onClick={() => {
+                                    smoothScrollTo('slot-page-lists')
+                                    document.getElementById('tipsShortHand').blur()
+
+                                }}>
                                 Consigli di gioco
                             </Button>
                         </List.Item>
                         <List.Item>
                             <Button
+                                id='techShortHand'
                                 style={buttonsStyle}
                                 inverted
                                 color={'red'}
-                                onClick={() => smoothScrollTo('slot-tec-list')}>
+                                active={false}
+                                onClick={() => {
+                                    smoothScrollTo('slot-page-lists')
+                                    document.getElementById('techShortHand').blur()
+                                }}>
                                 Scheda tecnica
                             </Button>
                         </List.Item>
                     </List>
                 </div>
             </Responsive>
+
             <Responsive minWidth={RESPONSIVE_RESOLUTION.MEDIUM}>
                 <div className='small-buttons-container'>
                     <Button
+                        id='descShortHand'
                         style={buttonsStyle}
-                        inverted
                         color='red'
-                        onClick={() => smoothScrollTo('slot-page-description')}>
-                        Descrizione
+                        inverted
+                        onClick={() => {
+                            smoothScrollTo('slot-page-description')
+                            document.getElementById('descShortHand').blur()
+                        }}>
+                        Descrizione x
                     </Button>
                     <Button
+                        id='tipsShortHand'
                         style={buttonsStyle}
                         inverted
                         color='red'
-                        onClick={() => smoothScrollTo('slot-page-lists')}>
+                        active={false}
+                        onClick={() => {
+                            smoothScrollTo('slot-page-lists')
+                            document.getElementById('tipsShortHand').blur()
+
+                        }}>
                         Consigli di gioco
                     </Button>
                     <Button
+                        id='techShortHand'
                         style={buttonsStyle}
                         inverted
                         color={'red'}
-                        onClick={() => smoothScrollTo('slot-page-lists')}>
+                        active={false}
+                        onClick={() => {
+                            smoothScrollTo('slot-page-lists')
+                            document.getElementById('techShortHand').blur()
+                        }}>
                         Scheda tecnica
                     </Button>
                 </div>
@@ -113,10 +142,16 @@ const ShortHandMenu = (props) => {
                     </Button.Content>
                 </Button>
 
-                <Button style={{ width: '45%' }}
+                <Button
+                    id='bonusShortHand'
+                    style={{ width: '45%' }}
                     size='huge'
                     color='red'
-                    onClick={() => smoothScrollTo('slot-page-bonus')}>
+                    active={false}
+                    onClick={() => {
+                        smoothScrollTo('slot-page-bonus')
+                        document.getElementById('bonusShortHand').blur()
+                    }}>
                     Bonus Offerti
                 </Button>
             </div>

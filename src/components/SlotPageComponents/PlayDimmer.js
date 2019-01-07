@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import { Dimmer } from 'semantic-ui-react-single/Dimmer'
 // components
 import RandomBonus from './RandomBonus'
+import BonusCardWithBanner from './BonusCardWithBanner'
 // router e redux
 import { connect } from 'react-redux'
 import { setUserNotPlaying } from '../../reducers/PlayModeReducer'
@@ -11,28 +12,30 @@ import { Container } from 'semantic-ui-react-single/Container'
 import { Responsive } from 'semantic-ui-react-single/Responsive'
 import { MobileView } from 'react-device-detect'
 import ClosableBonusCard from './ClosableBonusCard'
+
 class PlayDimmer extends Component {
 
     componentDidMount() {
-        this.resizeListener()
+        this.addResizeListener()
     }
 
     componentWillUnmount() {
-        window.removeEventListener("resize")
+        window.removeEventListener("resize", this.resizeListener)
     }
 
     state = {
         isHorizontal: false
     }
 
-    resizeListener() {
-        window.addEventListener("resize", () => {
-            const width = document.body.clientWidth
-            const height = document.body.clientHeight
-            const isHorizontal = height < width
-            isHorizontal ? this.setState({ isHorizontal: true }) : this.setState({ isHorizontal: false })
+    addResizeListener() {
+        window.addEventListener("resize", this.resizeListener)
+    }
 
-        })
+    resizeListener = () => {
+        const width = document.body.clientWidth
+        const height = document.body.clientHeight
+        const isHorizontal = height < width
+        isHorizontal ? this.setState({ isHorizontal: true }) : this.setState({ isHorizontal: false })
     }
 
     horizontalLayout = () =>
@@ -42,8 +45,8 @@ class PlayDimmer extends Component {
                     active={this.props.isPlaying}
                     onClickOutside={() => this.props.dispatch(setUserNotPlaying())}
                     page>
-                    <div style={{ background: 'black', width: '100%', height: '100%' }}>
-                        <Container>
+                    <Container>
+                        <div style={{ background: 'black', width: '100%', height: '100%' }} onClick={() => this.props.dispatch(setUserNotPlaying())}>
                             <Embed
                                 iframe={{
                                     style: {
@@ -55,8 +58,8 @@ class PlayDimmer extends Component {
                                 url={this.props.url} />
                             <ClosableBonusCard
                                 bonus={this.props.bonusList} />
-                        </Container>
-                    </div>
+                        </div>
+                    </Container>
                 </Dimmer>
             </Responsive>
         </div>
@@ -70,13 +73,21 @@ class PlayDimmer extends Component {
 
             <Container>
                 <Responsive minWidth={600}>
-                    <Embed
-                        active
-                        url={this.props.url} />
-                    <Container style={{ paddingLeft: "35%", paddingTop: "1%" }} >
-                        <RandomBonus bonus={this.props.bonusList} />
-                    </Container>
+                    <div className='centered-play-embed'>
+                        <Embed
+                            active
+                            url={this.props.url} />
+                    </div>
+
+
+                    <div className='floating-top-right'>
+                        <div className='left-sidebar'>
+                            <BonusCardWithBanner bonus={this.props.bonusList} />
+                        </div>
+                    </div>
+
                 </Responsive>
+
                 <Responsive maxWidth={600}>
                     <Container style={{ paddingTop: "10%" }} >
                         <Embed
@@ -86,15 +97,15 @@ class PlayDimmer extends Component {
                     </Container>
                 </Responsive>
 
-                {<MobileView style={{ marginTop: "5%" }}>
+                <MobileView style={{ marginTop: "5%" }}>
                     Ruota lo schermo del telefono per un' esperienza di gioco migliore
-            </MobileView>}
+                </MobileView>
             </Container>
         </Dimmer>
 
 
     render() {
-        console.log(this.state);
+        console.log(this.state.isHorizontal);
         const browserIsHorizontal = this.state.isHorizontal
 
         return (

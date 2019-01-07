@@ -3,19 +3,19 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import HomePage from '../components/HomeComponents/HomePage'
 
-// import AdminDashboard from './../admin/AdminDashboard';
-// import AddSlot from '../admin/Slots/AddSlot';
-// import AddBonus from '../admin/Bonus/AddBonus';
-// import AddProducer from '../admin/Producer/AddProducer';
-// import AddArticle from '../admin/AddArticle';
-// import SlotPreview from '../admin/Slots/SlotPreview'
-// import SlotDashboard from "../admin/Slots/SlotDashboard";
-// import EditSlot from "../admin/Slots/EditSlot";
-// import BonusDashboard from "../admin/Bonus/BonusDashboard"
-// import AddExtraFromHtml from '../admin/Extra/AddExtraFromHtml'
-// import BonusArticle from '../components/Extra/BonusArticle'
-// import ProducerDashboard from "../admin/Producer/ProducerDashboard";
-// import ExtraDashBoard from '../admin/Extra/ExtraDashboard'
+import AdminDashboard from './../admin/AdminDashboard';
+import AddSlot from '../admin/Slots/AddSlot';
+import AddBonus from '../admin/Bonus/AddBonus';
+import AddProducer from '../admin/Producer/AddProducer';
+import AddArticle from '../admin/AddArticle';
+import SlotPreview from '../admin/Slots/SlotPreview'
+import SlotDashboard from "../admin/Slots/SlotDashboard";
+import EditSlot from "../admin/Slots/EditSlot";
+import BonusDashboard from "../admin/Bonus/BonusDashboard"
+import AddExtraFromHtml from '../admin/Extra/AddExtraFromHtml'
+import BonusArticle from '../components/Extra/BonusArticle'
+import ProducerDashboard from "../admin/Producer/ProducerDashboard";
+import ExtraDashBoard from '../admin/Extra/ExtraDashboard'
 
 import Test from './Test'
 import SlotPage from '../components/SlotPageComponents/SlotPage';
@@ -54,7 +54,7 @@ const AppRouter = () => {
                     <Route path={ROUTE.PRODUCER} component={HomePage} />
 
 
-                    { /*                  <Route path={ROUTE.ADMIN} component={AdminDashboard} exact={true} />
+                    <Route path={ROUTE.ADMIN} component={AdminDashboard} exact={true} />
                     <Route path={ROUTE.ADMINSLOT} component={SlotDashboard} />
                     <Route path={ROUTE.ADMINBONUS} component={BonusDashboard} />
                     <Route path={ROUTE.ADMINPRODUCER} component={ProducerDashboard} />
