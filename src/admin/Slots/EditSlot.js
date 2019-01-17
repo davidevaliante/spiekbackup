@@ -73,6 +73,7 @@ class EditSlot extends React.Component {
                         if (e.key === element) def.push((i + 1).toString())
                     })
                 })
+                console.log(def)
 
 
                 this.setState({

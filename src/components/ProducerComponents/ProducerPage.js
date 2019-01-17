@@ -18,6 +18,7 @@ import Description from "../SlotPageComponents/Description";
 import Footer from "../Footer";
 import FixedSlotList from '../FixedSlotList';
 import { smoothScrollTo } from "../../utils/Utils";
+import SlotPageBonusList from "../SlotPageComponents/SlotPageBonusList";
 
 class ProducerPage extends Component {
     state = {
@@ -33,8 +34,8 @@ class ProducerPage extends Component {
         if (prevProps.match.params.producerName !== this.props.match.params.producerName) {
             this.setState({
                 loading: true
-            })
-            window.scrollTo(0, 0)
+            });
+            window.scrollTo(0, 0);
             this.gettingPageData()
         }
     }
@@ -45,7 +46,7 @@ class ProducerPage extends Component {
         getProducerByName(this.props.match.params.producerName,
             // callback 
             (producerDataResponse) => {
-                const producer = onListFetched(producerDataResponse)
+                const producer = onListFetched(producerDataResponse);
 
                 if (producer.length === 0) {
                     this.props.history.push(ROUTE.ERROR404)
@@ -53,24 +54,24 @@ class ProducerPage extends Component {
                     getSlotListByProducerName(this.props.match.params.producerName,
                         // callback 
                         slotListObject => {
-
-
                             this.setState({
                                 currentProducer: onListFetched(producerDataResponse)[0],
                                 slotProducerList: onListFetched(slotListObject),
-                                loading: false
+                                loading: false,
+                                bonusList: onListFetched(producerDataResponse)[0].bonusList
                             })
-                        })
+                        }
+                    )
                 }
             }
         )
-    }
+    };
 
     handleChange = (e, { value }) => this.setState({ order: value });
     handleContextRef = contextRef => this.setState({ contextRef });
 
     render() {
-        const { currentProducer, slotProducerList } = this.state;
+        const { currentProducer, slotProducerList, bonusList } = this.state;
         const slotLength = (slotProducerList) ? slotProducerList.length : 0;
         console.log(this.state);
 
@@ -92,14 +93,9 @@ class ProducerPage extends Component {
                     hidePlayButton={true}
                 />
 
-                <center>
-                    <a href={currentProducer && currentProducer.link}>Visita la pagina del produttore</a>
-                </center>
-
                 {!(slotLength === 0) &&
                     <div>
                         <div className='description-banner-container'>
-
                             <Responsive minWidth={766}>
                                 <div className='description-banner-red'>
                                     <div className='white-line scale-in-hor-right' />
@@ -138,16 +134,23 @@ class ProducerPage extends Component {
                                 order='name'
                                 slotList={this.state.slotProducerList} />
                         </Segment>
-                    </div>}
+                    </div>
+                }
+
+                {bonusList &&
+                    <Segment vertical>
+                        <SlotPageBonusList bonusList={bonusList}/>
+                    </Segment>
+                }
                 <Footer />
             </div>
         );
     }
 }
 
-const mapStateToProps = (state) => ({
-    dispatch: state.dispatch,
-    displaying: state.displaying
-});
+                const mapStateToProps = (state) => ({
+                dispatch: state.dispatch,
+                displaying: state.displaying
+            });
 
 export default withRouter(connect(mapStateToProps)(ProducerPage))

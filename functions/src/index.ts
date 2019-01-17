@@ -179,6 +179,7 @@ export const generateThumbs = functions.storage.object().onFinalize(async object
         const producerUploadPromises = producerSizes.map(async size => {
             const thumbName = `thumb_${size}_${fileName}`;
             const thumbPath = join(path.dirname(filePath), thumbName);
+            'GoogleCloud13467/ciao/qualcosa/sanitalia' + 'nome_della_foto'
             const thumbnailUploadStream = bucket.file(thumbPath).createWriteStream({ metadata });
 
             const pipeline = sharp();
@@ -201,13 +202,25 @@ export const generateThumbs = functions.storage.object().onFinalize(async object
 
 
 export const imageToJPG = functions.storage.object().onFinalize(async (object) => {
+    'OPERATORS_IMAGES/BLV6LGrgFQR92F4K5mA23YkruRO2.jpeg'
     const filePath = object.name;
+
     const baseFileName = path.basename(filePath, path.extname(filePath));
+    // baseFileName = BLV6LGrgFQR92F4K5mA23YkruRO2
     const fileDir = path.dirname(filePath);
+    // fileDir = OPERATORS_IMAGES/
+
     const JPEGFilePath = path.normalize(path.format({ dir: fileDir, name: baseFileName }));
+    'OPERATORS_IMAGES/BLV6LGrgFQR92F4K5mA23YkruRO2'
+
+
+    // os.tempdir() = C://cartella_temporanea_che_non_conosco
     const tempLocalFile = path.join(os.tmpdir(), filePath);
+    // cartella_temporanea_che_non_conosco/OPERATORS_IMAGES/BLV6LGrgFQR92F4K5mA23YkruRO2.jpeg
     const tempLocalDir = path.dirname(tempLocalFile);
+    // tempLocalDir = cartella_temporanea_che_non_conosco/OPERATORS_IMAGES
     const tempLocalJPEGFile = path.join(os.tmpdir(), JPEGFilePath);
+    // tempLocalJPEGFile = cartella_temporanea_che_non_conosco/OPERATORS_IMAGES/BLV6LGrgFQR92F4K5mA23YkruRO2
 
     // Non deve andare se non è un immagine
     if (!object.contentType.startsWith('image/')) {

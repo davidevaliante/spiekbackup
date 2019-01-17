@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import delay from 'lodash/delay';
 import { Button } from 'semantic-ui-react-single/Button'
-import { Form } from 'semantic-ui-react-single/Form'
+import {Form, FormField} from 'semantic-ui-react-single/Form'
 import { Input } from 'semantic-ui-react-single/Input'
 import { Dimmer } from 'semantic-ui-react-single/Dimmer'
 import { Header } from 'semantic-ui-react-single/Header'
@@ -16,6 +16,8 @@ import { pushNewProducer } from '../../firebase/firebase';
 import { updateProducerWithId } from '../../firebase/update';
 import { getProducerWithId } from "../../firebase/get";
 import { getImageLinkFromName } from "../../utils/Utils";
+import SearchMultipleSelection from '../SearchMultipleSelection.js';
+import { forEach, keys } from 'lodash'
 
 class AddProducer extends Component {
 
@@ -35,12 +37,16 @@ class AddProducer extends Component {
         const link = document.getElementById('linkField').value.trim();
         const description = (document.getElementById('htmlText').value.trim() !== '<p><br></p>') ? document.getElementById('htmlText').value.trim() : ''
 
-        if ( name && link ) {
+
+        if (name && link) {
             const newProducer = {
                 name: name,
                 link: link,
-                description: description
+                description: description,
+                bonusList: this.state.selectedBonus
             };
+            console.log(newProducer);
+
             if (!this.state.isInEditMode)
                 pushNewProducer(newProducer, this.state.image, this.onProducerPushSuccess)
             else
@@ -52,6 +58,12 @@ class AddProducer extends Component {
         this.setState({ image: image })
     };
 
+    onBonusSelected = (selectedBonus) => {
+        this.setState({ selectedBonus: selectedBonus })
+        console.log(selectedBonus);
+
+    }
+
     onProducerPushSuccess = () => {
         this.setState({ active: true })
         delay(() => {
@@ -62,22 +74,48 @@ class AddProducer extends Component {
     handleOpen = () => this.setState({ active: true })
     handleClose = () => this.setState({ active: false })
 
-    componentDidMount(){
+    componentDidMount() {
         if (this.props.match.params.id) {
-            getProducerWithId( this.props.match.params.id,
+            getProducerWithId(this.props.match.params.id,
                 (producer) => {
                     console.log(producer)
+                    let options = [];
+
+                    const k = keys(producer.bonusList)
+
+                    let counter = 1
+                    for (const key in producer.bonusList) {
+                        options.push({ key: `${key}`, value: `${counter}`, text: `${producer.bonusList[key].name}` })
+                        counter++
+                    }
+
+                    console.log(options)
+
+
+                    let def = []
+                    // valori default per l'edit
+                    forEach(k, (element) => {
+                        forEach(options, (e, i) => {
+                            if (e.key === element) def.push((i + 1).toString())
+                        })
+                    })
+
+
+                    console.log(def)
+
                     this.setState({
                         isInEditMode: true,
                         producer: producer,
                         submitBtn: 'Modifica',
+                        bonusList: producer.bonusList,
+                        bonusAlreadyPresent : def
                     })
                 })
         }
     }
 
-    componentDidUpdate(prevProps, prevState, snapshot){
-        if (prevProps.match.params.id !==this.props.match.params.id) {
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.match.params.id !== this.props.match.params.id) {
             this.setState({
                 producer: undefined,
                 isInEditMode: false,
@@ -94,13 +132,12 @@ class AddProducer extends Component {
         return (
             <div>
                 <AdminNavbar activeItem={ADMINPAGES.PRODUCER} />
-
                 <div
                     style={{ padding: '5.5rem' }}>
                     <Dimmer blurring active={active} onClickOutside={this.handleClose} page>
                         <Header as='h2' icon inverted>
                             <Icon name='check' />
-                            { !isInEditMode ? 'Aggiunto' : 'Modificato' } con successo
+                            {!isInEditMode ? 'Aggiunto' : 'Modificato'} con successo
                         </Header>
                     </Dimmer>
                     <h1
@@ -136,9 +173,27 @@ class AddProducer extends Component {
                         <Form.Field>
                             <label>Descrizione</label>
                             {isInEditMode && this.state.producer &&
-                            <RichEdit defaultContent={this.state.producer.description}/>}
+                                <RichEdit defaultContent={this.state.producer.description} />}
                             {!isInEditMode && <RichEdit />}
                         </Form.Field>
+
+                        <div>
+                            <h1
+                                style={{
+                                    color: 'black',
+                                    marginBottom: '2rem',
+                                    textAlign: 'center'
+                                }}>
+                                Bonus Relativiti a questo produttore
+                                <FormField>
+                                    {this.state.bonusAlreadyPresent &&
+                                    <SearchMultipleSelection
+                                        defaults={this.state.bonusAlreadyPresent}
+                                        onListUpdate={this.onBonusSelected} />
+                                    }
+                                </FormField>
+                            </h1>
+                        </div>
 
                         {isInEditMode && producer &&
                             <ImagePicker
