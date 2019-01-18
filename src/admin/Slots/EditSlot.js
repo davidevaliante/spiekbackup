@@ -46,6 +46,8 @@ class EditSlot extends React.Component {
         slotTypeOptions: [
             { key: 'one', value: SLOT_TYPES.BAR, text: 'Slot da bar' },
             { key: 'two', value: SLOT_TYPES.GRATIS, text: 'Slot gratis' },
+            { key: 'three', value: SLOT_TYPES.VLT, text: 'VLT' }
+
         ],
         shouldDisplayErrors: false,
         emptyFields: [],
@@ -84,6 +86,8 @@ class EditSlot extends React.Component {
                     })
                 })
 
+                let onlineVersion = []
+
                 getSlotCardList(list => {
                     let slotCardOptions = []
                     let counter = 1
@@ -92,7 +96,11 @@ class EditSlot extends React.Component {
                         counter++
                     }
                     const r = keys(slot.similarSlots)
+
+                    const onlineVersionid = slot.onlineVersion && Object.keys(slot.onlineVersion)[0]
+
                     let relatedslots = []
+                    let ov = []
                     forEach(r, (element) => {
                         forEach(slotCardOptions, (e, i) => {
                             if (e.key === element){
@@ -100,8 +108,23 @@ class EditSlot extends React.Component {
                             }
                         })
                     })
-                    this.setState({defaultValuesForRelatedSlots : relatedslots, similarSlots : relatedslots})
+
+
+                    forEach(slotCardOptions, (e, i) => {
+                        if (e.key === onlineVersionid){
+                            ov.push((i + 1).toString())
+                        }
+                    })
+
+
+                    this.setState({defaultValuesForRelatedSlots : relatedslots,
+                        similarSlots : slot.similarSlots,
+                        defaultValueForOnlineVersion : ov,
+                        onlineVersion : slot.onlineVersion
+                    })
                 })
+
+
 
 
 
@@ -154,6 +177,11 @@ class EditSlot extends React.Component {
         })
         console.log(k)
         this.setState({similarSlots : k})
+    }
+
+    onOnlineCounterpartSelected = (counterPartSelcted) => {
+        this.setState({ onlineVersion: counterPartSelcted })
+        console.log(counterPartSelcted);
     }
 
     onBonusSpecialSelected = (selectedSpecialBonus) => {
@@ -278,7 +306,8 @@ class EditSlot extends React.Component {
             tecnicals: tecnicalsField,
             type: type,
             isPopular: this.state.isPopular ? this.state.isPopular : false,
-            similarSlots : this.state.similarSlots
+            similarSlots : this.state.similarSlots,
+            onlineVersion : this.state.onlineVersion
         }
 
         const image = this.state.image
@@ -505,6 +534,13 @@ class EditSlot extends React.Component {
                             placeholder='Slot Simili'
                             onListUpdate={this.onSimilarslotSelected} />
                         }
+
+                        {this.state.defaultValueForOnlineVersion &&
+                            <SearchMultipleSelectionSlot
+                                defaults={this.state.defaultValueForOnlineVersion}
+                                placeholder='Corrispettivo Online'
+                                onListUpdate={this.onOnlineCounterpartSelected} />}
+
                         <Form.Field
                             style={{ width: '100%' }}
                             onClick={this.submitEditSlot}

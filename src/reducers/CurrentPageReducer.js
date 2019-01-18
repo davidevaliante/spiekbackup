@@ -18,6 +18,8 @@ const currentPageReducer = (state = defaultCurrentPageState, action) => {
             return PAGES.SLOT
         case PAGES.ARTICLE:
             return PAGES.ARTICLE
+        case PAGES.VLT:
+            return PAGES.VLT
         case PAGES.PRODUCER:
             return {
                 displaying: PAGES.PRODUCER,
@@ -64,6 +66,12 @@ export const setBarPage = () => {
 export const setGratisPage = () => {
     return {
         type: PAGES.SLOT_GRATIS,
+    }
+}
+
+export const setVltPage = () => {
+    return {
+        type: PAGES.VLT,
     }
 }
 export const setArticlePage = () => {

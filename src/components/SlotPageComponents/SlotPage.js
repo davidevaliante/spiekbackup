@@ -147,6 +147,7 @@ class SlotPage extends Component {
                             id='slot-page-lists'>
                             <TipsList tipList={currentSlot.tips} />
                             <TecnicalsList
+                                onlineVersion = {currentSlot.onlineVersion && Object.keys(currentSlot.onlineVersion)[0]}
                                 tecList={currentSlot.tecnicals}
                                 producerName={(currentSlot.producer && currentSlot.producer.name)} />
                         </Grid.Row>

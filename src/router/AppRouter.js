@@ -44,9 +44,11 @@ const AppRouter = () => {
                     { /* HOME filtered */}
                     <Route path={ROUTE.SLOT_ONLINE} component={HomePage} exact={true} page={PAGES.SLOT_ONLINE} />
                     <Route path={ROUTE.SLOT_GRATIS} component={HomePage} exact={true} page={PAGES.SLOT_GRATIS} />
+                    <Route path={ROUTE.VLT} component={HomePage} exact={true} page={PAGES.VLT} />
                     <Route path={ROUTE.SLOT_BAR} component={HomePage} exact={true} page={PAGES.SLOT_BAR} />
                     <Route path={ROUTE.ARTICLE} component={HomePage} exact={true} page={PAGES.ARTICLE} />
                     <Route path={ROUTE.PRODUCER} component={ProducerPage} exact={true} page={PAGES.PRODUCER} />
+
 
                     <Route path={ROUTE.EXTRA} component={Article} />
 

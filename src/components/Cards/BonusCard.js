@@ -29,12 +29,12 @@ const BonusCard = (props) => {
                         <Card.Content>
                             <Card.Header>
                                 <div className='vertical-center'>
-                                    <Image style={{ height: '4.3rem', objectFit: 'cover' }} src={getImageLinkFromName('bonus', props.bonus.name)} />
+                                    <Image style={{ height: '4.3rem', objectFit: 'cover' }} src={getImageLinkFromName('bonus', props.bonus && props.bonus.name)} />
                                 </div>
                             </Card.Header>
                         </Card.Content>
                         <Card.Content extra>
-                            {lowerCase(props.bonus.bonus)}
+                            {props.bonus && lowerCase(props.bonus.bonus)}
 
                         </Card.Content>
                     </Card>
@@ -44,7 +44,7 @@ const BonusCard = (props) => {
                     <Card style={{ background: '#454545' }}>
                         <Card.Content>
                             <Button onClick={(event) => goToExternalLink()} fluid color='red'>Provalo subito</Button>
-                            {props.bonus.guideId &&
+                            {props.bonus && props.bonus.guideId &&
                                 <div>
                                     <br></br>
                                     <Button onClick={(event) => goToGuide()} fluid color='green'>Leggi la guida</Button>

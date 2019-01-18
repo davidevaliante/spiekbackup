@@ -36,6 +36,37 @@ const ShortHandMenu = (props) => {
         }
     }
 
+    const goToOnLineVersion = (onlineVersionObject) => {
+        const id =  Object.keys(onlineVersionObject).length !== 0 && Object.keys(onlineVersionObject)[0]
+        props.history.push(`/slot/${id}`)
+    }
+
+    const PlayButton = () => {
+        if(props.currentSlot.onlineVersion !== undefined) {
+            return <Button style={{width: '45%'}}
+                           animated
+                           size='huge'
+                           color='white'
+                           onClick={() => goToOnLineVersion(props.currentSlot.onlineVersion)}>
+                <Button.Content visible>Vai alla versione online</Button.Content>
+                <Button.Content hidden>
+                    <Icon name='gamepad'/>
+                </Button.Content>
+            </Button>
+        } else {
+
+            return <Button style={{ width: '45%' }}
+                    animated
+                    size='huge'
+                    color='white'
+                    onClick={() => playButtonMethod()}>
+                <Button.Content visible>{(props.currentSlot !== undefined && props.currentSlot.type === 'GRATIS') ? 'Provala Subito' : 'Vai alla versione online'}</Button.Content>
+                <Button.Content hidden>
+                    <Icon name='gamepad' />
+                </Button.Content>
+            </Button>
+        }
+    }
 
     return (
         <div className='shorthand-container-style'>
@@ -100,7 +131,7 @@ const ShortHandMenu = (props) => {
                             smoothScrollTo('slot-page-description')
                             document.getElementById('descShortHand').blur()
                         }}>
-                        Descrizione x
+                        Descrizione
                     </Button>
                     <Button
                         id='tipsShortHand'
@@ -131,16 +162,7 @@ const ShortHandMenu = (props) => {
             </Responsive>
 
             <div className='big-buttons-container'>
-                <Button style={{ width: '45%' }}
-                    animated
-                    size='huge'
-                    color='white'
-                    onClick={() => playButtonMethod()}>
-                    <Button.Content visible>{(props.currentSlot !== undefined && props.currentSlot.type === 'GRATIS') ? 'Provala Subito' : 'Vai alla versione online'}</Button.Content>
-                    <Button.Content hidden>
-                        <Icon name='gamepad' />
-                    </Button.Content>
-                </Button>
+                {props.currentSlot && PlayButton()}
 
                 <Button
                     id='bonusShortHand'

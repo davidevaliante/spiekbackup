@@ -136,6 +136,10 @@ export const formatList = (slotList, bonusList, producerList) => {
             name: "Bonus",
             results: []
         },
+        Vlt:{
+            name : "Vlt",
+            results : []
+        },
         Produttori: {
             name: "Produttori",
             results: []
@@ -157,6 +161,7 @@ export const formatList = (slotList, bonusList, producerList) => {
         return slot.type === 'GRATIS'
     });
     const slotBar = filter(l, (slot) => slot.type === 'BAR');
+    const vlt = filter(l, (slot) => slot.type === 'VLT');
 
     console.log(slotOnline);
 
@@ -182,6 +187,18 @@ export const formatList = (slotList, bonusList, producerList) => {
             image: getImageLinkFromName('slot', current.name, 'small'),
             original: current,
             type: 'slot-bar'
+        })
+    }
+
+    for (const slot in vlt) {
+        const current = vlt[slot]
+        vlt.push({
+            id: current.id,
+            title: current.name,
+            description: `${truncate(removeHtmlFrom(current.description), truncateOptions)}`,
+            image: getImageLinkFromName('slot', current.name, 'small'),
+            original: current,
+            type: 'vlt'
         })
     }
 
@@ -216,6 +233,7 @@ export const formatList = (slotList, bonusList, producerList) => {
     list['SlotBar']['results'] = slotBar
     list['Bonus']['results'] = formattedBonus
     list['Produttori']['results'] = formattedProducer
+    list['Vlt']['results'] = vlt
 
 
     return list

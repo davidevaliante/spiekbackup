@@ -125,10 +125,9 @@ export const getAllByType = (type, callback) => {
         .then(
             list => {
                 console.log(list.data);
-
                 store.dispatch(replaceSlotList(list.data))
             }
-        )
+        ).catch(error => console.log(error))
 };
 
 export const getSlotListByProducerName = (producerName, callback) => {

@@ -12,7 +12,15 @@ import PopularSlotList from './HomeBody/PopularSlotList'
 // router e redux
 import { connect } from 'react-redux';
 import { ROUTE, SLOT_TYPES, PAGES } from "../../enums/Constants";
-import { setHomePage, setGratisPage, setBarPage, setAboutPage, setProducerPage, setArticlePage } from '../../reducers/CurrentPageReducer'
+import {
+    setHomePage,
+    setGratisPage,
+    setBarPage,
+    setAboutPage,
+    setProducerPage,
+    setArticlePage,
+    setVltPage
+} from '../../reducers/CurrentPageReducer'
 // data
 import { getSlotsCardBasedOnTime, getAllByType } from '../../firebase/get'
 import ArticleList from "../HomeComponents/HomeBody/ArticleList"
@@ -36,6 +44,9 @@ class HomePage extends Component {
                     break;
                 case PAGES.SLOT_GRATIS:
                     getAllByType('GRATIS');
+                    break;
+                case PAGES.VLT:
+                    getAllByType('VLT');
                     break;
                 default:
             }
@@ -104,6 +115,9 @@ class HomePage extends Component {
             case ROUTE.ABOUT:
                 this.props.dispatch(setAboutPage())
                 return 'ABOUT'
+            case ROUTE.VLT:
+                this.props.dispatch(setVltPage())
+                return 'VLT'
             case ROUTE.ARTICLE:
                 this.props.dispatch(setArticlePage())
                 return 'ARTICLE'
@@ -126,7 +140,6 @@ class HomePage extends Component {
         const type = this.getType(this.props.match.path)
 
         const { contextRef } = this.state
-        console.log(contextRef);
 
         return (
             <div>

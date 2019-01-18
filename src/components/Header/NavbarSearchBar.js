@@ -31,13 +31,15 @@ class NavbarSearchBar extends Component {
             case 'slot-online':
                 this.props.history.push(`${ROUTE.SLOTS}/${result.id}`)
                 console.log(result);
-
                 break;
             case 'slot-bar':
                 this.props.history.push(`${ROUTE.SLOTS}/${result.id}`)
                 break;
             case 'bonus':
                 window.open(result.link)
+                break;
+            case 'vlt':
+                this.props.history.push(`${ROUTE.SLOTS}/${result.id}`)
                 break;
             case 'producer':
                 this.props.history.push(`${ROUTE.PRODUCERS}/${result.title}`)

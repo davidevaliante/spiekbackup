@@ -10,7 +10,8 @@ export const STORAGE_FOLDERS = {
 export const SLOT_TYPES = {
     BAR: 'BAR',
     GRATIS: 'GRATIS',
-    PRODUCER_FILTERED: 'PRODUCER_FILTERED'
+    PRODUCER_FILTERED: 'PRODUCER_FILTERED',
+    VLT : 'VLT'
 };
 
 export const DATABASE_REFERENCE = {
@@ -29,7 +30,8 @@ export const PAGES = {
     ABOUT: 'ABOUT',
     PRODUCER: 'PRODUCER',
     ARTICLE: 'ARTICLE',
-    PAGE_NOT_FOUND: '*'
+    PAGE_NOT_FOUND: '*',
+    VLT : 'VLT'
 };
 
 const admin = '/admin';
@@ -48,6 +50,7 @@ export const ROUTE = {
     PRODUCER: `/producer/:producerName`,
     ARTICLE: '/articoli',
     ERROR404: '/404',
+    VLT :'/vlt',
 
     // admin
     ADMIN: `${admin}`,

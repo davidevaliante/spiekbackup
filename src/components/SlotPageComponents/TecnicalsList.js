@@ -29,6 +29,22 @@ const TecnicalsList = (props) => {
                     <p style={{ fontFamily: 'Raleway' }}>Produttore: <a href={`${ROUTE.PRODUCERS}/${props.producerName}`}><strong>{props.producerName}</strong></a></p>
                 </div>
                 <Divider />
+
+                {props.onlineVersion &&
+                    <div>
+                        <div className='tip-tec-row'>
+                            <div className='column-align-start-center'>
+                                <Icon
+                                    className='column-align-start-center'
+                                    size='small'
+                                    style={{ marginRight: '2rem' }}
+                                    circular inverted color='red' name='angle right' />
+                            </div>
+                            <p style={{ fontFamily: 'Raleway' }}>E' disponibile la versione On Line: <a href={`/slot/${props.onlineVersion}`}><strong>Link</strong></a></p>
+                        </div>
+                        <Divider />
+                    </div>
+                }
             </div>
             {slice(splittedArray, 1, splittedArray.length).map(
                     t =>

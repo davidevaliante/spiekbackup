@@ -16,7 +16,7 @@ import {
     setBarPage,
     setGratisPage,
     setProducerPage,
-    setArticlePage
+    setArticlePage, setVltPage
 } from '../../reducers/CurrentPageReducer'
 import { connect } from 'react-redux'
 // static files
@@ -60,6 +60,10 @@ class Navbar extends Component {
             case PAGES.SLOT_GRATIS:
                 document.getElementById('gratis-nav-link').click()
                 this.props.dispatch(setGratisPage())
+                break;
+            case PAGES.VLT:
+                document.getElementById('vlt-nav-link').click()
+                this.props.dispatch(setVltPage())
                 break;
             case PAGES.ARTICLE:
                 document.getElementById('article-nav-link').click()
@@ -120,6 +124,13 @@ class Navbar extends Component {
                                     onClick={(event, data) => this.updateCurrentPage(PAGES.SLOT_BAR)}
                                     active={this.props.displaying === PAGES.SLOT_BAR}>
                                     <NavLink id='bar-nav-link' to={ROUTE.SLOT_BAR}>Slot da bar</NavLink>
+                                </Menu.Item>
+
+                                <Menu.Item
+                                    as='a'
+                                    onClick={(event, data) => this.updateCurrentPage(PAGES.VLT)}
+                                    active={this.props.displaying === PAGES.VLT}>
+                                    <NavLink id='vlt-nav-link' to={ROUTE.VLT}>VLT</NavLink>
                                 </Menu.Item>
 
                                 <Menu.Item
@@ -185,6 +196,13 @@ class Navbar extends Component {
                                 onClick={(event, data) => this.updateCurrentPage(PAGES.SLOT_BAR)}
                                 active={this.props.displaying === PAGES.SLOT_BAR}>
                                 <NavLink id='bar-nav-link' to={ROUTE.SLOT_BAR}>Slot da bar</NavLink>
+                            </Menu.Item>
+
+                            <Menu.Item
+                                as='a'
+                                onClick={(event, data) => this.updateCurrentPage(PAGES.VLT)}
+                                active={this.props.displaying === PAGES.VLT}>
+                                <NavLink id='vlt-nav-link' to={ROUTE.VLT}>VLT</NavLink>
                             </Menu.Item>
 
                             <Menu.Item

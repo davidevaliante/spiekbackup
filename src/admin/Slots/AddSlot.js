@@ -38,6 +38,7 @@ class AddSlot extends Component {
         slotTypeOptions: [
             { key: 'one', value: SLOT_TYPES.BAR, text: 'Slot da bar' },
             { key: 'two', value: SLOT_TYPES.GRATIS, text: 'Slot gratis' },
+            { key: 'three', value: SLOT_TYPES.VLT, text: 'VLT' }
         ],
         shouldDisplayErrors: false,
         emptyFields: [],
@@ -76,6 +77,11 @@ class AddSlot extends Component {
         document.getElementById('bonusField').childNodes[2].innerHTML = '';
         console.log(document.getElementById('bonusField').childNodes)
 
+    }
+
+    onOnlineCounterpartSelected = (counterPartSelcted) => {
+        this.setState({ onlineVersion: counterPartSelcted })
+        console.log(counterPartSelcted);
     }
 
     onDropDownChange = (data) => {
@@ -171,7 +177,8 @@ class AddSlot extends Component {
             type: this.state.type,
             isFake: this.state.isFake,
             bonusSpecial : this.state.specialBonus,
-            similarSlots : this.state.similarSlots
+            similarSlots : this.state.similarSlots,
+            onlineVersion : this.state.onlineVersion
         }
 
         const imageData = {
@@ -525,6 +532,13 @@ class AddSlot extends Component {
                         <SearchMultipleSelectionSlot
                             placeholder='Slot Simili'
                             onListUpdate={this.onSimilarslotSelected} />
+
+                        <SearchMultipleSelectionSlot
+                            placeholder='Corrispettivo Online'
+                            onListUpdate={this.onOnlineCounterpartSelected} />
+
+                        <Divider style={{marginTop :'2%', marginBottom : '2%'}}/>
+
 
                         {/*  <Form.Field
                             style={{ width: '100%' }}
