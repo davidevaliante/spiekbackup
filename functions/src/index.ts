@@ -25,33 +25,33 @@ const producerSizes = [64];
 
 
 const removeHtmlFrom = (s) => {
-    let str = s
+    let str = s;
     if ((str === null) || (str === ''))
         return false;
 
     return str.replace(/<[^>]*>/g, '');
-}
+};
 
 // -------------------DATABASE TRIGGERS--------------------------------------------------------------
 export const onBonusUpdated = functions.database.ref('Bonus/{language}/{id}').onUpdate(
     (ciao, context) => {
-        const updatedBonus = ciao.after.exportVal()
-
+        const updatedBonus = ciao.after.exportVal();
         admin.database().ref(`/Slots/${context.params.language}`).once("value", snapshot => {
-            const x = snapshot.val()
+            const x = snapshot.val();
+
             for (const key in x) {
-                const changedId = context.params.id
-                const element = x[key]
+                const changedId = context.params.id;
+                const element = x[key];
                 if (element.bonus[changedId] !== undefined) {
-                    element.bonus[changedId] = updatedBonus
+                    element.bonus[changedId] = updatedBonus;
                     admin.database().ref(`/Slots/${context.params.language}/${key}`).set(element)
                 }
             }
-        })
+        });
 
         return null
     }
-)
+);
 
 export const onSlotAdded = functions.database.ref('/Slots/{language}/{pushId}/')
     .onCreate((snapshot, context) => {
@@ -64,13 +64,13 @@ export const onSlotAdded = functions.database.ref('/Slots/{language}/{pushId}/')
             time: newSlot.time,
             type: newSlot.type,
             description: truncate(removeHtmlFrom(newSlot.description), { 'length': 150 })
-        }
+        };
 
         const slotMenu = {
             name: newSlot.name,
             description: `${truncate(removeHtmlFrom(newSlot.description), { 'length': 60 })}`,
             type: newSlot.type
-        }
+        };
 
         return admin.database().ref(`/SlotsCard/${context.params.language}/${context.params.pushId}`).set(slotCard)
             .then(() =>
@@ -83,7 +83,7 @@ export const onSlotUpdated = functions.database.ref('/Slots/{language}/{editedId
         // Grab the current value of what was written to the Realtime Database.
         const newSlot = snapshot.after.val();
         const baseImageUrl = 'https://firebasestorage.googleapis.com/v0/b/spike-2481d.appspot.com/o/SlotImages%2F';
-        const baseName = newSlot.imageName
+        const baseName = newSlot.imageName;
         const slotCard = {
             name: newSlot.name,
             image: `${baseImageUrl}thumb_${slotSizes[1]}_${baseName}?alt=media`,
@@ -93,14 +93,14 @@ export const onSlotUpdated = functions.database.ref('/Slots/{language}/{editedId
             type: newSlot.type,
             description: truncate(removeHtmlFrom(newSlot.description), { 'length': 150 }),
             isPopular: newSlot.isPopular
-        }
+        };
 
         const slotMenu = {
             name: newSlot.name,
             image: `${baseImageUrl}thumb_${slotSizes[0]}_${baseName}?alt=media`,
             description: `${truncate(removeHtmlFrom(newSlot.description), { 'length': 60 })}`,
             type: newSlot.type
-        }
+        };
 
         return admin.database().ref(`/SlotsCard/${context.params.language}/${context.params.editedId}`).set(slotCard).then(() =>
             admin.database().ref(`/SlotsMenu/${context.params.language}/${context.params.editedId}`).set(slotMenu)
@@ -111,8 +111,8 @@ export const onSlotUpdated = functions.database.ref('/Slots/{language}/{editedId
 export const onSlotDeleted = functions.database.ref('/Slots/{language}/{slotId}/')
     .onDelete((snapshot, context) => {
         const slotId = context.params.slotId;
-        const language = context.params.language
-        const imageName = snapshot.val().image.split('?alt')[0].split('/SlotImages%2F').pop()
+        const language = context.params.language;
+        const imageName = snapshot.val().image.split('?alt')[0].split('/SlotImages%2F').pop();
         console.log('image name', imageName);
 
         return admin.database().ref.child(`/SlotsCard/${language}/${slotId}`).remove()
@@ -122,11 +122,11 @@ export const onSlotDeleted = functions.database.ref('/Slots/{language}/{slotId}/
                 admin.storage().ref(`/SlotImages/${imageName}`).remove()
             })
 
-    })
+    });
 
 // -----------------------STORAGE TRIGGERS------------------------------------------------------------
 export const generateThumbs = functions.storage.object().onFinalize(async object => {
-    const bucket = gcs.bucket(object.bucket)
+    const bucket = gcs.bucket(object.bucket);
     // dove si trova il file nello storage
     const filePath = object.name;
     // fa split rispetto a '/' e prende l'ultimo elemento dell'array
@@ -138,7 +138,7 @@ export const generateThumbs = functions.storage.object().onFinalize(async object
     // metadata file
     const metadata = {
         contentType: 'image/jpeg',
-    }
+    };
 
     // break point per evitare che la funzione trigegri all'infinito
     // di base questa funzione va ogni volta che viene aggiunta un immagine
@@ -178,7 +178,7 @@ export const generateThumbs = functions.storage.object().onFinalize(async object
         const producerUploadPromises = producerSizes.map(async size => {
             const thumbName = `thumb_${size}_${fileName}`;
             const thumbPath = join(path.dirname(filePath), thumbName);
-            'GoogleCloud13467/ciao/qualcosa/sanitalia' + 'nome_della_foto'
+            'GoogleCloud13467/ciao/qualcosa/sanitalia' + 'nome_della_foto';
             const thumbnailUploadStream = bucket.file(thumbPath).createWriteStream({ metadata });
 
             const pipeline = sharp();
@@ -196,12 +196,12 @@ export const generateThumbs = functions.storage.object().onFinalize(async object
     }
 
     return true
-})
+});
 
 
 
 export const imageToJPG = functions.storage.object().onFinalize(async (object) => {
-    'OPERATORS_IMAGES/BLV6LGrgFQR92F4K5mA23YkruRO2.jpeg'
+    'OPERATORS_IMAGES/BLV6LGrgFQR92F4K5mA23YkruRO2.jpeg';
     const filePath = object.name;
 
     const baseFileName = path.basename(filePath, path.extname(filePath));
@@ -210,7 +210,7 @@ export const imageToJPG = functions.storage.object().onFinalize(async (object) =
     // fileDir = OPERATORS_IMAGES/
 
     const JPEGFilePath = path.normalize(path.format({ dir: fileDir, name: baseFileName }));
-    'OPERATORS_IMAGES/BLV6LGrgFQR92F4K5mA23YkruRO2'
+    'OPERATORS_IMAGES/BLV6LGrgFQR92F4K5mA23YkruRO2';
 
 
     // os.tempdir() = C://cartella_temporanea_che_non_conosco

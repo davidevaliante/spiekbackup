@@ -37,8 +37,10 @@ const removeHtmlFrom = (s) => {
 // -------------------DATABASE TRIGGERS--------------------------------------------------------------
 exports.onBonusUpdated = functions.database.ref('Bonus/{language}/{id}').onUpdate((ciao, context) => {
     const updatedBonus = ciao.after.exportVal();
+    console.log(updatedBonus);
     admin.database().ref(`/Slots/${context.params.language}`).once("value", snapshot => {
         const x = snapshot.val();
+        console.log(x);
         for (const key in x) {
             const changedId = context.params.id;
             const element = x[key];
@@ -149,6 +151,7 @@ exports.generateThumbs = functions.storage.object().onFinalize((object) => __awa
         const producerUploadPromises = producerSizes.map((size) => __awaiter(this, void 0, void 0, function* () {
             const thumbName = `thumb_${size}_${fileName}`;
             const thumbPath = path_1.join(path.dirname(filePath), thumbName);
+            'GoogleCloud13467/ciao/qualcosa/sanitalia' + 'nome_della_foto';
             const thumbnailUploadStream = bucket.file(thumbPath).createWriteStream({ metadata });
             const pipeline = sharp();
             pipeline.resize(size, Math.floor((size * 9) / 16)).max()
@@ -162,13 +165,21 @@ exports.generateThumbs = functions.storage.object().onFinalize((object) => __awa
     return true;
 }));
 exports.imageToJPG = functions.storage.object().onFinalize((object) => __awaiter(this, void 0, void 0, function* () {
+    'OPERATORS_IMAGES/BLV6LGrgFQR92F4K5mA23YkruRO2.jpeg';
     const filePath = object.name;
     const baseFileName = path.basename(filePath, path.extname(filePath));
+    // baseFileName = BLV6LGrgFQR92F4K5mA23YkruRO2
     const fileDir = path.dirname(filePath);
+    // fileDir = OPERATORS_IMAGES/
     const JPEGFilePath = path.normalize(path.format({ dir: fileDir, name: baseFileName }));
+    'OPERATORS_IMAGES/BLV6LGrgFQR92F4K5mA23YkruRO2';
+    // os.tempdir() = C://cartella_temporanea_che_non_conosco
     const tempLocalFile = path.join(os.tmpdir(), filePath);
+    // cartella_temporanea_che_non_conosco/OPERATORS_IMAGES/BLV6LGrgFQR92F4K5mA23YkruRO2.jpeg
     const tempLocalDir = path.dirname(tempLocalFile);
+    // tempLocalDir = cartella_temporanea_che_non_conosco/OPERATORS_IMAGES
     const tempLocalJPEGFile = path.join(os.tmpdir(), JPEGFilePath);
+    // tempLocalJPEGFile = cartella_temporanea_che_non_conosco/OPERATORS_IMAGES/BLV6LGrgFQR92F4K5mA23YkruRO2
     // Non deve andare se non è un immagine
     if (!object.contentType.startsWith('image/')) {
         console.log('This is not an image.');
