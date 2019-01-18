@@ -14,7 +14,7 @@ import YouTubeEmbed from './YouTubeEmbed'
 import SlotPageHeader from '../Header/SlotPageHeader'
 import Navbar from '../Header/Navbar'
 // data
-import { getSlotWithId } from '../../firebase/get'
+import {getSlotCardWithId, getSlotWithId} from '../../firebase/get'
 // router e redux
 import { slotIsLoading, slotIsLoaded, updateCurrentSlot } from '../../reducers/SlotPageReducer'
 import { withRouter } from 'react-router-dom'
@@ -23,23 +23,34 @@ import { connect } from 'react-redux'
 import split from 'lodash/split'
 import Helmet from 'react-helmet'
 import { ROUTE } from "../../enums/Constants";
+import SlotList from "../HomeComponents/HomeBody/HomeBody";
+import RelatedSlotList from "./RelatedSlotsList";
+import RefreshingComponent from "./RefreshingComponent";
 
 
 class SlotPage extends Component {
 
     state = {
         currentSlot: {},
-        currentSlotId: ''
+        currentSlotId: '',
+        relatedSlots : {},
     }
 
     componentDidMount() {
-        console.log('mounting')
         getSlotWithId(this.props.match.params.id, (slot) => {
             if (!slot) {
                 this.props.history.push(ROUTE.ERROR404)
             }
             this.props.dispatch(slotIsLoaded())
             this.props.dispatch(updateCurrentSlot(slot))
+            if (slot.similarSlots !== undefined){
+                for (const id in slot.similarSlots) {
+                    getSlotCardWithId(id, result => {
+                        this.setState({relatedSlots : {...this.state.relatedSlots, [id] : result}})
+                    })
+                }
+            }
+
             this.setState({
                 currentSlot: slot,
                 currentSlotId: this.props.match.params.id
@@ -50,6 +61,8 @@ class SlotPage extends Component {
 
 
     componentDidUpdate(prevProps, prevState, snapshot) {
+        console.log('component did update')
+
         if (prevProps.match.params.id !== this.props.match.params.id) {
             console.log('firebase query');
             this.props.dispatch(slotIsLoading())
@@ -62,6 +75,7 @@ class SlotPage extends Component {
                     currentSlotId: this.props.match.params.id
                 })
             })
+        } else {
         }
         /* 
                 if (prevState.currentSlot.linkYoutube) {
@@ -78,11 +92,11 @@ class SlotPage extends Component {
         return `https://www.youtube.com/embed/${id}`
     }
 
+
     render() {
         const { currentSlot } = this.state
         const { isPlaying, isLoading } = this.props
-        console.log(currentSlot.linkYoutube);
-
+        console.log(`should refresh ${this.state.refresh}`)
         return (
             <div>
                 <Helmet>
@@ -99,7 +113,7 @@ class SlotPage extends Component {
                 <Dimmer.Dimmable dimmed={isPlaying}>
                     {window.scrollTo(0, 0)}
 
-                    <PlayDimmer url={currentSlot.linkPlay} bonusList={currentSlot.bonus} />
+                    <PlayDimmer key={this.props.match.params.id} url={currentSlot.linkPlay} bonusList={currentSlot.bonus} />
 
                     <div>
 
@@ -142,8 +156,20 @@ class SlotPage extends Component {
                         specialBonusList={currentSlot.bonusSpecial}
                         bonusList={currentSlot.bonus} />
 
+                    <Responsive maxWidth={600} >
+                        <RelatedSlotList cardPerRow="1" />
+                    </Responsive>
+
+                    <Responsive minWidth={600} >
+                        <RelatedSlotList
+                            forceRefresh={this.forceRefresh}
+                            slotList={this.state.relatedSlots}
+                            cardPerRow="3" />
+                    </Responsive>
+
                     {currentSlot.linkYoutube &&
                         <YouTubeEmbed
+                            key={this.props.match.params.id}
                             desc={currentSlot.linkYoutubeDescription}
                             src={this.getYoutubeEmbedSource()} />
                     }

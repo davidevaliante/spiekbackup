@@ -30,7 +30,6 @@ const FullBonusCard = (props) => {
 
     return (
         <div className='card-container'>
-            { props.bonus && console.log(props.bonus)}
 
             <div
                 className='image-container'

@@ -18,7 +18,10 @@ import { withRouter } from 'react-router'
 const SlotCard = (props) => {
 
     const formatTitle = (title) => truncate(capitalize(lowerCase(props.slot.name)), { length: 30, omission: '...' })
-    const handleClick = () => (props.history.push(`${ROUTE.SLOTS}/${props.slot.id}`))
+    const handleClick = () => {
+        console.log('pushing new props')
+        props.history.push(`${ROUTE.SLOTS}/${props.slot.id}`)
+    }
 
     return (
         <div className='slot-card-shadow-animation' onClick={() => handleClick()}>

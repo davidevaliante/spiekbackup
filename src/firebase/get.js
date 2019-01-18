@@ -189,6 +189,14 @@ export const getSlotWithId = (id, callback, country) => {
         )
 };
 
+export const getSlotCardWithId = (id, callback, country) => {
+    let c = COUNTRY.ITALY;
+    axios.get(`${databaseRoot}/SlotsCard/${c}/${id}.json`)
+        .then(
+            success => callback(success.data)
+        )
+};
+
 export const getProducerWithId = (id, callback, country) => {
     let c = COUNTRY.ITALY;
     axios.get(`${databaseRoot}/${DATABASE_REFERENCE.PRODUCER}/${c}/${id}.json`)
