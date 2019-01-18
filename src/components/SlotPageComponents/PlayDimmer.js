@@ -105,7 +105,7 @@ class PlayDimmer extends Component {
 
 
     render() {
-        console.log(this.state.isHorizontal);
+
         const browserIsHorizontal = this.state.isHorizontal
 
         return (

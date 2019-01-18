@@ -96,7 +96,6 @@ class SlotPage extends Component {
     render() {
         const { currentSlot } = this.state
         const { isPlaying, isLoading } = this.props
-        console.log(`should refresh ${this.state.refresh}`)
         return (
             <div>
                 <Helmet>
@@ -156,20 +155,13 @@ class SlotPage extends Component {
                         specialBonusList={currentSlot.bonusSpecial}
                         bonusList={currentSlot.bonus} />
 
-                    <Responsive maxWidth={600} >
-                        <RelatedSlotList cardPerRow="1" />
-                    </Responsive>
 
-                    <Responsive minWidth={600} >
-                        <RelatedSlotList
-                            forceRefresh={this.forceRefresh}
-                            slotList={this.state.relatedSlots}
-                            cardPerRow="3" />
-                    </Responsive>
+                    {Object.keys(this.state.relatedSlots).length !== 0 && <RelatedSlotList slotList={this.state.relatedSlots}/>}
+
 
                     {currentSlot.linkYoutube &&
                         <YouTubeEmbed
-                            key={this.props.match.params.id}
+                            key={this.props.match.params.id+'ok'}
                             desc={currentSlot.linkYoutubeDescription}
                             src={this.getYoutubeEmbedSource()} />
                     }
