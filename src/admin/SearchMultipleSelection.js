@@ -60,7 +60,7 @@ class SearchMultipleSelection extends Component {
         return (
             <Dropdown
                 id='bonusField'
-                placeholder='Bonus'
+                placeholder={this.props.placeholder ? this.props.placeholder : 'Bonus'}
                 fluid
                 multiple
                 search

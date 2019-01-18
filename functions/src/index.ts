@@ -50,7 +50,6 @@ export const onBonusUpdated = functions.database.ref('Bonus/{language}/{id}').on
         })
 
         return null
-
     }
 )
 

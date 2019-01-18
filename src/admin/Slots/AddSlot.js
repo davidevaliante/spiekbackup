@@ -166,7 +166,9 @@ class AddSlot extends Component {
             tips: tipsField,
             tecnicals: tecnicalsField,
             type: this.state.type,
-            isFake: this.state.isFake
+            isFake: this.state.isFake,
+            bonusSpecial : this.state.specialBonus
+
         }
 
         const imageData = {
@@ -204,7 +206,8 @@ class AddSlot extends Component {
             tips: tipsField,
             tecnicals: tecnicalsField,
             type: this.state.type,
-            isFake: this.state.isFake
+            isFake: this.state.isFake,
+            bonusSpecial : this.state.specialBonus
         }
 
         const imageData = {
@@ -252,6 +255,10 @@ class AddSlot extends Component {
         this.setState({ selectedBonus: selectedBonus })
         console.log(selectedBonus);
 
+    }
+
+    onSpecialBonusSelected = (specialBonusList) => {
+        this.setState({specialBonus : specialBonusList})
     }
 
     onProducerSelected = (selectedProducer) => {
@@ -432,13 +439,23 @@ class AddSlot extends Component {
                                     selection
                                     options={this.state.ratingStateOptions} />
                             </FormField>
-                            <FormField>
-                                <SearchMultipleSelection
-                                    onListUpdate={this.onBonusSelected} />
-                            </FormField>
+
                             <Form.Field>
                                 <ImagePicker onImageSelected={this.onImageSelected} />
                             </Form.Field>
+                        </Form.Group>
+
+                        <Form.Group widths='equal'>
+                            <FormField>
+                                <SearchMultipleSelection
+                                    placeholder='Bonus normali'
+                                    onListUpdate={this.onBonusSelected} />
+                            </FormField>
+                            <FormField>
+                                <SearchMultipleSelection
+                                    placeholder='Bonus preferiti'
+                                    onListUpdate={this.onSpecialBonusSelected} />
+                            </FormField>
                         </Form.Group>
 
                         {/*  <Form.Field

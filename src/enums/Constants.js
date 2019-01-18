@@ -3,7 +3,8 @@ export const STORAGE_FOLDERS = {
     BONUS_IMAGES: 'BonusImages',
     SLOT_IMAGES: 'SlotImages',
     PRODUCER_IMAGES: 'ProducerImages',
-    INTERNAL_BONUS_IMAGES: 'InternalBonusImages'
+    INTERNAL_BONUS_IMAGES: 'InternalBonusImages',
+    CIRCULAR_BONUS_IMAGES: 'CircularBonusImages'
 };
 
 export const SLOT_TYPES = {

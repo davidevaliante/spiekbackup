@@ -14,7 +14,7 @@ export const updateExtraWithId = async (extraId, updatedObject, callback) => {
 }
 
 export const updateBonusWithId =
-    async (bonusId, updatedBonus, updatedImage, updatedBonusString, internalImageData, callback) => {
+    async (bonusId, updatedBonus, updatedImage, updatedBonusString, internalImageData, circularImage, callback) => {
         const data = now();
         const guideId = updatedBonus.guideId
         // rest di un field che non serve
@@ -29,6 +29,8 @@ export const updateBonusWithId =
             // update immagine interna
             if (internalImageData)
                 await pushNewImage(internalImageData, STORAGE_FOLDERS.INTERNAL_BONUS_IMAGES, `bonus_internal_${snakeCase(updatedBonus.name)}`)
+            if(circularImage)
+                await pushNewImage(circularImage, STORAGE_FOLDERS.CIRCULAR_BONUS_IMAGES, `bonus_circular_${snakeCase(updatedBonus.name)}`)
             // update guida
             if (guideId) {
                 await axios.patch(`${databaseRoot}/Bonus/it/${bonusId}.json`, { ...updatedBonus, time: data })

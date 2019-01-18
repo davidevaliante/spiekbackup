@@ -39,8 +39,28 @@ class ImagePicker extends Component {
         }
     }
 
+    handleCircularImage = () => {
+        console.log('on change triggered');
+
+        const selectedFile = document.getElementById('circularImage').files[0];
+        if (selectedFile && split(selectedFile.type, '/')[0] === 'image') {
+            const url = URL.createObjectURL(selectedFile);
+            this.props.onImageSelected(selectedFile)
+            this.setState({ currentImage: selectedFile, currentImageUrl: url })
+        } else {
+            console.log('unsupported file type');
+        }
+    }
+
+    handleImage = () => {
+        if (this.props.imageType === 'imagePicker') this.handleNewImage()
+        if (this.props.imageType === 'bonusInternalPicker') this.handleInternalImage()
+        if (this.props.imageType === 'circularImage') this.handleCircularImage()
+    }
+
     render() {
         const { currentImageUrl } = this.state;
+        const inputId = this.props.imageType
 
         return (
             <Grid stackable columns={1} >
@@ -48,8 +68,10 @@ class ImagePicker extends Component {
                     <div className='upload-btn-wrapper'>
                         <button className="btn">{this.props.buttonMessage ? this.props.buttonMessage : 'Carica Immagine'}</button>
                         <input
-                            id={this.props.bonusInternalImage ? 'bonusInternalPicker' : 'imagePicker'}
-                            onChange={() => this.props.bonusInternalImage ? this.handleInternalImage() : this.handleNewImage()}
+                            id={inputId}
+                            // id={this.props.bonusInternalImage ? 'bonusInternalPicker' : 'imagePicker'}
+                            // onChange={() => this.props.bonusInternalImage ? this.handleInternalImage() : this.handleNewImage()}
+                            onChange={() => this.handleImage()}
                             type="file"
                             name="myfile" />
                     </div>

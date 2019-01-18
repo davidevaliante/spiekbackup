@@ -5,7 +5,7 @@ import { split } from 'lodash'
 const FullBonusCard = (props) => {
 
     const imageStyle = {
-        border: '3px solid ' + props.bonus.borderColor ? props.bonus.borderColor : '#ffff',
+        border: props.bonus.borderColor ? `3px solid ${props.bonus.borderColor}` : `3px solid #ffff`
     }
 
     const goToExternalLink = () => {
@@ -29,15 +29,16 @@ const FullBonusCard = (props) => {
     }
 
     return (
-
         <div className='card-container'>
+            { props.bonus && console.log(props.bonus)}
+
             <div
                 className='image-container'
                 style={{ background: props.bonus.bonusImageBg ? props.bonus.bonusImageBg : 'red' }}>
                 <img
                     style={imageStyle}
                     className='circular-image'
-                    src={getImageLinkFromName('bonus', props.bonus.name)}
+                    src={getImageLinkFromName('bonus_circular', props.bonus.name)}
                     alt="bonus" />
                 <p className="image-text">{props.bonus.name}</p>
             </div>
@@ -48,7 +49,7 @@ const FullBonusCard = (props) => {
             </div>
 
             <div style={{ paddingLeft: '10%', paddingRight: '10%' }}>
-                <div style={{ background: 'grey', height: '2px', width: '100%' }}></div>
+                <div style={{ background: 'grey', height: '2px', width: '100%' }}/>
             </div>
 
             <div className='with-deposit-container'>
@@ -56,8 +57,8 @@ const FullBonusCard = (props) => {
                 <p className='no-deposit-text'>{props.bonus.withDepositText}</p>
             </div>
 
-            <div>
-                <ul style={{ listStylePosition: 'inside', marginLeft: '10%' }}>
+            <div className="bonusTipsList">
+                <ul style={{ marginLeft: '15%' }}>
                     <li className='list-element'>
                         {firstTip()}
                     </li>

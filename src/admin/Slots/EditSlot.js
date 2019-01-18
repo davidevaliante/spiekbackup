@@ -65,6 +65,7 @@ class EditSlot extends React.Component {
                     counter++
                 }
                 const k = keys(slot.bonus)
+                const l = keys(slot.bonusSpecial)
 
                 let def = []
                 // valori default per l'edit
@@ -73,7 +74,15 @@ class EditSlot extends React.Component {
                         if (e.key === element) def.push((i + 1).toString())
                     })
                 })
-                console.log(def)
+
+                let defSpecial = []
+                forEach(l, (element) => {
+                    forEach(options, (e, i) => {
+                        if (e.key === element) defSpecial.push((i + 1).toString())
+                    })
+                })
+
+                console.log(defSpecial)
 
 
                 this.setState({
@@ -82,9 +91,11 @@ class EditSlot extends React.Component {
                     defaultType: slot.type,
                     defaultRating: slot.rating,
                     defaultValuesForBonus: def,
+                    defaultValuesForBonusSpecial : defSpecial,
                     optionList: options,
                     firebaseBonusObject: slot.bonus,
                     selectedBonus: slot.bonus,
+                    bonusSpecial: slot.bonusSpecial,
                     currentDescription: slot.description,
                     isPopular: slot.isPopular
                 })
@@ -114,6 +125,12 @@ class EditSlot extends React.Component {
         console.log(selectedBonus);
 
         this.setState({ selectedBonus: selectedBonus })
+    }
+
+    onBonusSpecialSelected = (selectedSpecialBonus) => {
+        console.log(selectedSpecialBonus);
+
+        this.setState({ bonusSpecial: selectedSpecialBonus })
     }
 
     switchCopyPasteMode = () => {
@@ -227,6 +244,7 @@ class EditSlot extends React.Component {
             linkYoutubeDescription: linkYoutubeDescription,
             linkPlay: linkPlay,
             bonus: BONUS,
+            bonusSpecial : this.state.bonusSpecial,
             description: description,
             rating: rating,
             tips: tipsField,
@@ -412,20 +430,33 @@ class EditSlot extends React.Component {
                                         selection />
                                 }
                             </FormField>
-                            <FormField>
-                                {this.state.defaultValuesForBonus &&
-                                    <SearchMultipleSelection
-                                        defaults={this.state.defaultValuesForBonus}
-                                        onListUpdate={this.onBonusSelected} />
-                                }
-                            </FormField>
+
                             <Form.Field>
                                 {this.state.currentSlot.name &&
                                     <ImagePicker
                                         onImageSelected={this.onImageSelected}
                                         imagePreview={getImageLinkFromName('slot', this.state.currentSlot.name, 'medium')} />}
                             </Form.Field>
+                        </Form.Group>
 
+                        <Form.Group widths={'equal'}>
+                            <FormField>
+                                <label>Bonus Normali</label>
+                                {this.state.defaultValuesForBonus &&
+                                <SearchMultipleSelection
+                                    defaults={this.state.defaultValuesForBonus}
+                                    onListUpdate={this.onBonusSelected} />
+                                }
+                            </FormField>
+
+                            <FormField>
+                                <label>Bonus Speciali</label>
+                                {this.state.defaultValuesForBonusSpecial &&
+                                <SearchMultipleSelection
+                                    defaults={this.state.defaultValuesForBonusSpecial}
+                                    onListUpdate={this.onBonusSpecialSelected} />
+                                }
+                            </FormField>
                         </Form.Group>
 
                         <Form.Field

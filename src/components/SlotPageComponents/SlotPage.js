@@ -138,7 +138,9 @@ class SlotPage extends Component {
                                 producerName={(currentSlot.producer && currentSlot.producer.name)} />
                         </Grid.Row>
                     </Grid>
-                    <SlotPageBonusList bonusList={currentSlot.bonus} />
+                    <SlotPageBonusList
+                        specialBonusList={currentSlot.bonusSpecial}
+                        bonusList={currentSlot.bonus} />
 
                     {currentSlot.linkYoutube &&
                         <YouTubeEmbed

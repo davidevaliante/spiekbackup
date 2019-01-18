@@ -64,6 +64,7 @@ export const getImageLinkFromName = (type, name, size, ) => {
     const producerFolder = 'ProducerImages%2F'
     const articleFolder = 'ArticleImages%2F'
     const internalBonusfolder = 'InternalBonusImages%2F'
+    const circularBonusImageFolder = 'CircularBonusImages%2F'
     const urlEnd = '?alt=media'
 
     if (type === 'slot') {
@@ -83,6 +84,14 @@ export const getImageLinkFromName = (type, name, size, ) => {
         return `${urlStart}${bonusFolder}bonus_${snakeCase(name)}${urlEnd}`
     }
 
+    if(type === 'bonus_circular'){
+        return `${urlStart}${circularBonusImageFolder}bonus_circular_${snakeCase(name)}${urlEnd}`
+    }
+
+    if (type === 'bonusInternal') {
+        return `${urlStart}${internalBonusfolder}bonus_internal_${snakeCase(name)}${urlEnd}`
+    }
+
     if (type === 'producer') {
         switch (size) {
             case 'small':
@@ -96,9 +105,7 @@ export const getImageLinkFromName = (type, name, size, ) => {
         return `${urlStart}${articleFolder}${snakeCase(name)}_article_image${urlEnd}`
     }
 
-    if (type === 'bonusInternal') {
-        return `${urlStart}${internalBonusfolder}bonus_internal_${snakeCase(name)}${urlEnd}`
-    }
+
 }
 
 

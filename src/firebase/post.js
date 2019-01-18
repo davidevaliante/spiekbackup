@@ -15,7 +15,7 @@ export const submitExtraFromHtml = async (newExtra, callback) => {
         })
 };
 
-export const pushNewBonuswithGuide = async (newBonus, image, guide, internalImageData, language, callback) => {
+export const pushNewBonuswithGuide = async (newBonus, image, guide, internalImageData, circularImageData, language, callback) => {
     const newGuide = {
         bonus: newBonus,
         time: now(),
@@ -29,6 +29,7 @@ export const pushNewBonuswithGuide = async (newBonus, image, guide, internalImag
         const newBonusCallbackData = await axios.post(`${databaseRoot}/Bonus/it.json`, newBonus)
         await pushNewImage(image, STORAGE_FOLDERS.BONUS_IMAGES, `bonus_${snakeCase(newBonus.name)}`)
         await pushNewImage(internalImageData, STORAGE_FOLDERS.INTERNAL_BONUS_IMAGES, `bonus_internal_${snakeCase(newBonus.name)}`)
+        await pushNewImage(circularImageData, STORAGE_FOLDERS.CIRCULAR_BONUS_IMAGES, `bonus_circular_${snakeCase(newBonus.name)}`)
         if (callback) callback(newBonusCallbackData)
     } catch (error) {
         console.log(error)
