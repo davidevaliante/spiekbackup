@@ -11,7 +11,7 @@ import ImagePicker from "../ImagePicker";
 import { getSlotWithId } from "../../firebase/get";
 import { ADMINPAGES, SLOT_TYPES } from '../../enums/Constants';
 import { updateSlotWithId } from '../../firebase/update';
-import { getBonusList } from '../../firebase/get';
+import { getBonusList, getSlotCardList } from '../../firebase/get';
 import forEach from 'lodash/forEach'
 import keys from 'lodash/keys'
 import delay from 'lodash/delay'
@@ -24,6 +24,8 @@ import { Dimmer } from "semantic-ui-react-single/Dimmer";
 import { Menu } from 'semantic-ui-react-single/Menu'
 import RichEdit from "../Extra/RichEdit";
 import upperCase from 'lodash/upperCase'
+import {Divider} from "semantic-ui-react-single/Divider";
+import SearchMultipleSelectionSlot from '../SearchMultipleSelectionSlot';
 
 
 class EditSlot extends React.Component {
@@ -82,7 +84,25 @@ class EditSlot extends React.Component {
                     })
                 })
 
-                console.log(defSpecial)
+                getSlotCardList(list => {
+                    let slotCardOptions = []
+                    let counter = 1
+                    for (const key in list) {
+                        slotCardOptions.push({ key: `${key}`, value: `${counter}`, text: `${list[key].name}` })
+                        counter++
+                    }
+                    const r = keys(slot.similarSlots)
+                    let relatedslots = []
+                    forEach(r, (element) => {
+                        forEach(slotCardOptions, (e, i) => {
+                            if (e.key === element){
+                                relatedslots.push((i + 1).toString())
+                            }
+                        })
+                    })
+                    this.setState({defaultValuesForRelatedSlots : relatedslots, similarSlots : relatedslots})
+                })
+
 
 
                 this.setState({
@@ -97,7 +117,7 @@ class EditSlot extends React.Component {
                     selectedBonus: slot.bonus,
                     bonusSpecial: slot.bonusSpecial,
                     currentDescription: slot.description,
-                    isPopular: slot.isPopular
+                    isPopular: slot.isPopular,
                 })
             })
 
@@ -125,6 +145,15 @@ class EditSlot extends React.Component {
         console.log(selectedBonus);
 
         this.setState({ selectedBonus: selectedBonus })
+    }
+
+    onSimilarslotSelected = (similarSlots) => {
+        let k = {}
+        Object.keys(similarSlots).forEach(key =>{
+            k[key] = true
+        })
+        console.log(k)
+        this.setState({similarSlots : k})
     }
 
     onBonusSpecialSelected = (selectedSpecialBonus) => {
@@ -155,8 +184,6 @@ class EditSlot extends React.Component {
 
 
     handleTipsChange = newValue => {
-
-
         this.setState({ currentSlot: { ...this.state.currentSlot, tips: newValue.value } })
     }
     handleTecnicalsChange = data => {
@@ -250,7 +277,8 @@ class EditSlot extends React.Component {
             tips: tipsField,
             tecnicals: tecnicalsField,
             type: type,
-            isPopular: this.state.isPopular ? this.state.isPopular : false
+            isPopular: this.state.isPopular ? this.state.isPopular : false,
+            similarSlots : this.state.similarSlots
         }
 
         const image = this.state.image
@@ -278,7 +306,6 @@ class EditSlot extends React.Component {
 
         const { currentSlot, active, isPopularOptions } = this.state
         const { producer } = this.state.currentSlot
-        console.log(currentSlot.description)
 
         return (
             <div>
@@ -459,6 +486,25 @@ class EditSlot extends React.Component {
                             </FormField>
                         </Form.Group>
 
+                        <Divider style={{marginTop :'2%', marginBottom : '2%'}}/>
+
+
+                        <h2
+                            style={{
+                                color: 'black',
+                                marginBottom: '2rem',
+                                textAlign: 'center'
+                            }}>
+                            Slot Correlate
+                        </h2>
+
+                        {this.state.defaultValuesForRelatedSlots &&
+
+                        <SearchMultipleSelectionSlot
+                            defaults={this.state.defaultValuesForRelatedSlots}
+                            placeholder='Slot Simili'
+                            onListUpdate={this.onSimilarslotSelected} />
+                        }
                         <Form.Field
                             style={{ width: '100%' }}
                             onClick={this.submitEditSlot}

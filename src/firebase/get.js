@@ -173,7 +173,7 @@ export const getProducerList = (callback, country) => {
         )
 };
 
-export const getSlotList = (callback, country) => {
+export const getSlotCardList = (callback, country) => {
     let c = COUNTRY.ITALY;
     axios.get(`${databaseRoot}/SlotsCard/${c}.json`)
         .then(

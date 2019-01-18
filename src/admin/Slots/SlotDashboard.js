@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Grid} from 'semantic-ui-react-single/Grid'
 import {Responsive} from 'semantic-ui-react-single/Responsive'
-import {getSlotList} from "../../firebase/get";
+import {getSlotCardList} from "../../firebase/get";
 import AdminSlotCard from "./AdminSlotCard";
 import AdminNavbar from "../AdminNavbar";
 import {ADMINPAGES, RESPONSIVE_RESOLUTION} from "../../enums/Constants";
@@ -43,7 +43,7 @@ class SlotDashboard extends Component {
             this.setState({ active: false })
         }, 1000);
         // TODO cercare nello state l'id cancellato ed eliminarlo evitando una chiamata al DB
-        getSlotList(this.onSlotListFetched);
+        getSlotCardList(this.onSlotListFetched);
     };
 
     renderSlot = () => {
@@ -54,7 +54,7 @@ class SlotDashboard extends Component {
     };
 
     componentDidMount() {
-        getSlotList(this.onSlotListFetched);
+        getSlotCardList(this.onSlotListFetched);
     }
 
     render() {

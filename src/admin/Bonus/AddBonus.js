@@ -307,6 +307,8 @@ class AddBonus extends Component {
                             }}>
                             Campi Aggiuntivi
                         </h2>
+
+
                         <Form.Group
                             widths='equal'>
                             <Form.Field

@@ -24,6 +24,9 @@ import RichEdit from "../Extra/RichEdit";
 import upperCase from 'lodash/upperCase'
 import { connect } from 'react-redux'
 import { updateSlotPreview } from '../../reducers/SlotPreviewReducer'
+import {Divider} from "semantic-ui-react-single/Divider";
+import SearchMultipleSelectionSlot from "../SearchMultipleSelectionSlot";
+import {defaults} from 'lodash'
 
 class AddSlot extends Component {
 
@@ -167,8 +170,8 @@ class AddSlot extends Component {
             tecnicals: tecnicalsField,
             type: this.state.type,
             isFake: this.state.isFake,
-            bonusSpecial : this.state.specialBonus
-
+            bonusSpecial : this.state.specialBonus,
+            similarSlots : this.state.similarSlots
         }
 
         const imageData = {
@@ -259,6 +262,15 @@ class AddSlot extends Component {
 
     onSpecialBonusSelected = (specialBonusList) => {
         this.setState({specialBonus : specialBonusList})
+    }
+
+    onSimilarslotSelected = (similarSlots) => {
+        let k = {}
+        Object.keys(similarSlots).forEach(key =>{
+            k[key] = true
+        })
+        console.log(k)
+        this.setState({similarSlots : k})
     }
 
     onProducerSelected = (selectedProducer) => {
@@ -369,14 +381,19 @@ class AddSlot extends Component {
 
                         </Form.Group>
 
-                        <h1
+                        <Divider style={{marginTop :'2%', marginBottom : '2%'}}/>
+
+
+                        <h2
                             style={{
                                 color: 'black',
                                 marginBottom: '2rem',
                                 textAlign: 'center'
                             }}>
                             Consigli e caratteristiche Tecniche
-                        </h1>
+                        </h2>
+
+
 
                         <Form.Group
                             widths='equal'
@@ -416,6 +433,18 @@ class AddSlot extends Component {
                             <RichEdit withHtmlPreview={true} />
                         </Form.Field>
 
+                        <Divider style={{marginTop :'2%', marginBottom : '2%'}}/>
+
+
+                        <h2
+                            style={{
+                                color: 'black',
+                                marginBottom: '2rem',
+                                textAlign: 'center'
+                            }}>
+                            Tipo Slot, Rating e Immagine
+                        </h2>
+
                         <Form.Group widths='equal'>
 
                             <FormField>
@@ -440,11 +469,34 @@ class AddSlot extends Component {
                                     options={this.state.ratingStateOptions} />
                             </FormField>
 
+                            {/*<FormField>*/}
+                                {/*<Dropdown*/}
+                                    {/*id='hasSlotOnline'*/}
+                                    {/*error={this.state.shouldDisplayErrors && this.state.emptyFields.includes('rating')}*/}
+                                    {/*style={{ marginBottom: '1rem' }}*/}
+                                    {/*placeholder='Rating'*/}
+                                    {/*onChange={(event, data) => data ? this.onDropDownChange(data) : this.resetErrorOn('rating')}*/}
+                                    {/*search*/}
+                                    {/*selection*/}
+                                    {/*options={this.state.ratingStateOptions} />*/}
+                            {/*</FormField>*/}
+
                             <Form.Field>
                                 <ImagePicker onImageSelected={this.onImageSelected} />
                             </Form.Field>
                         </Form.Group>
 
+                        <Divider style={{marginTop :'2%', marginBottom : '2%'}}/>
+
+
+                        <h2
+                            style={{
+                                color: 'black',
+                                marginBottom: '2rem',
+                                textAlign: 'center'
+                            }}>
+                            Bonus Correlati
+                        </h2>
                         <Form.Group widths='equal'>
                             <FormField>
                                 <SearchMultipleSelection
@@ -457,6 +509,22 @@ class AddSlot extends Component {
                                     onListUpdate={this.onSpecialBonusSelected} />
                             </FormField>
                         </Form.Group>
+
+                        <Divider style={{marginTop :'2%', marginBottom : '2%'}}/>
+
+
+                        <h2
+                            style={{
+                                color: 'black',
+                                marginBottom: '2rem',
+                                textAlign: 'center'
+                            }}>
+                            Slot Correlate
+                        </h2>
+
+                        <SearchMultipleSelectionSlot
+                            placeholder='Slot Simili'
+                            onListUpdate={this.onSimilarslotSelected} />
 
                         {/*  <Form.Field
                             style={{ width: '100%' }}
