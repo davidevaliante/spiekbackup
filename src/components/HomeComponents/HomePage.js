@@ -22,15 +22,33 @@ import {
     setVltPage
 } from '../../reducers/CurrentPageReducer'
 // data
-import { getSlotsCardBasedOnTime, getAllByType } from '../../firebase/get'
+import {getSlotsCardBasedOnTime, getAllByType, getBanners} from '../../firebase/get'
 import ArticleList from "../HomeComponents/HomeBody/ArticleList"
 import ArticleDescription from '../HomeComponents/HomeBody/ArticleDescription'
 import Article from '../Extra/Article';
 
 class HomePage extends Component {
-    state = {};
+    state = {
+        firstBannerIsVisible : true
+
+    };
 
     componentDidMount() {
+        getBanners(bannersObject => {
+            this.setState({
+                banners : bannersObject,
+                bannerSlotList : {
+                    secondBannerImage : bannersObject.secondBanner,
+                    secondBannerLink : bannersObject.secondBannerLink,
+                    isVisible : true
+                },
+                bannerBonusList : {
+                    thirdBannerImage : bannersObject.thirdBanner,
+                    thirdBannerLink : bannersObject.thirdBannerLink,
+                    isVisible : true
+                }
+            })
+        })
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -56,9 +74,25 @@ class HomePage extends Component {
     handleContextRef = contextRef => this.setState({ contextRef })
     handleChange = (e, { value }) => this.setState({ order: value })
 
+    hideFirstBanner = () => this.setState({firstBannerIsVisible : false})
+    hideSecondBanner = () => this.setState({bannerSlotList : {...this.state.bannerSlotList, isVisible : false}})
+    hideThirdBanner = () => this.setState({bannerBonusList : {...this.state.bannerBonusList, isVisible : false}})
+
+
+    handleFirstBannerClick = () => {
+        window.open(this.state.banners.firstBannerLink)
+    }
+
+    handleSecondBannerClick = () => {
+        window.open(this.state.bannerSlotList.secondBannerLink)
+    }
+
+    handleThirdBannerClick = () => {
+        window.open(this.state.bannerSlotList.thirdBannerLink)
+    }
+
     articlePage = () => {
         const { contextRef } = this.state
-
         return (
             <div>
                 <Navbar
@@ -72,13 +106,13 @@ class HomePage extends Component {
                     <ArticleList>
 
                     </ArticleList>
-
-
                 </Segment>
                 <Footer />
             </div>)
     }
     listSlot = () => {
+        console.log(this.state)
+
         const { contextRef, order } = this.state
         const type = this.getType(this.props.match.path)
         return (
@@ -86,11 +120,28 @@ class HomePage extends Component {
                 <Navbar displaying='HOME' />
                 <HomePageHeader style={{ position: 'absolute', zIndex: 1 }} />
                 <SiteDescription />
+                {(this.state.banners && this.state.firstBannerIsVisible) &&
+                <div style={{marginTop : '3rem'}}>
+                    <img
+                        height={200}
+                        style={{width : '700px', marginTop : '3rem', display: 'block', margin : 'auto' }}
+                        src={this.state.banners.firstBanner}
+                        onClick={this.handleFirstBannerClick}
+                        onError={this.hideFirstBanner}
+                    />
+                </div>
+                }
                 <Segment vertical>
                     <PopularSlotList />
 
                     <ListDescriptionBanner />
                     <HomeBody
+                        bannerBonusList={this.state.bannerBonusList}
+                        thirdBannerClick={this.handleThirdBannerClick}
+                        thirdBannerError={this.hideThirdBanner}
+                        bannerSlotList={this.state.bannerSlotList}
+                        secondBannerClick={this.handleSecondBannerClick}
+                        secondBannerError={this.hideSecondBanner}
                         orderHandler={this.handleChange}
                         slotorder={order}
                         type={type}

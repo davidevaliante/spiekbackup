@@ -497,5 +497,15 @@ h1 {
 
 a.right.item{
   text-align: center;
-
 }
+
+.dropdown-banner-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: stretch;
+    margin-bottom: 3rem;
+}
+

@@ -12,6 +12,8 @@ import { Container } from 'semantic-ui-react-single/Container'
 import { Responsive } from 'semantic-ui-react-single/Responsive'
 import { MobileView } from 'react-device-detect'
 import ClosableBonusCard from './ClosableBonusCard'
+import FullBonusCard from "../Cards/FullBonusCard";
+import { Button } from 'semantic-ui-react'
 
 class PlayDimmer extends Component {
 
@@ -30,6 +32,7 @@ class PlayDimmer extends Component {
     addResizeListener() {
         window.addEventListener("resize", this.resizeListener)
     }
+
 
     resizeListener = () => {
         const width = document.body.clientWidth
@@ -67,14 +70,20 @@ class PlayDimmer extends Component {
 
     verticalLayout = () =>
         <Dimmer
+            style={{textAlign : 'left'}}
             active={this.props.isPlaying}
             onClickOutside={() => this.props.dispatch(setUserNotPlaying())}
             page>
 
-            <Container>
+            <div style={{margin : '2%'}}>
                 <Responsive minWidth={600}>
                     <div className='centered-play-embed'>
                         <Embed
+                            iframe={{
+                                style : {
+                                    right : '0px'
+                                }
+                            }}
                             active
                             url={this.props.url} />
                     </div>
@@ -83,8 +92,13 @@ class PlayDimmer extends Component {
                     <div className='floating-top-right'>
                         <div className='left-sidebar'>
                             <BonusCardWithBanner bonus={this.props.bonusList} />
+                           { this.props.specialBonus && <FullBonusCard bonus={this.props.specialBonus}/>}
+                            <Button fluid color={'red'} onClick={() => this.props.dispatch(setUserNotPlaying())}>Chiudi</Button>
                         </div>
                     </div>
+
+
+
 
                 </Responsive>
 
@@ -100,7 +114,7 @@ class PlayDimmer extends Component {
                 <MobileView style={{ marginTop: "5%" }}>
                     Ruota lo schermo del telefono per un' esperienza di gioco migliore
                 </MobileView>
-            </Container>
+            </div>
         </Dimmer>
 
 

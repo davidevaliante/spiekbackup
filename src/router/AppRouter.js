@@ -16,7 +16,7 @@ import AddExtraFromHtml from '../admin/Extra/AddExtraFromHtml'
 import BonusArticle from '../components/Extra/BonusArticle'
 import ProducerDashboard from "../admin/Producer/ProducerDashboard";
 import ExtraDashBoard from '../admin/Extra/ExtraDashboard'
-
+import AddBanners from '../admin/AddBanners'
 import Test from './Test'
 import SlotPage from '../components/SlotPageComponents/SlotPage';
 import { PAGES, ROUTE } from "../enums/Constants";
@@ -73,6 +73,7 @@ const AppRouter = () => {
                     <Route path={ROUTE.EDITBONUS} component={AddBonus} />
                     <Route path={ROUTE.EDITPRODUCER} component={AddProducer} />
                     <Route path={ROUTE.EDITEXTRA} component={AddExtraFromHtml} />
+                    <Route path={ROUTE.BANNERS} component={AddBanners} />
 
 
                     <Route path='/test' component={Test} /> */}

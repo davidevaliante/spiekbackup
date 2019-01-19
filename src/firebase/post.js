@@ -35,3 +35,9 @@ export const pushNewBonuswithGuide = async (newBonus, image, guide, internalImag
         console.log(error)
     }
 }
+
+export const updateBanners = async(banners, callback, onError) => {
+    axios.patch(`${databaseRoot}/Banners/it/banners.json`, banners).then(success =>{
+        callback(success)
+    }).catch(error => onError(error))
+}

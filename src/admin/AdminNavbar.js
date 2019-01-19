@@ -87,7 +87,7 @@ class AdminNavbar extends Component {
 
     extraMenu = () => {
         return (
-            <Dropdown item simple text='Extra'>
+            <Dropdown item simple text='Articoli'>
                 <Dropdown.Menu simple>
                     <Dropdown.Item onClick={() => this.handleClick('admin-nav-add-extra')}>
                         <NavLink id='admin-nav-add-extra' to={ROUTE.ADDEXTRAFROMHTML}>
@@ -101,6 +101,14 @@ class AdminNavbar extends Component {
                     </Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown>
+        )
+    };
+
+    bannerMenu = () => {
+        return (
+                <NavLink id={'admin-nav-banners'} to={ROUTE.BANNERS} onClick={() => this.handleClick('admin-nav-banners')}>
+                    Gestione Banners
+                </NavLink>
         )
     };
 
@@ -155,9 +163,14 @@ class AdminNavbar extends Component {
                                 {this.extraMenu()}
                             </Menu.Item>
 
+                            <Menu.Item style={{ padding: '0rem' }} active={activeItem === ADMINPAGES.BANNERS}>
+                                {this.bannerMenu()}
+                            </Menu.Item>
+
                             <Menu.Item position='right' style={{ marginRight: '4rem' }}>
                                 {this.searchItem()}
                             </Menu.Item>
+
 
                         </Menu>
                     </BurgerMenu>
@@ -184,6 +197,10 @@ class AdminNavbar extends Component {
 
                         <Menu.Item style={{ padding: '0rem' }} active={activeItem === ADMINPAGES.EXTRA}>
                             {this.extraMenu()}
+                        </Menu.Item>
+
+                        <Menu.Item active={activeItem === ADMINPAGES.BANNERS}>
+                            {this.bannerMenu()}
                         </Menu.Item>
 
                         <Menu.Item position='right' style={{ marginRight: '4rem' }}>

@@ -112,7 +112,11 @@ class SlotPage extends Component {
                 <Dimmer.Dimmable dimmed={isPlaying}>
                     {window.scrollTo(0, 0)}
 
-                    <PlayDimmer key={this.props.match.params.id} url={currentSlot.linkPlay} bonusList={currentSlot.bonus} />
+                    <PlayDimmer
+                        specialBonus={currentSlot.bonusSpecial && currentSlot.bonusSpecial[Object.keys(currentSlot.bonusSpecial)[0]]}
+                        key={this.props.match.params.id}
+                        url={currentSlot.linkPlay}
+                        bonusList={currentSlot.bonus} />
 
                     <div>
 

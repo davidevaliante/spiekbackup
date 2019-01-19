@@ -18,17 +18,61 @@ const dropdownOptions = [
     { key: 3, text: 'Nome', value: 'name' }
 ];
 
-const HomeBody = ({ orderHandler, slotorder, type, handleContextRef, stickyContextRef, isActive }) => (
+const HomeBody = ({ orderHandler,
+                      slotorder,
+                      type,
+                      handleContextRef,
+                      stickyContextRef,
+                      isActive,
+                      bannerSlotList,
+                      secondBannerClick,
+                      secondBannerError,
+                      bannerBonusList,
+                      thirdBannerClick,
+                      thirdBannerError}) => (
     <Grid style={{ marginTop: '0rem', paddingBottom: '4rem' }} celled='internally' stackable className='row-centered-spaced'>
         <Grid.Row>
             <Grid.Column width={12} style={{ paddingLeft: '0' }}>
-                <Dropdown
-                    style={{ marginBottom: '2rem', marginLeft: '2.5rem' }}
-                    onChange={orderHandler}
-                    options={dropdownOptions}
-                    placeholder='Ordina per'
-                    selection
-                    value={slotorder} />
+                <Grid.Row>
+                    {/*banner slot list */}
+                    <Responsive {...Responsive.onlyComputer}>
+                        <div className={'dropdown-banner-container'}>
+                            <Dropdown
+                                style={{ marginLeft: '2.5rem'}}
+                                onChange={orderHandler}
+                                options={dropdownOptions}
+                                placeholder='Ordina per'
+                                selection
+                                value={slotorder} />
+
+                            {(bannerSlotList && bannerSlotList.isVisible) &&
+                            <img
+                                width={700}
+                                height={150}
+                                src={bannerSlotList.secondBannerImage}
+                                onClick={secondBannerClick}
+                                onError={secondBannerError}
+                                style={{marginLeft : '4%'}}
+                            />
+                            }
+                        </div>
+                    </Responsive>
+
+                    <Responsive {...Responsive.onlyMobile}>
+                        <div className={'dropdown-banner-container'}>
+                            <Dropdown
+                                style={{ marginBottom: '2rem', marginLeft: '2.5rem'}}
+                                onChange={orderHandler}
+                                options={dropdownOptions}
+                                placeholder='Ordina per'
+                                selection
+                                value={slotorder} />
+                        </div>
+                    </Responsive>
+
+                </Grid.Row>
+
+
                 <div ref={handleContextRef}>
 
                     <Responsive maxWidth={600} >
@@ -58,8 +102,16 @@ const HomeBody = ({ orderHandler, slotorder, type, handleContextRef, stickyConte
                         <div style={{ background: 'red' }}>
                             <h1 style={{ color: 'white', textAlign: 'center', padding: '5%', marginBottom: '30px' }}>I Migliori Bonus</h1>
                         </div>
-                        <BonusList maxNumber={15} maxbonusToShow={4} />
-
+                        <BonusList
+                            maxNumber={15}
+                            maxbonusToShow={2} />
+                        {(bannerBonusList && bannerBonusList.isVisible) &&
+                        <img
+                            src={bannerBonusList.thirdBannerImage}
+                            onClick={thirdBannerClick}
+                            onError={thirdBannerError}
+                            style={{display : 'block', margin:'auto'}}
+                        />}
                     </Responsive>
 
                 </Sticky>

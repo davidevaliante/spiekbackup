@@ -203,3 +203,9 @@ export const getProducerWithId = (id, callback, country) => {
             success => callback(success.data)
         )
 };
+
+export const getBanners = (callback) => {
+    axios.get(`${databaseRoot}/Banners/it/banners.json`).then(
+        success => callback(success.data)
+    )
+}

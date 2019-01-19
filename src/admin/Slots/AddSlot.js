@@ -298,6 +298,8 @@ class AddSlot extends Component {
     }
 
     onImageSelected = (image) => {
+        console.log(image.name)
+        console.log(image)
         this.setState({ image: image, imageName: image.name })
     }
 
@@ -489,7 +491,9 @@ class AddSlot extends Component {
                             {/*</FormField>*/}
 
                             <Form.Field>
-                                <ImagePicker onImageSelected={this.onImageSelected} />
+                                <ImagePicker
+                                    imageType={'slotPicker'}
+                                    onImageSelected={this.onImageSelected} />
                             </Form.Field>
                         </Form.Group>
 

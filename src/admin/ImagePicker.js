@@ -42,7 +42,7 @@ class ImagePicker extends Component {
     handleCircularImage = () => {
         console.log('on change triggered');
 
-        const selectedFile = document.getElementById('circularImage').files[0];
+        const selectedFile = document.getElementById('slotPicker').files[0];
         if (selectedFile && split(selectedFile.type, '/')[0] === 'image') {
             const url = URL.createObjectURL(selectedFile);
             this.props.onImageSelected(selectedFile)
@@ -52,10 +52,25 @@ class ImagePicker extends Component {
         }
     }
 
+    handleSlotImage = () => {
+        console.log('on change triggered');
+
+        const selectedFile = document.getElementById('slotPicker').files[0];
+        if (selectedFile && split(selectedFile.type, '/')[0] === 'image') {
+            const url = URL.createObjectURL(selectedFile);
+            this.props.onImageSelected(selectedFile)
+            this.setState({ currentImage: selectedFile, currentImageUrl: url })
+        } else {
+            console.log('unsupported file type');
+        }
+    }
+
+
     handleImage = () => {
         if (this.props.imageType === 'imagePicker') this.handleNewImage()
         if (this.props.imageType === 'bonusInternalPicker') this.handleInternalImage()
         if (this.props.imageType === 'circularImage') this.handleCircularImage()
+        if (this.props.imageType === 'slotPicker') this.handleSlotImage()
     }
 
     render() {

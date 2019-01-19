@@ -72,6 +72,7 @@ export const ROUTE = {
     EDITPRODUCER: `${admin}/producer/:id`,
     EDITPAGE: `${admin}/editpage`,
     EDITEXTRA: `${admin}/editextra/:id`,
+    BANNERS : `${admin}/banners`
 };
 
 export const ADMINPAGES = {
@@ -80,7 +81,8 @@ export const ADMINPAGES = {
     SLOT: 'Slot',
     BONUS: 'Bonus',
     PRODUCER: 'Producer',
-    EXTRA: 'Extra'
+    EXTRA: 'Extra',
+    BANNERS : 'Banners'
 };
 
 export const IMGS_SIZES = {
