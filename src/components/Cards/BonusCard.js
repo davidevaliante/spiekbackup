@@ -33,10 +33,13 @@ const BonusCard = (props) => {
                                 </div>
                             </Card.Header>
                         </Card.Content>
-                        <Card.Content extra>
-                            {props.bonus && lowerCase(props.bonus.bonus)}
+                        <Card.Content>
 
+                            <Card.Content >
+                                <div className={'align-text-bonus-card'} style={{ height: '35px', textAlign: 'center' }}>{props.bonus && props.bonus.bonus}</div>
+                            </Card.Content>
                         </Card.Content>
+
                     </Card>
                 </div>
 
@@ -55,7 +58,6 @@ const BonusCard = (props) => {
                 </div>
             </div>
         </div>
-
     )
 }
 

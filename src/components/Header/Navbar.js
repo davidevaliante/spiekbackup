@@ -149,7 +149,7 @@ class Navbar extends Component {
                                     <NavbarSearchBar displaying={this.props.displaying} slotId={this.props.slotId} />
                                 </Menu.Item>
                                 <Menu.Item style={{ 'textAlign': 'center' }} borderless position='right' onClick={this.closeMobileMenu}>
-                                    <div className='close-mobile-menu'>Chiudi</div>
+                                    <div className='close-mobile-menu' style={{ fontSize: '2rem', color: 'red' }}>Chiudi</div>
                                 </Menu.Item>
                             </Menu>
                         </div>

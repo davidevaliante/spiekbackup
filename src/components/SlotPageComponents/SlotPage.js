@@ -164,6 +164,7 @@ class SlotPage extends Component {
                         </Grid.Row>
                     </Grid>
                     <SlotPageBonusList
+                        slotType={currentSlot.type}
                         specialBonusList={currentSlot.bonusSpecial}
                         bonusList={currentSlot.bonus} />
 
