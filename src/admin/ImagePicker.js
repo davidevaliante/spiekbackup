@@ -42,7 +42,7 @@ class ImagePicker extends Component {
     handleCircularImage = () => {
         console.log('on change triggered');
 
-        const selectedFile = document.getElementById('slotPicker').files[0];
+        const selectedFile = document.getElementById('circularImage').files[0];
         if (selectedFile && split(selectedFile.type, '/')[0] === 'image') {
             const url = URL.createObjectURL(selectedFile);
             this.props.onImageSelected(selectedFile)

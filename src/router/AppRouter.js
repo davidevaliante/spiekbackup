@@ -23,8 +23,13 @@ import { PAGES, ROUTE } from "../enums/Constants";
 import NotFound from "../components/NotFound"
 import AboutPage from '../components/AboutPage'
 import ProducerPage from "../components/ProducerComponents/ProducerPage";
-
+import ReactGA from 'react-ga'
 import Article from '../components/Extra/Article'
+
+const initializeReactGA = () => {
+    ReactGA.initialize('UA-132810169-1');
+    ReactGA.pageview('/homepage');
+}
 
 const AppRouter = () => {
 

@@ -22,33 +22,72 @@ import {
     setVltPage
 } from '../../reducers/CurrentPageReducer'
 // data
-import {getSlotsCardBasedOnTime, getAllByType, getBanners} from '../../firebase/get'
+import { getSlotsCardBasedOnTime, getAllByType, getBanners } from '../../firebase/get'
 import ArticleList from "../HomeComponents/HomeBody/ArticleList"
 import ArticleDescription from '../HomeComponents/HomeBody/ArticleDescription'
 import Article from '../Extra/Article';
+import ReactGA from 'react-ga'
+
 
 class HomePage extends Component {
     state = {
-        firstBannerIsVisible : true
+        firstBannerIsVisible: true
 
     };
+
+
+
+    initializeDevReactGA = () => {
+        // ReactGA.initialize('UA-132816901-1')
+        ReactGA.initialize('UA-132810169-1');
+        ReactGA.pageview('/homepage');
+    }
+
+    initializeSpikeReactGA = () => {
+        ReactGA.initialize('UA-132816901-1')
+        ReactGA.pageview('/homepage');
+    }
+
+    initializeReactGA = () => {
+
+        ReactGA.initialize([
+            {
+                trackingId: 'UA-132816901-1',
+                gaOptions: {
+                    name: 'spike',
+                }
+            },
+            {
+                trackingId: 'UA-132810169-1',
+                gaOptions: {
+                    name: 'devs'
+                }
+            }
+        ], { alwaysSendToDefaultTracker: false }
+        );
+        // ReactGA.pageview(window.location.pathname + window.location.search)
+        ReactGA.pageview('/homepage');
+
+    }
+
 
     componentDidMount() {
         getBanners(bannersObject => {
             this.setState({
-                banners : bannersObject,
-                bannerSlotList : {
-                    secondBannerImage : bannersObject.secondBanner,
-                    secondBannerLink : bannersObject.secondBannerLink,
-                    isVisible : true
+                banners: bannersObject,
+                bannerSlotList: {
+                    secondBannerImage: bannersObject.secondBanner,
+                    secondBannerLink: bannersObject.secondBannerLink,
+                    isVisible: true
                 },
-                bannerBonusList : {
-                    thirdBannerImage : bannersObject.thirdBanner,
-                    thirdBannerLink : bannersObject.thirdBannerLink,
-                    isVisible : true
+                bannerBonusList: {
+                    thirdBannerImage: bannersObject.thirdBanner,
+                    thirdBannerLink: bannersObject.thirdBannerLink,
+                    isVisible: true
                 }
             })
         })
+        this.initializeReactGA()
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -74,9 +113,9 @@ class HomePage extends Component {
     handleContextRef = contextRef => this.setState({ contextRef })
     handleChange = (e, { value }) => this.setState({ order: value })
 
-    hideFirstBanner = () => this.setState({firstBannerIsVisible : false})
-    hideSecondBanner = () => this.setState({bannerSlotList : {...this.state.bannerSlotList, isVisible : false}})
-    hideThirdBanner = () => this.setState({bannerBonusList : {...this.state.bannerBonusList, isVisible : false}})
+    hideFirstBanner = () => this.setState({ firstBannerIsVisible: false })
+    hideSecondBanner = () => this.setState({ bannerSlotList: { ...this.state.bannerSlotList, isVisible: false } })
+    hideThirdBanner = () => this.setState({ bannerBonusList: { ...this.state.bannerBonusList, isVisible: false } })
 
 
     handleFirstBannerClick = () => {
@@ -121,15 +160,15 @@ class HomePage extends Component {
                 <HomePageHeader style={{ position: 'absolute', zIndex: 1 }} />
                 <SiteDescription />
                 {(this.state.banners && this.state.firstBannerIsVisible) &&
-                <div style={{marginTop : '3rem'}}>
-                    <img
-                        height={200}
-                        style={{width : '700px', marginTop : '3rem', display: 'block', margin : 'auto' }}
-                        src={this.state.banners.firstBanner}
-                        onClick={this.handleFirstBannerClick}
-                        onError={this.hideFirstBanner}
-                    />
-                </div>
+                    <div style={{ marginTop: '3rem' }}>
+                        <img
+                            height={200}
+                            style={{ width: '700px', marginTop: '3rem', display: 'block', margin: 'auto' }}
+                            src={this.state.banners.firstBanner}
+                            onClick={this.handleFirstBannerClick}
+                            onError={this.hideFirstBanner}
+                        />
+                    </div>
                 }
                 <Segment vertical>
                     <PopularSlotList />
