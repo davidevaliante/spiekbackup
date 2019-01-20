@@ -46,9 +46,9 @@ const SlotCard = (props) => {
     const PopularSlotCard = () =>
         <div className='slot-card-shadow-animation' onClick={() => handleClick()}>
             <Card key={props.slot.id}>
-                {props.slot.type === 'GRATIS' && <h4 style={{ background: 'red', textAlign: "center", color: 'white', marginBottom: '0', padding: '1%' }}>Slot Online</h4>}
-                {props.slot.type === 'BAR' && <h4 style={{ background: 'blue', textAlign: "center", color: 'white', marginBottom: '0', padding: '1%' }}>Slot da bar</h4>}
-                {props.slot.type === 'VLT' && <h4 style={{ background: '#ffa90a', textAlign: "center", color: 'white', marginBottom: '0', padding: '1%' }}>Slot VLT</h4>}
+                {props.slot.type === 'GRATIS' && <h4 style={{ background: 'red', textAlign: "center", color: 'white', marginBottom: '0', padding: '1%', fontFamily: 'Raleway, sans-serif' }}>Slot Online</h4>}
+                {props.slot.type === 'BAR' && <h4 style={{ background: 'blue', textAlign: "center", color: 'white', marginBottom: '0', padding: '1%', fontFamily: 'Raleway, sans-serif' }}>Slot da bar</h4>}
+                {props.slot.type === 'VLT' && <h4 style={{ background: '#ffa90a', textAlign: "center", color: 'white', marginBottom: '0', padding: '1%', fontFamily: 'Raleway, sans-serif' }}>Slot VLT</h4>}
                 <Image src={getImageLinkFromName('slot', props.slot.name, 'medium')} style={{ height: '165px', objectFit: 'cover' }} />
                 <Card.Content >
                     <Card.Header>{formatTitle(props.slot.name)}</Card.Header>

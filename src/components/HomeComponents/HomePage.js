@@ -165,7 +165,6 @@ class HomePage extends Component {
 
 
                 <Responsive {...Responsive.onlyTablet}>
-
                     {(this.state.banners && this.state.firstBannerIsVisible) &&
                         <div style={{ marginTop: '3rem', }}>
                             <img
@@ -180,10 +179,10 @@ class HomePage extends Component {
                         </div>
                     }
                 </Responsive>
-                <Responsive {...Responsive.onlyMobile}>
 
+                <Responsive {...Responsive.onlyMobile}>
                     {(this.state.banners && this.state.firstBannerIsVisible) &&
-                        <div style={{ marginTop: '3rem', }}>
+                        <div style={{ marginTop: '1rem', }}>
                             <img
                                 alt='banner3'
                                 width={375}
@@ -196,6 +195,7 @@ class HomePage extends Component {
                         </div>
                     }
                 </Responsive>
+
                 <Segment vertical>
                     <PopularSlotList />
 

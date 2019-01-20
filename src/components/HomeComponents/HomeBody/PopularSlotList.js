@@ -44,10 +44,9 @@ class PopularSlotList extends Component {
 
     render() {
         console.log("POPULAR", this.props.popularSlots)
-
         return (
             <div>
-                <div className='vertical-center' style={{ marginTop: '4rem' }}>
+                <div className='vertical-center' style={{ marginTop: '3rem', marginBottom: '2rem' }}>
                     <h3 className='popular-slot-header'>Le slot più popolari</h3>
                     {/*this.props.popularSlots ? this.slotListToRows(this.props.popularSlots) : <div></div>*/}
                 </div>
