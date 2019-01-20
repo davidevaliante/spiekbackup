@@ -48,7 +48,7 @@ const FullBonusCard = (props) => {
             </div>
 
             <div style={{ paddingLeft: '10%', paddingRight: '10%' }}>
-                <div style={{ background: 'grey', height: '2px', width: '100%' }}/>
+                <div style={{ background: 'grey', height: '2px', width: '100%' }} />
             </div>
 
             <div className='with-deposit-container'>
@@ -77,6 +77,9 @@ const FullBonusCard = (props) => {
                 <p
                     onClick={() => goToGuide()}
                     className="guide-button">Leggi la guida</p>
+                <div className={'divider-buttons'}>
+
+                </div>
                 <p
                     onClick={() => goToExternalLink()}
                     className="bonus-button">Vai al bonus</p>

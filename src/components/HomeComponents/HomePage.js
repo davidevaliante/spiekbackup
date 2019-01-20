@@ -12,6 +12,8 @@ import PopularSlotList from './HomeBody/PopularSlotList'
 // router e redux
 import { connect } from 'react-redux';
 import { ROUTE, SLOT_TYPES, PAGES } from "../../enums/Constants";
+import { Responsive } from 'semantic-ui-react-single/Responsive';
+
 import {
     setHomePage,
     setGratisPage,
@@ -22,30 +24,30 @@ import {
     setVltPage
 } from '../../reducers/CurrentPageReducer'
 // data
-import {getSlotsCardBasedOnTime, getAllByType, getBanners} from '../../firebase/get'
+import { getSlotsCardBasedOnTime, getAllByType, getBanners } from '../../firebase/get'
 import ArticleList from "../HomeComponents/HomeBody/ArticleList"
 import ArticleDescription from '../HomeComponents/HomeBody/ArticleDescription'
 import Article from '../Extra/Article';
 
 class HomePage extends Component {
     state = {
-        firstBannerIsVisible : true
+        firstBannerIsVisible: true
 
     };
 
     componentDidMount() {
         getBanners(bannersObject => {
             this.setState({
-                banners : bannersObject,
-                bannerSlotList : {
-                    secondBannerImage : bannersObject.secondBanner,
-                    secondBannerLink : bannersObject.secondBannerLink,
-                    isVisible : true
+                banners: bannersObject,
+                bannerSlotList: {
+                    secondBannerImage: bannersObject.secondBanner,
+                    secondBannerLink: bannersObject.secondBannerLink,
+                    isVisible: true
                 },
-                bannerBonusList : {
-                    thirdBannerImage : bannersObject.thirdBanner,
-                    thirdBannerLink : bannersObject.thirdBannerLink,
-                    isVisible : true
+                bannerBonusList: {
+                    thirdBannerImage: bannersObject.thirdBanner,
+                    thirdBannerLink: bannersObject.thirdBannerLink,
+                    isVisible: true
                 }
             })
         })
@@ -74,9 +76,9 @@ class HomePage extends Component {
     handleContextRef = contextRef => this.setState({ contextRef })
     handleChange = (e, { value }) => this.setState({ order: value })
 
-    hideFirstBanner = () => this.setState({firstBannerIsVisible : false})
-    hideSecondBanner = () => this.setState({bannerSlotList : {...this.state.bannerSlotList, isVisible : false}})
-    hideThirdBanner = () => this.setState({bannerBonusList : {...this.state.bannerBonusList, isVisible : false}})
+    hideFirstBanner = () => this.setState({ firstBannerIsVisible: false })
+    hideSecondBanner = () => this.setState({ bannerSlotList: { ...this.state.bannerSlotList, isVisible: false } })
+    hideThirdBanner = () => this.setState({ bannerBonusList: { ...this.state.bannerBonusList, isVisible: false } })
 
 
     handleFirstBannerClick = () => {
@@ -120,17 +122,53 @@ class HomePage extends Component {
                 <Navbar displaying='HOME' />
                 <HomePageHeader style={{ position: 'absolute', zIndex: 1 }} />
                 <SiteDescription />
-                {(this.state.banners && this.state.firstBannerIsVisible) &&
-                <div style={{marginTop : '3rem'}}>
-                    <img
-                        height={200}
-                        style={{width : '700px', marginTop : '3rem', display: 'block', margin : 'auto' }}
-                        src={this.state.banners.firstBanner}
-                        onClick={this.handleFirstBannerClick}
-                        onError={this.hideFirstBanner}
-                    />
-                </div>
-                }
+                <Responsive {...Responsive.onlyComputer}>
+
+                    {(this.state.banners && this.state.firstBannerIsVisible) &&
+                        <div style={{ marginTop: '3rem', }}>
+                            <img
+                                width={970}
+                                height={90}
+                                style={{ marginTop: '3rem', display: 'block', margin: 'auto' }}
+                                src={this.state.banners.firstBanner}
+                                onClick={this.handleFirstBannerClick}
+                                onError={this.hideFirstBanner}
+                            />
+                        </div>
+                    }
+                </Responsive>
+
+
+                <Responsive {...Responsive.onlyTablet}>
+
+                    {(this.state.banners && this.state.firstBannerIsVisible) &&
+                        <div style={{ marginTop: '3rem', }}>
+                            <img
+                                width={768}
+                                height={72}
+                                style={{ marginTop: '3rem', display: 'block', margin: 'auto' }}
+                                src={this.state.banners.firstBanner}
+                                onClick={this.handleFirstBannerClick}
+                                onError={this.hideFirstBanner}
+                            />
+                        </div>
+                    }
+                </Responsive>
+                <Responsive {...Responsive.onlyMobile}>
+
+                    {(this.state.banners && this.state.firstBannerIsVisible) &&
+                        <div style={{ marginTop: '3rem', }}>
+                            <img
+                                width={375}
+                                height={45}
+                                style={{ marginTop: '3rem', display: 'block', margin: 'auto' }}
+                                src={this.state.banners.firstBanner}
+                                onClick={this.handleFirstBannerClick}
+                                onError={this.hideFirstBanner}
+                            />
+                        </div>
+                    }
+                </Responsive>
                 <Segment vertical>
                     <PopularSlotList />
 

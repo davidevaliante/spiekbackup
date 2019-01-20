@@ -14,7 +14,7 @@ import YouTubeEmbed from './YouTubeEmbed'
 import SlotPageHeader from '../Header/SlotPageHeader'
 import Navbar from '../Header/Navbar'
 // data
-import {getSlotCardWithId, getSlotWithId} from '../../firebase/get'
+import { getSlotCardWithId, getSlotWithId } from '../../firebase/get'
 // router e redux
 import { slotIsLoading, slotIsLoaded, updateCurrentSlot } from '../../reducers/SlotPageReducer'
 import { withRouter } from 'react-router-dom'
@@ -33,7 +33,7 @@ class SlotPage extends Component {
     state = {
         currentSlot: {},
         currentSlotId: '',
-        relatedSlots : {},
+        relatedSlots: {},
     }
 
     componentDidMount() {
@@ -43,10 +43,10 @@ class SlotPage extends Component {
             }
             this.props.dispatch(slotIsLoaded())
             this.props.dispatch(updateCurrentSlot(slot))
-            if (slot.similarSlots !== undefined){
+            if (slot.similarSlots !== undefined) {
                 for (const id in slot.similarSlots) {
                     getSlotCardWithId(id, result => {
-                        this.setState({relatedSlots : {...this.state.relatedSlots, [id] : result}})
+                        this.setState({ relatedSlots: { ...this.state.relatedSlots, [id]: result } })
                     })
                 }
             }
@@ -151,22 +151,23 @@ class SlotPage extends Component {
                             id='slot-page-lists'>
                             <TipsList tipList={currentSlot.tips} />
                             <TecnicalsList
-                                onlineVersion = {currentSlot.onlineVersion && Object.keys(currentSlot.onlineVersion)[0]}
+                                onlineVersion={currentSlot.onlineVersion && Object.keys(currentSlot.onlineVersion)[0]}
                                 tecList={currentSlot.tecnicals}
                                 producerName={(currentSlot.producer && currentSlot.producer.name)} />
                         </Grid.Row>
                     </Grid>
                     <SlotPageBonusList
+                        slotType={currentSlot.type}
                         specialBonusList={currentSlot.bonusSpecial}
                         bonusList={currentSlot.bonus} />
 
 
-                    {Object.keys(this.state.relatedSlots).length !== 0 && <RelatedSlotList slotList={this.state.relatedSlots}/>}
+                    {Object.keys(this.state.relatedSlots).length !== 0 && <RelatedSlotList slotList={this.state.relatedSlots} />}
 
 
                     {currentSlot.linkYoutube &&
                         <YouTubeEmbed
-                            key={this.props.match.params.id+'ok'}
+                            key={this.props.match.params.id + 'ok'}
                             desc={currentSlot.linkYoutubeDescription}
                             src={this.getYoutubeEmbedSource()} />
                     }

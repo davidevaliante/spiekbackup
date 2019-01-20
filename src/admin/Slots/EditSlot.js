@@ -24,7 +24,7 @@ import { Dimmer } from "semantic-ui-react-single/Dimmer";
 import { Menu } from 'semantic-ui-react-single/Menu'
 import RichEdit from "../Extra/RichEdit";
 import upperCase from 'lodash/upperCase'
-import {Divider} from "semantic-ui-react-single/Divider";
+import { Divider } from "semantic-ui-react-single/Divider";
 import SearchMultipleSelectionSlot from '../SearchMultipleSelectionSlot';
 
 
@@ -103,7 +103,7 @@ class EditSlot extends React.Component {
                     let ov = []
                     forEach(r, (element) => {
                         forEach(slotCardOptions, (e, i) => {
-                            if (e.key === element){
+                            if (e.key === element) {
                                 relatedslots.push((i + 1).toString())
                             }
                         })
@@ -111,16 +111,17 @@ class EditSlot extends React.Component {
 
 
                     forEach(slotCardOptions, (e, i) => {
-                        if (e.key === onlineVersionid){
+                        if (e.key === onlineVersionid) {
                             ov.push((i + 1).toString())
                         }
                     })
 
 
-                    this.setState({defaultValuesForRelatedSlots : relatedslots,
-                        similarSlots : slot.similarSlots,
-                        defaultValueForOnlineVersion : ov,
-                        onlineVersion : slot.onlineVersion
+                    this.setState({
+                        defaultValuesForRelatedSlots: relatedslots,
+                        similarSlots: slot.similarSlots,
+                        defaultValueForOnlineVersion: ov,
+                        onlineVersion: slot.onlineVersion
                     })
                 })
 
@@ -134,13 +135,14 @@ class EditSlot extends React.Component {
                     defaultType: slot.type,
                     defaultRating: slot.rating,
                     defaultValuesForBonus: def,
-                    defaultValuesForBonusSpecial : defSpecial,
+                    defaultValuesForBonusSpecial: defSpecial,
                     optionList: options,
                     firebaseBonusObject: slot.bonus,
                     selectedBonus: slot.bonus,
                     bonusSpecial: slot.bonusSpecial,
                     currentDescription: slot.description,
                     isPopular: slot.isPopular,
+                    linkSlotCard: slot.linkSlotCard
                 })
             })
 
@@ -172,11 +174,11 @@ class EditSlot extends React.Component {
 
     onSimilarslotSelected = (similarSlots) => {
         let k = {}
-        Object.keys(similarSlots).forEach(key =>{
+        Object.keys(similarSlots).forEach(key => {
             k[key] = true
         })
         console.log(k)
-        this.setState({similarSlots : k})
+        this.setState({ similarSlots: k })
     }
 
     onOnlineCounterpartSelected = (counterPartSelcted) => {
@@ -186,8 +188,12 @@ class EditSlot extends React.Component {
 
     onBonusSpecialSelected = (selectedSpecialBonus) => {
         console.log(selectedSpecialBonus);
-
-        this.setState({ bonusSpecial: selectedSpecialBonus })
+        if (this.state.linkSlotCard === undefined) {
+            console.log('ok')
+            this.setState({ specialBonus: selectedSpecialBonus, linkSlotCard: selectedSpecialBonus })
+        } else {
+            this.setState({ specialbonus: selectedSpecialBonus })
+        }
     }
 
     switchCopyPasteMode = () => {
@@ -299,15 +305,17 @@ class EditSlot extends React.Component {
             linkYoutubeDescription: linkYoutubeDescription,
             linkPlay: linkPlay,
             bonus: BONUS,
-            bonusSpecial : this.state.bonusSpecial,
+            bonusSpecial: this.state.bonusSpecial,
             description: description,
             rating: rating,
             tips: tipsField,
             tecnicals: tecnicalsField,
             type: type,
             isPopular: this.state.isPopular ? this.state.isPopular : false,
-            similarSlots : this.state.similarSlots,
-            onlineVersion : this.state.onlineVersion
+            similarSlots: this.state.similarSlots,
+            onlineVersion: this.state.onlineVersion,
+            linkSlotCard: this.state.linkSlotCard[Object.keys[this.state.linkSlotCard]]
+
         }
 
         const image = this.state.image
@@ -332,7 +340,7 @@ class EditSlot extends React.Component {
     handleClose = () => this.setState({ active: false });
 
     render() {
-
+        { console.log(this.state) }
         const { currentSlot, active, isPopularOptions } = this.state
         const { producer } = this.state.currentSlot
 
@@ -499,23 +507,23 @@ class EditSlot extends React.Component {
                             <FormField>
                                 <label>Bonus Normali</label>
                                 {this.state.defaultValuesForBonus &&
-                                <SearchMultipleSelection
-                                    defaults={this.state.defaultValuesForBonus}
-                                    onListUpdate={this.onBonusSelected} />
+                                    <SearchMultipleSelection
+                                        defaults={this.state.defaultValuesForBonus}
+                                        onListUpdate={this.onBonusSelected} />
                                 }
                             </FormField>
 
                             <FormField>
                                 <label>Bonus Speciali</label>
                                 {this.state.defaultValuesForBonusSpecial &&
-                                <SearchMultipleSelection
-                                    defaults={this.state.defaultValuesForBonusSpecial}
-                                    onListUpdate={this.onBonusSpecialSelected} />
+                                    <SearchMultipleSelection
+                                        defaults={this.state.defaultValuesForBonusSpecial}
+                                        onListUpdate={this.onBonusSpecialSelected} />
                                 }
                             </FormField>
                         </Form.Group>
 
-                        <Divider style={{marginTop :'2%', marginBottom : '2%'}}/>
+                        <Divider style={{ marginTop: '2%', marginBottom: '2%' }} />
 
 
                         <h2
@@ -529,10 +537,10 @@ class EditSlot extends React.Component {
 
                         {this.state.defaultValuesForRelatedSlots &&
 
-                        <SearchMultipleSelectionSlot
-                            defaults={this.state.defaultValuesForRelatedSlots}
-                            placeholder='Slot Simili'
-                            onListUpdate={this.onSimilarslotSelected} />
+                            <SearchMultipleSelectionSlot
+                                defaults={this.state.defaultValuesForRelatedSlots}
+                                placeholder='Slot Simili'
+                                onListUpdate={this.onSimilarslotSelected} />
                         }
 
                         {this.state.defaultValueForOnlineVersion &&

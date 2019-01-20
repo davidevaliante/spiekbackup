@@ -24,9 +24,9 @@ import RichEdit from "../Extra/RichEdit";
 import upperCase from 'lodash/upperCase'
 import { connect } from 'react-redux'
 import { updateSlotPreview } from '../../reducers/SlotPreviewReducer'
-import {Divider} from "semantic-ui-react-single/Divider";
+import { Divider } from "semantic-ui-react-single/Divider";
 import SearchMultipleSelectionSlot from "../SearchMultipleSelectionSlot";
-import {defaults} from 'lodash'
+import { defaults } from 'lodash'
 
 class AddSlot extends Component {
 
@@ -50,7 +50,8 @@ class AddSlot extends Component {
             { key: 'tre', value: '3', text: '3' },
             { key: 'quattro', value: '4', text: '4' },
             { key: 'cinque', value: '5', text: '5' },
-        ]
+        ],
+        linkSlotCard: undefined
     }
 
     fakeObject = () => {
@@ -176,9 +177,9 @@ class AddSlot extends Component {
             tecnicals: tecnicalsField,
             type: this.state.type,
             isFake: this.state.isFake,
-            bonusSpecial : this.state.specialBonus,
-            similarSlots : this.state.similarSlots,
-            onlineVersion : this.state.onlineVersion
+            bonusSpecial: this.state.specialBonus,
+            similarSlots: this.state.similarSlots,
+            onlineVersion: this.state.onlineVersion
         }
 
         const imageData = {
@@ -217,7 +218,7 @@ class AddSlot extends Component {
             tecnicals: tecnicalsField,
             type: this.state.type,
             isFake: this.state.isFake,
-            bonusSpecial : this.state.specialBonus
+            bonusSpecial: this.state.specialBonus
         }
 
         const imageData = {
@@ -268,16 +269,20 @@ class AddSlot extends Component {
     }
 
     onSpecialBonusSelected = (specialBonusList) => {
-        this.setState({specialBonus : specialBonusList})
+        if (this.state.linkSlotCard !== undefined) {
+            this.setState({ specialBonus: specialBonusList, linkSlotCard: specialBonusList })
+        } else {
+            this.setState({ specialbonus: specialBonusList })
+        }
     }
 
     onSimilarslotSelected = (similarSlots) => {
         let k = {}
-        Object.keys(similarSlots).forEach(key =>{
+        Object.keys(similarSlots).forEach(key => {
             k[key] = true
         })
         console.log(k)
-        this.setState({similarSlots : k})
+        this.setState({ similarSlots: k })
     }
 
     onProducerSelected = (selectedProducer) => {
@@ -390,7 +395,7 @@ class AddSlot extends Component {
 
                         </Form.Group>
 
-                        <Divider style={{marginTop :'2%', marginBottom : '2%'}}/>
+                        <Divider style={{ marginTop: '2%', marginBottom: '2%' }} />
 
 
                         <h2
@@ -442,7 +447,7 @@ class AddSlot extends Component {
                             <RichEdit withHtmlPreview={true} />
                         </Form.Field>
 
-                        <Divider style={{marginTop :'2%', marginBottom : '2%'}}/>
+                        <Divider style={{ marginTop: '2%', marginBottom: '2%' }} />
 
 
                         <h2
@@ -479,15 +484,15 @@ class AddSlot extends Component {
                             </FormField>
 
                             {/*<FormField>*/}
-                                {/*<Dropdown*/}
-                                    {/*id='hasSlotOnline'*/}
-                                    {/*error={this.state.shouldDisplayErrors && this.state.emptyFields.includes('rating')}*/}
-                                    {/*style={{ marginBottom: '1rem' }}*/}
-                                    {/*placeholder='Rating'*/}
-                                    {/*onChange={(event, data) => data ? this.onDropDownChange(data) : this.resetErrorOn('rating')}*/}
-                                    {/*search*/}
-                                    {/*selection*/}
-                                    {/*options={this.state.ratingStateOptions} />*/}
+                            {/*<Dropdown*/}
+                            {/*id='hasSlotOnline'*/}
+                            {/*error={this.state.shouldDisplayErrors && this.state.emptyFields.includes('rating')}*/}
+                            {/*style={{ marginBottom: '1rem' }}*/}
+                            {/*placeholder='Rating'*/}
+                            {/*onChange={(event, data) => data ? this.onDropDownChange(data) : this.resetErrorOn('rating')}*/}
+                            {/*search*/}
+                            {/*selection*/}
+                            {/*options={this.state.ratingStateOptions} />*/}
                             {/*</FormField>*/}
 
                             <Form.Field>
@@ -497,7 +502,7 @@ class AddSlot extends Component {
                             </Form.Field>
                         </Form.Group>
 
-                        <Divider style={{marginTop :'2%', marginBottom : '2%'}}/>
+                        <Divider style={{ marginTop: '2%', marginBottom: '2%' }} />
 
 
                         <h2
@@ -521,7 +526,7 @@ class AddSlot extends Component {
                             </FormField>
                         </Form.Group>
 
-                        <Divider style={{marginTop :'2%', marginBottom : '2%'}}/>
+                        <Divider style={{ marginTop: '2%', marginBottom: '2%' }} />
 
 
                         <h2
@@ -541,7 +546,7 @@ class AddSlot extends Component {
                             placeholder='Corrispettivo Online'
                             onListUpdate={this.onOnlineCounterpartSelected} />
 
-                        <Divider style={{marginTop :'2%', marginBottom : '2%'}}/>
+                        <Divider style={{ marginTop: '2%', marginBottom: '2%' }} />
 
 
                         {/*  <Form.Field

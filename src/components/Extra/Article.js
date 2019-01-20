@@ -146,6 +146,12 @@ class Article extends Component {
 
                             Verifica la probabilità di vincita su <a href="https://www.agenziadoganemonopoli.gov.it/portale/">www.aams.gov.it</a>
                                 <br></br>Gioca responsabilmente</h4>
+
+                            <img
+                                width={130}
+                                height={50}
+                                src={'https://firebasestorage.googleapis.com/v0/b/spike-2481d.appspot.com/o/logo_ams_bv?alt=media&token=87e24b80-1755-42f0-b3f9-24d1f4785dbe'}
+                            />
                         </div>
                     }
                 </Visibility>

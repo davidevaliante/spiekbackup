@@ -18,7 +18,7 @@ class SearchMultipleSelectionSlot extends Component {
         let formattedList = [];
         let counter = 1
         for (const key in list) {
-            formattedList.push({ key: `${key}`, value: `${counter}`, text: `${list[key].name}` })
+            formattedList.push({ key: `${key}`, value: `${counter}`, text: `${list[key].name} - ${list[key].type}` })
             counter++
         }
         return formattedList;
@@ -41,8 +41,8 @@ class SearchMultipleSelectionSlot extends Component {
 
         this.setState({ pickedList: data.value })
         this.props.onListUpdate(pick(this.state.firebaseBonusObject, map(data.value, option =>
-                this.state.optionList[parseInt(option, 10) - 1].key)
-            )
+            this.state.optionList[parseInt(option, 10) - 1].key)
+        )
         )
     }
 

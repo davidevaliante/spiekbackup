@@ -139,7 +139,9 @@ class ProducerPage extends Component {
 
                 {bonusList &&
                     <Segment vertical>
-                        <SlotPageBonusList bonusList={bonusList}/>
+                        <SlotPageBonusList
+                            slotType={'PRODUCER'}
+                            bonusList={bonusList} />
                     </Segment>
                 }
                 <Footer />
@@ -148,9 +150,9 @@ class ProducerPage extends Component {
     }
 }
 
-                const mapStateToProps = (state) => ({
-                dispatch: state.dispatch,
-                displaying: state.displaying
-            });
+const mapStateToProps = (state) => ({
+    dispatch: state.dispatch,
+    displaying: state.displaying
+});
 
 export default withRouter(connect(mapStateToProps)(ProducerPage))
