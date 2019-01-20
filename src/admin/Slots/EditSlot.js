@@ -188,12 +188,9 @@ class EditSlot extends React.Component {
 
     onBonusSpecialSelected = (selectedSpecialBonus) => {
         console.log(selectedSpecialBonus);
-        if (this.state.linkSlotCard === undefined) {
-            console.log('ok')
-            this.setState({ specialBonus: selectedSpecialBonus, linkSlotCard: selectedSpecialBonus })
-        } else {
-            this.setState({ specialbonus: selectedSpecialBonus })
-        }
+
+        this.setState({ specialbonus: selectedSpecialBonus })
+
     }
 
     switchCopyPasteMode = () => {
@@ -305,7 +302,7 @@ class EditSlot extends React.Component {
             linkYoutubeDescription: linkYoutubeDescription,
             linkPlay: linkPlay,
             bonus: BONUS,
-            bonusSpecial: this.state.bonusSpecial,
+            bonusSpecial: this.state.specialbonus,
             description: description,
             rating: rating,
             tips: tipsField,
@@ -314,7 +311,7 @@ class EditSlot extends React.Component {
             isPopular: this.state.isPopular ? this.state.isPopular : false,
             similarSlots: this.state.similarSlots,
             onlineVersion: this.state.onlineVersion,
-            linkSlotCard: this.state.linkSlotCard[Object.keys[this.state.linkSlotCard]]
+            //linkSlotCard: this.state.linkSlotCard[Object.keys[this.state.linkSlotCard]]
 
         }
 

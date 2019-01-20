@@ -38,39 +38,25 @@ class HomePage extends Component {
     };
 
 
-
-    initializeDevReactGA = () => {
-        // ReactGA.initialize('UA-132816901-1')
-        ReactGA.initialize('UA-132810169-1');
-        ReactGA.pageview('/homepage');
-    }
-
-    initializeSpikeReactGA = () => {
-        ReactGA.initialize('UA-132816901-1')
-        ReactGA.pageview('/homepage');
-    }
-
-    initializeReactGA = () => {
+    initializeReactGAForHome = () => {
+        const page = 'home';
 
         ReactGA.initialize([
             {
                 trackingId: 'UA-132816901-1',
-                gaOptions: {
-                    name: 'spike',
-                }
             },
             {
                 trackingId: 'UA-132810169-1',
                 gaOptions: {
-                    name: 'devs'
+                    name: 'devs',
                 }
             }
-        ], { alwaysSendToDefaultTracker: false }
+        ]
         );
-        // ReactGA.pageview(window.location.pathname + window.location.search)
-        ReactGA.pageview('/homepage');
-
+        ReactGA.ga('devs.send', 'pageview', { page })
     }
+
+
 
 
     componentDidMount() {
@@ -89,7 +75,7 @@ class HomePage extends Component {
                 }
             })
         })
-        this.initializeReactGA()
+        this.initializeReactGAForHome()
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -97,6 +83,7 @@ class HomePage extends Component {
             switch (this.props.displaying) {
                 case PAGES.HOME:
                     getSlotsCardBasedOnTime(12);
+                    this.initializeDevReactGAForHome()
                     break;
                 case PAGES.SLOT_BAR:
                     getAllByType('BAR');

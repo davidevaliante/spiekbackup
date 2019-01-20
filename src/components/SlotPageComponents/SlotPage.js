@@ -42,6 +42,24 @@ class SlotPage extends Component {
         ReactGA.pageview('/slotpage');
     }
 
+    initializeReactGAForSlotPageWithName = (name) => {
+        const page = name;
+
+        ReactGA.initialize([
+            {
+                trackingId: 'UA-132816901-1',
+            },
+            {
+                trackingId: 'UA-132810169-1',
+                gaOptions: {
+                    name: 'devs',
+                }
+            }
+        ]
+        );
+        ReactGA.ga('devs.send', 'pageview', { page })
+    }
+
     componentDidMount() {
         getSlotWithId(this.props.match.params.id, (slot) => {
             if (!slot) {
@@ -56,6 +74,7 @@ class SlotPage extends Component {
                     })
                 }
             }
+            this.initializeReactGAForSlotPageWithName(slot.name)
 
             this.setState({
                 currentSlot: slot,
@@ -75,6 +94,7 @@ class SlotPage extends Component {
             getSlotWithId(this.props.match.params.id, (slot) => {
                 this.props.dispatch(slotIsLoaded())
                 this.props.dispatch(updateCurrentSlot(slot))
+                this.initializeReactGAForSlotPageWithName(slot.name)
 
                 this.setState({
                     currentSlot: slot,
