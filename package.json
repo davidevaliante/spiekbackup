@@ -47,6 +47,7 @@
     "react-dev-utils": "^5.0.1",
     "react-device-detect": "^1.6.1",
     "react-dom": "^16.4.1",
+    "react-ga": "^2.5.6",
     "react-helmet": "^5.2.0",
     "react-lazyload": "^2.3.0",
     "react-preload-image": "^1.0.4",
