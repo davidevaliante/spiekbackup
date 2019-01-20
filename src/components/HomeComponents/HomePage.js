@@ -83,7 +83,6 @@ class HomePage extends Component {
             switch (this.props.displaying) {
                 case PAGES.HOME:
                     getSlotsCardBasedOnTime(12);
-                    this.initializeDevReactGAForHome()
                     break;
                 case PAGES.SLOT_BAR:
                     getAllByType('BAR');
@@ -149,10 +148,10 @@ class HomePage extends Component {
                 <HomePageHeader style={{ position: 'absolute', zIndex: 1 }} />
                 <SiteDescription />
                 <Responsive {...Responsive.onlyComputer}>
-
                     {(this.state.banners && this.state.firstBannerIsVisible) &&
                         <div style={{ marginTop: '3rem', }}>
                             <img
+                                alt='banner1'
                                 width={970}
                                 height={90}
                                 style={{ marginTop: '3rem', display: 'block', margin: 'auto' }}
@@ -170,6 +169,7 @@ class HomePage extends Component {
                     {(this.state.banners && this.state.firstBannerIsVisible) &&
                         <div style={{ marginTop: '3rem', }}>
                             <img
+                                alt='banner2'
                                 width={768}
                                 height={72}
                                 style={{ marginTop: '3rem', display: 'block', margin: 'auto' }}
@@ -185,6 +185,7 @@ class HomePage extends Component {
                     {(this.state.banners && this.state.firstBannerIsVisible) &&
                         <div style={{ marginTop: '3rem', }}>
                             <img
+                                alt='banner3'
                                 width={375}
                                 height={45}
                                 style={{ marginTop: '3rem', display: 'block', margin: 'auto' }}

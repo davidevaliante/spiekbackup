@@ -37,10 +37,8 @@ const removeHtmlFrom = (s) => {
 // -------------------DATABASE TRIGGERS--------------------------------------------------------------
 exports.onBonusUpdated = functions.database.ref('Bonus/{language}/{id}').onUpdate((ciao, context) => {
     const updatedBonus = ciao.after.exportVal();
-    console.log(updatedBonus);
     admin.database().ref(`/Slots/${context.params.language}`).once("value", snapshot => {
         const x = snapshot.val();
-        console.log(x);
         for (const key in x) {
             const changedId = context.params.id;
             const element = x[key];
@@ -62,7 +60,8 @@ exports.onSlotAdded = functions.database.ref('/Slots/{language}/{pushId}/')
         rating: newSlot.rating,
         time: newSlot.time,
         type: newSlot.type,
-        description: lodash_1.truncate(removeHtmlFrom(newSlot.description), { 'length': 150 })
+        description: lodash_1.truncate(removeHtmlFrom(newSlot.description), { 'length': 150 }),
+        specialBonusLink: newSlot.specialBonusLink
     };
     const slotMenu = {
         name: newSlot.name,
@@ -86,7 +85,8 @@ exports.onSlotUpdated = functions.database.ref('/Slots/{language}/{editedId}/')
         time: newSlot.time,
         type: newSlot.type,
         description: lodash_1.truncate(removeHtmlFrom(newSlot.description), { 'length': 150 }),
-        isPopular: newSlot.isPopular
+        isPopular: newSlot.isPopular,
+        specialBonusLink: newSlot.specialBonusLink
     };
     const slotMenu = {
         name: newSlot.name,

@@ -65,12 +65,26 @@ class ImagePicker extends Component {
         }
     }
 
+    handleProducerImage = () => {
+        console.log('on change triggered');
+
+        const selectedFile = document.getElementById('producer').files[0];
+        if (selectedFile && split(selectedFile.type, '/')[0] === 'image') {
+            const url = URL.createObjectURL(selectedFile);
+            this.props.onImageSelected(selectedFile)
+            this.setState({ currentImage: selectedFile, currentImageUrl: url })
+        } else {
+            console.log('unsupported file type');
+        }
+    }
+
 
     handleImage = () => {
         if (this.props.imageType === 'imagePicker') this.handleNewImage()
         if (this.props.imageType === 'bonusInternalPicker') this.handleInternalImage()
         if (this.props.imageType === 'circularImage') this.handleCircularImage()
         if (this.props.imageType === 'slotPicker') this.handleSlotImage()
+        if (this.props.imageType === 'producer') this.handleProducerImage()
     }
 
     render() {

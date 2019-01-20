@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import delay from 'lodash/delay';
 import { Button } from 'semantic-ui-react-single/Button'
-import {Form, FormField} from 'semantic-ui-react-single/Form'
+import { Form, FormField } from 'semantic-ui-react-single/Form'
 import { Input } from 'semantic-ui-react-single/Input'
 import { Dimmer } from 'semantic-ui-react-single/Dimmer'
 import { Header } from 'semantic-ui-react-single/Header'
@@ -36,7 +36,6 @@ class AddProducer extends Component {
         const name = document.getElementById('nameField').value.trim();
         const link = document.getElementById('linkField').value.trim();
         const description = (document.getElementById('htmlText').value.trim() !== '<p><br></p>') ? document.getElementById('htmlText').value.trim() : ''
-
 
         if (name && link) {
             const newProducer = {
@@ -108,7 +107,7 @@ class AddProducer extends Component {
                         producer: producer,
                         submitBtn: 'Modifica',
                         bonusList: producer.bonusList,
-                        bonusAlreadyPresent : def
+                        bonusAlreadyPresent: def
                     })
                 })
         }
@@ -187,9 +186,9 @@ class AddProducer extends Component {
                                 Bonus Relativiti a questo produttore
                                 <FormField>
                                     {this.state.bonusAlreadyPresent &&
-                                    <SearchMultipleSelection
-                                        defaults={this.state.bonusAlreadyPresent}
-                                        onListUpdate={this.onBonusSelected} />
+                                        <SearchMultipleSelection
+                                            defaults={this.state.bonusAlreadyPresent}
+                                            onListUpdate={this.onBonusSelected} />
                                     }
                                 </FormField>
                             </h1>
@@ -197,13 +196,16 @@ class AddProducer extends Component {
 
                         {isInEditMode && producer &&
                             <ImagePicker
+                                imageType='producer'
                                 onImageSelected={this.onImageSelected}
                                 style={{ width: '100%', marginLeft: '2rem' }}
                                 imagePreview={getImageLinkFromName('producer', this.state.producer.name)} />
                         }
 
                         {!isInEditMode &&
-                            <ImagePicker onImageSelected={this.onImageSelected} />}
+                            <ImagePicker
+                                imageType='producer'
+                                onImageSelected={this.onImageSelected} />}
 
                         <Form.Field
                             style={{ width: '100%' }}

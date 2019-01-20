@@ -1,12 +1,12 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 // components
 import SlotCard from '../../Cards/SlotCard'
 // mix
 import chunk from 'lodash/chunk'
 // router e redux
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 // semantic
-import {Grid} from 'semantic-ui-react-single/Grid'
+import { Grid } from 'semantic-ui-react-single/Grid'
 
 class PopularSlotList extends Component {
     state = {}
@@ -38,7 +38,7 @@ class PopularSlotList extends Component {
         }
 
         return listOfSlots.map((element) => {
-            return <SlotCard slot={element} key={element.id} />
+            return <SlotCard slot={element} key={element.id} popularSlotLayout={true} />
         })
     }
 

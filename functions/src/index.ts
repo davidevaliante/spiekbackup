@@ -63,7 +63,8 @@ export const onSlotAdded = functions.database.ref('/Slots/{language}/{pushId}/')
             rating: newSlot.rating,
             time: newSlot.time,
             type: newSlot.type,
-            description: truncate(removeHtmlFrom(newSlot.description), { 'length': 150 })
+            description: truncate(removeHtmlFrom(newSlot.description), { 'length': 150 }),
+            specialBonusLink: newSlot.specialBonusLink
         };
 
         const slotMenu = {
@@ -92,7 +93,9 @@ export const onSlotUpdated = functions.database.ref('/Slots/{language}/{editedId
             time: newSlot.time,
             type: newSlot.type,
             description: truncate(removeHtmlFrom(newSlot.description), { 'length': 150 }),
-            isPopular: newSlot.isPopular
+            isPopular: newSlot.isPopular,
+            specialBonusLink: newSlot.specialBonusLink
+
         };
 
         const slotMenu = {
