@@ -121,7 +121,8 @@ class EditSlot extends React.Component {
                         defaultValuesForRelatedSlots: relatedslots,
                         similarSlots: slot.similarSlots,
                         defaultValueForOnlineVersion: ov,
-                        onlineVersion: slot.onlineVersion
+                        onlineVersion: slot.onlineVersion,
+                        specialBonusLink: slot.specialBonusLink
                     })
                 })
 
@@ -139,7 +140,7 @@ class EditSlot extends React.Component {
                     optionList: options,
                     firebaseBonusObject: slot.bonus,
                     selectedBonus: slot.bonus,
-                    bonusSpecial: slot.bonusSpecial,
+                    specialbonus: slot.bonusSpecial,
                     currentDescription: slot.description,
                     isPopular: slot.isPopular,
                     linkSlotCard: slot.linkSlotCard
@@ -295,6 +296,9 @@ class EditSlot extends React.Component {
             type = this.state.currentSlot.type
         }
 
+        const specialBonusLink = this.state.specialbonus[Object.keys(this.state.specialbonus)[0]] ?
+            this.state.specialbonus[Object.keys(this.state.specialbonus)[0]].link : this.state.specialBonusLink
+
         const updatedSlot = {
             name: name,
             producer: producer,
@@ -311,9 +315,10 @@ class EditSlot extends React.Component {
             isPopular: this.state.isPopular ? this.state.isPopular : false,
             similarSlots: this.state.similarSlots,
             onlineVersion: this.state.onlineVersion,
-            //linkSlotCard: this.state.linkSlotCard[Object.keys[this.state.linkSlotCard]]
+            specialBonusLink: specialBonusLink
 
         }
+
 
         const image = this.state.image
         const slotId = this.props.match.params.id
@@ -337,7 +342,7 @@ class EditSlot extends React.Component {
     handleClose = () => this.setState({ active: false });
 
     render() {
-        { console.log(this.state) }
+        console.log(this.state)
         const { currentSlot, active, isPopularOptions } = this.state
         const { producer } = this.state.currentSlot
 

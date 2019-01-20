@@ -74,7 +74,7 @@ class SlotPage extends Component {
                     })
                 }
             }
-            this.initializeReactGAForSlotPageWithName(slot.name)
+            this.initializeReactGAForSlotPageWithName(`slot/${slot.name}`)
 
             this.setState({
                 currentSlot: slot,
@@ -94,7 +94,7 @@ class SlotPage extends Component {
             getSlotWithId(this.props.match.params.id, (slot) => {
                 this.props.dispatch(slotIsLoaded())
                 this.props.dispatch(updateCurrentSlot(slot))
-                this.initializeReactGAForSlotPageWithName(slot.name)
+                this.initializeReactGAForSlotPageWithName(`slot/${slot.name}`)
 
                 this.setState({
                     currentSlot: slot,

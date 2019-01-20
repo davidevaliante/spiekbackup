@@ -22,7 +22,7 @@ import axios from 'axios'
 import { Responsive } from 'semantic-ui-react-single/Responsive'
 import { RESPONSIVE_RESOLUTION } from "../../enums/Constants"
 import { ButtonGroup } from 'semantic-ui-react';
-
+import ReactGA from 'react-ga'
 
 class Article extends Component {
 
@@ -31,18 +31,36 @@ class Article extends Component {
         hasInternalImage: true
     }
 
+    initializeReactGAForBonusPageWithName = (name) => {
+        const page = name;
+
+        ReactGA.initialize([
+            {
+                trackingId: 'UA-132816901-1',
+            },
+            {
+                trackingId: 'UA-132810169-1',
+                gaOptions: {
+                    name: 'devs',
+                }
+            }
+        ]
+        );
+        ReactGA.ga('devs.send', 'pageview', { page })
+    }
+
     componentDidMount() {
 
 
         if (this.props.match.params.id) {
             getGuideById(this.props.match.params.id, data => {
+                this.initializeReactGAForBonusPageWithName(`bonus/${data.bonus.name}`)
                 this.setState({
                     isLoading: false,
                     content: data,
                     parsedContent: Parser(`${data.content}`),
                     bonus: data.bonus
                 })
-
             })
 
 
@@ -148,6 +166,7 @@ class Article extends Component {
                                 <br></br>Gioca responsabilmente</h4>
 
                             <img
+                                alt='amslogo'
                                 width={130}
                                 height={50}
                                 src={'https://firebasestorage.googleapis.com/v0/b/spike-2481d.appspot.com/o/logo_ams_bv?alt=media&token=87e24b80-1755-42f0-b3f9-24d1f4785dbe'}

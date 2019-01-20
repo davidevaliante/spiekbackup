@@ -179,13 +179,16 @@ class AddSlot extends Component {
             isFake: this.state.isFake,
             bonusSpecial: this.state.specialBonus,
             similarSlots: this.state.similarSlots,
-            onlineVersion: this.state.onlineVersion
+            onlineVersion: this.state.onlineVersion,
+            specialBonusLink: this.state.specialBonus[Object.keys(this.state.specialBonus)[0]].link
+
         }
 
         const imageData = {
             imageFile: this.state.image,
             imageName: this.state.imageName,
         }
+        console.log(`special bonus : ${this.state.specialBonus[Object.keys(this.state.specialBonus)[0]].name}`)
         console.log(newSlot);
         if (name && producer && linkYoutube && linkPlay && BONUS && description && rating && tipsField && tecnicalsField && newSlot.type) {
             pushNewSlot(newSlot, imageData, this.onSlotPushSuccess)
@@ -269,11 +272,9 @@ class AddSlot extends Component {
     }
 
     onSpecialBonusSelected = (specialBonusList) => {
-        if (this.state.linkSlotCard !== undefined) {
-            this.setState({ specialBonus: specialBonusList, linkSlotCard: specialBonusList })
-        } else {
-            this.setState({ specialbonus: specialBonusList })
-        }
+
+        this.setState({ specialBonus: specialBonusList })
+
     }
 
     onSimilarslotSelected = (similarSlots) => {
