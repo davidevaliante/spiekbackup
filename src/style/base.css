@@ -513,4 +513,24 @@ a.right.item{
   box-shadow: 10px 10px 5px -8px rgba(0,0,0,0.45);
   background: #e74c3c;
   border-radius: 50px;
+  margin-bottom: 7%;
+}
+
+.special-bonus-home h1 {
+  color: white; 
+  text-align: center; 
+  padding: 5%; 
+  margin-bottom: 30px;  
+  font-family: 'Raleway', sans-serif;
+}
+
+@media only screen and (max-width : 1450px){
+  .special-bonus-home h1 {
+    color: white; 
+    text-align: center; 
+    padding: 5%; 
+    margin-bottom: 30px; 
+    font-size: 75%;
+    font-family: 'Raleway', sans-serif;
+  }
 }

@@ -101,7 +101,7 @@ const HomeBody = ({ orderHandler,
 
                         <Responsive minWidth={600} >
                             <div className='special-bonus-home'>
-                                <h1 style={{ color: 'white', textAlign: 'center', padding: '5%', marginBottom: '30px', fontFamily: 'Raleway, sans-serif' }}>Il bonus del momento</h1>
+                                <h1>Il bonus del momento</h1>
                             </div>
                             <BonusList
                                 maxNumber={15}
