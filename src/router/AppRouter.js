@@ -13,7 +13,6 @@ import SlotDashboard from "../admin/Slots/SlotDashboard";
 import EditSlot from "../admin/Slots/EditSlot";
 import BonusDashboard from "../admin/Bonus/BonusDashboard"
 import AddExtraFromHtml from '../admin/Extra/AddExtraFromHtml'
-import BonusArticle from '../components/Extra/BonusArticle'
 import ProducerDashboard from "../admin/Producer/ProducerDashboard";
 import ExtraDashBoard from '../admin/Extra/ExtraDashboard'
 import AddBanners from '../admin/AddBanners'
@@ -23,13 +22,9 @@ import { PAGES, ROUTE } from "../enums/Constants";
 import NotFound from "../components/NotFound"
 import AboutPage from '../components/AboutPage'
 import ProducerPage from "../components/ProducerComponents/ProducerPage";
-import ReactGA from 'react-ga'
 import Article from '../components/Extra/Article'
+import BonusGuide from '../components/Extra/BonusGuide'
 
-const initializeReactGA = () => {
-    ReactGA.initialize('UA-132810169-1');
-    ReactGA.pageview('/homepage');
-}
 
 const AppRouter = () => {
 
@@ -81,8 +76,8 @@ const AppRouter = () => {
                     <Route path={ROUTE.BANNERS} component={AddBanners} />
 
 
-                    <Route path='/test' component={Test} /> */}
-
+                    {/* <Route path='/test' component={BonusGuide} /> */}
+                    <Route path='/test/:guideId' component={BonusGuide} />
                     {/* Error */}
                     <Route path={ROUTE.ERROR404} component={NotFound} />
                     <Route path='*' component={NotFound} />

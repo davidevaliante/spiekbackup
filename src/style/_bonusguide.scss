@@ -1,0 +1,400 @@
+
+.bonus-guide-page-flex{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width : 100%;
+  height : 100%;
+  background-size: cover;
+}
+
+.bonus-guide-background{
+  background-size: cover;
+}
+
+.bonus-guide-banner{
+  background: black;
+  width: 8%;
+  height: 100vh;
+  transition: all 0.45s ease;
+}
+
+.bonus-guide-banner img{
+  position: fixed;
+}
+
+@media only screen and (max-width : 425px){
+  .bonus-guide-banner{
+    background: #00000000;
+    width: 0px;
+    height: 100vh;
+  }
+}
+
+.guide-content{
+    z-index: 1;
+    margin-top: 2%;
+    height: 100%;
+    background : white;
+    margin : 0;
+    width: 60%;
+    transition: all 0.45s ease;
+}
+
+@media only screen and (max-width:425px){
+  .guide-content{
+    z-index: 1;
+    height: 100%;
+    background : white;
+    margin : 0;
+    width: 100%;
+}
+}
+
+// ------------PARSED CONTENT
+.parsed-content {
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 5%;
+    padding: 5%;
+    background: #5d5d5d;
+    color: white;
+    border: solid 1px grey;
+    font-family: 'Raleway' sans-serif;
+    list-style-position: inside;
+    border-radius: 10px;
+    box-shadow: 20px 20px 14px -8px rgba(153,153,153,0.65);
+
+}
+
+@media only screen and (max-width : 425px){
+  .parsed-content {
+    margin-left: 3%;
+    margin-right: 3%;
+    margin-bottom: 5%;
+    padding: 5%;
+    background: #5d5d5d;
+    color: white;
+    border: solid 1px grey;
+    font-family: 'Raleway' sans-serif;
+    list-style-position: inside;
+    border-radius: 10px;
+    box-shadow: 20px 20px 14px -8px rgba(153,153,153,0.65);
+
+}
+}
+
+.parsed-content p strong{
+    color: #f26870;
+}
+
+.parsed-content h2 strong{
+    color: #e0575e;
+}
+
+.tip-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    border: solid 1px #aaaaaa;
+    border-radius: 5px;
+    align-items: flex-start;
+    margin : 2%;
+    margin-top: 6%;
+    margin-bottom: 5%;
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-bottom: 2%;
+    justify-content: space-between;
+    background: #313131;
+    box-shadow: 10px 10px 14px -8px rgba(153,153,153,0.65);
+
+}
+
+@media only screen and (max-width : 425px){
+    .tip-container{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        border: solid 1px #aaaaaa;
+        border-radius: 5px;
+        align-items: flex-start;
+        margin : 4%;
+        margin-bottom: 10%;
+        margin-top: 7%;
+        padding-left: 7%;
+        padding-right: 7%;
+        padding-bottom: 4%;
+        padding-top: 4%;
+        justify-content: space-between;
+        background: #313131;
+    }
+}
+
+
+
+.tip-card{
+    margin-top: 3%;
+    font-family: 'Raleway', sans-serif;
+    font-size: 125%;
+    font-weight: 400;
+    position: relative;
+    color: white;
+}
+
+.tip-card-img {
+    height : 5%;
+    width : 5%;
+    margin-right: 3%;
+    float: left;
+    vertical-align: middle;   
+    transition: all 0.45s ease;
+}
+
+@media only screen and (max-width : 425px){
+    .tip-card-img {
+      height : 7%;
+      width : 7%;
+      margin-right: 5%;
+      float: left;
+      margin-top: 4%;
+  }
+}
+
+.guide-line {
+  height: 100vh;
+  width : 5%;
+  background : greenyellow;
+  position: absolute;
+}
+
+.button-back{
+    position: fixed;
+    width: 10%;
+    left: 2vw;
+    top: 50vh;
+}
+
+@media only screen and (max-width : 768px){
+    .button-back{
+      position: fixed;
+      width: 8%;
+      left: -2.5vw;
+      top: 50vh;
+  }
+}
+
+@media only screen and (max-width : 1024px){
+  .button-back{
+    position: fixed;
+    width: 8%;
+    left: .9vw;
+    top: 50vh;
+}
+}
+
+@media only screen and (max-width : 1440px){
+  .button-back{
+    position: fixed;
+    width: 8%;
+    left: 2vw;
+    top: 50vh;
+}
+}
+
+
+
+.button-go-to-bonus{
+  position: fixed;
+  width: 10%;
+  right: 1vw;
+  top: 50vh;
+}
+
+@media only screen and (max-width : 1445px){
+  .button-go-to-bonus{
+    position: fixed;
+    width: 10%;
+    right: 1vw;
+    top: 52vh;
+  }
+}
+
+// --------INTERNAL IMAGE ANIMATION
+.snip1563 {
+  background-color: #fff;
+  color: #ffffff;
+  display: inline-block;
+  font-family: 'Raleway', sans-serif;
+  font-size: 16px;
+  margin: 0;
+  margin-top : 5%;
+  overflow: hidden;
+  position: relative;
+  text-align: right;
+  width: 100%;
+}
+
+@media only screen and (max-width : 425px){
+  .snip1563{
+      width : 100%;
+      background-color: #fff;
+      color: #ffffff;
+      display: inline-block;
+      font-family: 'Raleway', sans-serif;
+      font-size: 16px;
+      margin: 0;
+      margin-top: 11%;
+      overflow: hidden;
+      position: relative;
+      text-align: right;
+  }  
+}
+
+.snip1563 *,
+.snip1563 *:before,
+.snip1563 *:after {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all 0.45s ease;
+  transition: all 0.45s ease;
+}
+
+.snip1563 img {
+  backface-visibility: hidden;
+  vertical-align: top;
+  width: 100%;
+  height: 100%;
+}
+
+.snip1563:before,
+.snip1563:after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  content: '';
+  background-color: #b81212;
+  opacity: 0.5;
+  -webkit-transition: all 0.45s ease;
+  transition: all 0.45s ease;
+}
+
+.snip1563:before {
+  -webkit-transform: skew(30deg) translateX(80%);
+  transform: skew(30deg) translateX(80%);
+}
+
+.snip1563:after {
+  -webkit-transform: skew(-30deg) translateX(70%);
+  transform: skew(-30deg) translateX(70%);
+}
+
+.snip1563 figcaption {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  z-index: 1;
+  bottom: 0;
+  padding: 20px 20px 20px 40%;
+}
+
+.snip1563 figcaption:before,
+.snip1563 figcaption:after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #b81212;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+  content: '';
+  opacity: 0.5;
+  z-index: -1;
+}
+
+.snip1563 figcaption:before {
+  -webkit-transform: skew(30deg) translateX(100%);
+  transform: skew(30deg) translateX(100%);
+}
+
+.snip1563 figcaption:after {
+  -webkit-transform: skew(-30deg) translateX(90%);
+  transform: skew(-30deg) translateX(90%);
+}
+
+.snip1563 h3,
+.snip1563 p {
+  margin: 0;
+  opacity: 0;
+  letter-spacing: 1px;
+}
+
+.snip1563 h3 {
+  font-family: 'Raleway', sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1em;
+  text-transform: uppercase;   
+}
+
+.snip1563 p {
+  font-size: 0.9em;
+}
+
+.snip1563 a {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+
+.snip1563:hover h3,
+.snip1563.hover h3,
+.snip1563:hover p,
+.snip1563.hover p {
+  -webkit-transform: translateY(+700%);
+  transform: translateY(+700%);
+  opacity: 0.9;
+}
+
+.snip1563:hover:before,
+.snip1563.hover:before {
+  -webkit-transform: skew(30deg) translateX(30%);
+  transform: skew(30deg) translateX(30%);
+  -webkit-transition-delay: 0.05s;
+  transition-delay: 0.05s;
+}
+
+.snip1563:hover:after,
+.snip1563.hover:after {
+  -webkit-transform: skew(-30deg) translateX(20%);
+  transform: skew(-30deg) translateX(20%);
+}
+
+.snip1563:hover figcaption:before,
+.snip1563.hover figcaption:before {
+  -webkit-transform: skew(30deg) translateX(50%);
+  transform: skew(30deg) translateX(50%);
+  -webkit-transition-delay: 0.15s;
+  transition-delay: 0.15s;
+}
+
+.snip1563:hover figcaption:after,
+.snip1563.hover figcaption:after {
+  -webkit-transform: skew(-30deg) translateX(40%);
+  transform: skew(-30deg) translateX(40%);
+  -webkit-transition-delay: 0.1s;
+  transition-delay: 0.1s;
+}
+
+a:hover{
+  cursor: pointer;
+}

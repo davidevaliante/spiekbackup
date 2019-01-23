@@ -9,6 +9,7 @@ import slice from 'lodash/slice'
 import shuffle from 'lodash/shuffle'
 // router e redux
 import { connect } from 'react-redux'
+import FullBonusCard from '../../Cards/FullBonusCard'
 
 export const BonusList = (props) => {
 
@@ -25,7 +26,9 @@ export const BonusList = (props) => {
         }
 
         // const column = slice(shuffle(listOfBonus), 0, props.maxNumber)
-        return slice(shuffle(listOfBonus), 0, bonusNumber).map(bonus => <BonusCard bonus={bonus} key={bonus.id} />)
+        // return slice(shuffle(listOfBonus), 0, bonusNumber).map(bonus => <BonusCard bonus={bonus} key={bonus.id} />)
+        return slice(shuffle(listOfBonus), 0, 1).map(bonus => <FullBonusCard bonus={bonus} key={bonus.id} />)
+
     }
 
     return (

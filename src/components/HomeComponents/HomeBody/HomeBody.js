@@ -47,6 +47,7 @@ const HomeBody = ({ orderHandler,
 
                                 {(bannerSlotList && bannerSlotList.isVisible) &&
                                     <img
+                                        alt='banner'
                                         width={720}
                                         height={90}
                                         src={bannerSlotList.secondBannerImage}
@@ -99,19 +100,12 @@ const HomeBody = ({ orderHandler,
                         offset={80}>
 
                         <Responsive minWidth={600} >
-                            <div style={{ background: 'red' }}>
-                                <h1 style={{ color: 'white', textAlign: 'center', padding: '5%', marginBottom: '30px' }}>I Migliori Bonus</h1>
+                            <div className='special-bonus-home'>
+                                <h1 style={{ color: 'white', textAlign: 'center', padding: '5%', marginBottom: '30px', fontFamily: 'Raleway, sans-serif' }}>Il bonus del momento</h1>
                             </div>
                             <BonusList
                                 maxNumber={15}
                                 maxbonusToShow={2} />
-                            {(bannerBonusList && bannerBonusList.isVisible) &&
-                                <img
-                                    src={bannerBonusList.thirdBannerImage}
-                                    onClick={thirdBannerClick}
-                                    onError={thirdBannerError}
-                                    style={{ display: 'block', margin: 'auto' }}
-                                />}
                         </Responsive>
 
                     </Sticky>

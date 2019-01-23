@@ -54,7 +54,8 @@ class Article extends Component {
 
         if (this.props.match.params.id) {
             getGuideById(this.props.match.params.id, data => {
-                this.initializeReactGAForBonusPageWithName(`bonus/${data.bonus.name}`)
+                data.bonus ? this.initializeReactGAForBonusPageWithName(`bonus/${data.bonus.name}`) :
+                    this.initializeReactGAForBonusPageWithName(`articoli/1`)
                 this.setState({
                     isLoading: false,
                     content: data,

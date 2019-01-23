@@ -29,7 +29,7 @@ export const updateBonusWithId =
             // update immagine interna
             if (internalImageData)
                 await pushNewImage(internalImageData, STORAGE_FOLDERS.INTERNAL_BONUS_IMAGES, `bonus_internal_${snakeCase(updatedBonus.name)}`);
-            if(circularImage)
+            if (circularImage)
                 await pushNewImage(circularImage, STORAGE_FOLDERS.CIRCULAR_BONUS_IMAGES, `bonus_circular_${snakeCase(updatedBonus.name)}`);
             // update guida
             if (guideId) {
@@ -54,28 +54,28 @@ export const updateBonusInSlotNode = async (updatedBonus, updatedBonusId) => {
     const data = now();
     const list = await axios.get(`${databaseRoot}/Slots/it.json`);
     console.log(list.data);
-    for(const id in list.data){
+    for (const id in list.data) {
         const slot = list.data[id];
 
         // controllo update bonus normali
-        if (slot.bonus !== undefined && slot.bonus[updatedBonusId] !== undefined){
-                slot.bonus[updatedBonusId] = updatedBonus;
-                axios.patch(`${databaseRoot}/Slots/it/${id}/bonus/${updatedBonusId}.json`, {...updatedBonus, time : data}).then(success => {
-                    console.log(`Updated slot with id ${id} with bonus ${updatedBonus}`)
-                    console.log(success)
-                }).catch( error => {
-                    console.log(`Failed update for slot with id ${id} with bonus ${updatedBonus}`)
-                    console.log(error)
-                })
+        if (slot.bonus !== undefined && slot.bonus[updatedBonusId] !== undefined) {
+            slot.bonus[updatedBonusId] = updatedBonus;
+            axios.patch(`${databaseRoot}/Slots/it/${id}/bonus/${updatedBonusId}.json`, { ...updatedBonus, time: data }).then(success => {
+                console.log(`Updated slot with id ${id} with bonus ${updatedBonus}`)
+                console.log(success)
+            }).catch(error => {
+                console.log(`Failed update for slot with id ${id} with bonus ${updatedBonus}`)
+                console.log(error)
+            })
         }
 
         // controllo update bonus speciali
-        if (slot.bonusSpecial !== undefined && slot.bonusSpecial[updatedBonusId] !== undefined){
+        if (slot.bonusSpecial !== undefined && slot.bonusSpecial[updatedBonusId] !== undefined) {
             slot.bonusSpecial[updatedBonusId] = updatedBonus;
-            axios.patch(`${databaseRoot}/Slots/it/${id}/bonusSpecial/${updatedBonusId}.json`, {...updatedBonus, time : data}).then(success => {
+            axios.patch(`${databaseRoot}/Slots/it/${id}/bonusSpecial/${updatedBonusId}.json`, { ...updatedBonus, time: data }).then(success => {
                 console.log(`Updated slot with id ${id} with bonusSpecial ${updatedBonus}`)
                 console.log(success)
-            }).catch( error => {
+            }).catch(error => {
                 console.log(`Failed update for slot with id ${id} with bonusSpecial ${updatedBonus}`)
                 console.log(error)
             })
@@ -148,3 +148,33 @@ export const setTypeInMenuCard = async () => {
     }
 
 };
+
+export const updateBonusesInGuideNode = () => {
+    axios.get('https://spike-2481d.firebaseio.com/Bonus/it.json').then(
+        response => {
+            const bonusList = response.data
+            for (const id in bonusList) {
+                const targetBonus = bonusList[id]
+                axios.get('https://spike-2481d.firebaseio.com/BonusGuides/it.json').then(
+                    success => {
+                        const guideList = success.data
+                        for (const guideId in guideList) {
+                            const guide = guideList[guideId]
+                            if (guide.bonus.bonus === targetBonus.bonus) {
+                                const k = {
+                                    sparseBonus: targetBonus,
+                                    internalBonus: guide.bonus
+                                }
+                                console.log(`${guideId} contains bonus with id ${id}`)
+                                console.log(k)
+                                const updatedGuide = guide
+                                updatedGuide.bonus = targetBonus
+                                axios.patch(`https://spike-2481d.firebaseio.com/BonusGuides/it/${guideId}.json`, updatedGuide)
+                            }
+                        }
+                    }
+                )
+            }
+        }
+    )
+}

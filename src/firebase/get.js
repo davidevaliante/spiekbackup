@@ -37,6 +37,8 @@ export const getGuideById = async (guideId, callback) => {
         )
 };
 
+
+
 export const getPopularSlots = () => {
     const idListToFetch = ['-LMTB6IRITXsmWGp4e-s', '-LLt3eNw41nayvVTDtSC',
         '-LMTDa-DXBM08cj454s5', '-LLtKLvdUfpgpLPJU_5x',
