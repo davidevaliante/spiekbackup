@@ -60,7 +60,7 @@ const ShortHandMenu = (props) => {
                 size='huge'
                 color='white'
                 onClick={() => playButtonMethod()}>
-                <Button.Content visible>{(props.currentSlot !== undefined && props.currentSlot.type === 'GRATIS') ? 'Provala Subito' : 'Vai alla versione online'}</Button.Content>
+                <Button.Content visible style={{ fontSize: '1.2rem' }}>{(props.currentSlot !== undefined && props.currentSlot.type === 'GRATIS') ? 'Provala Subito' : 'Prova una slot online simile'}</Button.Content>
                 <Button.Content hidden>
                     <Icon name='gamepad' />
                 </Button.Content>

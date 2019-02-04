@@ -325,7 +325,7 @@ class EditSlot extends React.Component {
 
         console.log(updatedSlot);
 
-        if (name && producer && linkYoutube && linkPlay && BONUS && description && rating && tipsField && tecnicalsField && updatedSlot.type) {
+        if (name && producer && linkYoutube && linkPlay && description && rating && tipsField && tecnicalsField && updatedSlot.type) {
             updateSlotWithId(slotId, updatedSlot, image, this.onSuccess)
         }
 
@@ -500,6 +500,7 @@ class EditSlot extends React.Component {
                             <Form.Field>
                                 {this.state.currentSlot.name &&
                                     <ImagePicker
+                                        imageType='slotPicker'
                                         onImageSelected={this.onImageSelected}
                                         imagePreview={getImageLinkFromName('slot', this.state.currentSlot.name, 'medium')} />}
                             </Form.Field>

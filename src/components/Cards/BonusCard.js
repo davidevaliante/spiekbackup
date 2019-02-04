@@ -44,15 +44,14 @@ const BonusCard = (props) => {
                 </div>
 
                 <div className="back">
-                    <Card style={{ background: '#454545' }}>
+                    <Card style={{ background: '#454545', height: '88%' }}>
                         <Card.Content>
-                            <Button onClick={(event) => goToExternalLink()} fluid color='red'>Provalo subito</Button>
-                            {props.bonus && props.bonus.guideId &&
-                                <div>
-                                    <br></br>
+                            <div className='bonus-back-buttons-container'>
+                                <Button onClick={(event) => goToExternalLink()} fluid color='red'>Provalo subito</Button>
+                                {props.bonus && props.bonus.guideId &&
                                     <Button onClick={(event) => goToGuide()} fluid color='green'>Leggi la guida</Button>
-                                </div>
-                            }
+                                }
+                            </div>
                         </Card.Content>
                     </Card>
                 </div>

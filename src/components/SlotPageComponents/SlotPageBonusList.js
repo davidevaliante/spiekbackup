@@ -33,9 +33,8 @@ const SlotPageBonusList = (props) => {
     }
 
     return (
-        <div id='slot-page-bonus' style={{ paddingTop: '8rem', marginBottom: '8rem', textAlign: 'center' }}>
-            {console.log}
-            <div className='home-page-intro-container' style={{ width: '100%', marginBottom: '8rem' }}>
+        <div id='slot-page-bonus' style={{ paddingTop: '4rem', marginBottom: '4 rem', textAlign: 'center' }}>
+            <div className='home-page-intro-container' style={{ width: '100%', marginBottom: '4rem' }}>
                 <div className='home-page-intro-outer' style={{ width: '100%' }}>
                     <div className='home-page-intro-bg' style={{ width: '100%' }}>
                         <div className='home-page-intro' style={{ width: '100%' }}>
@@ -45,7 +44,6 @@ const SlotPageBonusList = (props) => {
                             {props.slotType === 'VLT' && <p>Ottieni i migliori Bonus per provare questa Slot OnLine</p>}
                             {props.slotType === 'GRATIS' && <p>Utilizza questi bonus e prova a vincere soldi veri su siti certificati e sicuri</p>}
                             {props.slotType === 'PRODUCER' && <p>Ottieni i migiori Bonus per giocare con soldi veri le Slot di questo produttore</p>}
-
                         </div>
                     </div>
                 </div>
@@ -59,8 +57,8 @@ const SlotPageBonusList = (props) => {
                         </Grid.Row>
                     </Grid>
                 }
-                <Grid stackable columns={4} style={{ margin: '0' }}>
-                    <Grid.Row centered>
+                <Grid stackable columns={4} style={{ margin: '0', padding: '0' }}>
+                    <Grid.Row centered style={{ padding: '0' }}>
                         {bonusList()}
                     </Grid.Row>
                 </Grid>

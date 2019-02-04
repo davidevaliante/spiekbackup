@@ -26,7 +26,7 @@ const LoadingDimmer = () =>
     </div>
 
 const InternalImage = ({ imageLink, bonusLink, click }) =>
-    <figure class="snip1563">
+    <figure className="snip1563">
         <img src={imageLink} alt="bonus internal" />
         <figcaption>
             <h3>Vai al bonus</h3>
@@ -61,7 +61,8 @@ const PageFlex = (props) =>
 
 const Banner = ({ linkImage }) =>
     <div className='bonus-guide-banner'>
-        <img src={linkImage}></img>
+        <img src={linkImage} onClick={() => window.open('https://record.betpartners.it/_E_C7XwxgprAZV93hC2dJ_GNd7ZgqdRLk/4/')}
+        ></img>
     </div>
 
 const GuideContent = (props) =>
@@ -147,7 +148,8 @@ class BonusGuide extends Component {
                 <Navbar />
                 <PageFlex>
                     <ButtonBack click={this.goBack} />
-                    <Banner linkImage='https://www.slotgallinaonline.it/wp-content/uploads/2013/09/StarCasino-Book-Ra-160x945.gif' />
+                    <Banner
+                        linkImage='https://www.slotgallinaonline.it/wp-content/uploads/2013/09/StarCasino-Book-Ra-160x945.gif' />
                     <GuideContent>
                         {isLoading ? <LoadingDimmer /> :
                             <React.Fragment>

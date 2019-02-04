@@ -13,7 +13,7 @@ const FullBonusCard = (props) => {
     }
 
     const goToGuide = () => {
-        props.history.push(`/article/${props.bonus.guideId}`)
+        props.history.push(`/bonus-guide/${props.bonus.guideId}`)
     }
 
     const firstTip = () => {

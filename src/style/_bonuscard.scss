@@ -26,7 +26,7 @@
 .front, .back {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-
+  height : 170px;
   position: absolute;
   top: 0;
   left: 0;
@@ -42,4 +42,14 @@
 .back {
   -webkit-transform: rotateY(180deg);
   transform: rotateY(180deg);
+}
+
+.bonus-back-buttons-container{
+  display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: space-around;
+	align-items: center;
+  align-content: stretch;
+  height: 120px;
 }

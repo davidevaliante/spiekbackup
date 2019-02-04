@@ -5,6 +5,7 @@ import ImagePicker from '../admin/ImagePicker';
 import { deleteImages, updateSlotImage } from '../firebase/firebase'
 import FullBonusCard from '../components/Cards/FullBonusCard'
 import { getBonusWithId } from '../firebase/get'
+import { Responsive } from 'semantic-ui-react-single/Responsive'
 
 class Test extends Component {
     state = {
@@ -30,14 +31,17 @@ class Test extends Component {
 
     render() {
         return (
-            <div>
-                {this.state.bonus &&
-
-                    <FullBonusCard
-                        bonus={this.bonus}
-                    />
-                }
-            </div>
+            <React.Fragment>
+                <Responsive {...Responsive.onlyMobile}>
+                    <h1>MOBILE</h1>
+                </Responsive>
+                <Responsive {...Responsive.onlyTablet}>
+                    <h1>TABLET</h1>
+                </Responsive>
+                <Responsive {...Responsive.onlyComputer}>
+                    <h1>DESKTOP</h1>
+                </Responsive>
+            </React.Fragment>
         );
     }
 }

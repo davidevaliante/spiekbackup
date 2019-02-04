@@ -151,11 +151,7 @@ class AddSlot extends Component {
             this.setState({ shouldDisplayErrors: true, emptyFields: errorList })
         }
         const BONUS = this.state.selectedBonus
-        if (!BONUS) {
-            let errorList = this.state.emptyFields;
-            errorList.push('bonus');
-            this.setState({ shouldDisplayErrors: true, emptyFields: errorList })
-        }
+
         const producer = this.state.selectedProducer
         if (!producer) {
             let errorList = this.state.emptyFields;
@@ -190,7 +186,7 @@ class AddSlot extends Component {
         }
         console.log(`special bonus : ${this.state.specialBonus[Object.keys(this.state.specialBonus)[0]].name}`)
         console.log(newSlot);
-        if (name && producer && linkYoutube && linkPlay && BONUS && description && rating && tipsField && tecnicalsField && newSlot.type) {
+        if (name && producer && linkYoutube && linkPlay && description && rating && tipsField && tecnicalsField && newSlot.type) {
             pushNewSlot(newSlot, imageData, this.onSlotPushSuccess)
         }
     }

@@ -29,18 +29,17 @@ class Description extends Component {
 
 
         return (
-            <Segment style={{ padding: '6em 0em', borderBottom: '0px' }} vertical id='slot-page-description' >
+            <Segment style={{ padding: '3em 0em', borderBottom: '0px' }} vertical id='slot-page-description' >
                 <Container text>
 
                     <Header as='h3' style={{ fontSize: '2em', fontFamily: 'Raleway' }}>
                         {this.props.slotName}
                     </Header>
 
-                    <p style={{ fontSize: '1.33em', fontFamily: 'Raleway' }}>
+                    <div className='slot-page-parsed-content'>
                         {content}
-                    </p>
+                    </div>
 
-                    {this.state.showUncollapseButton && <p> Continua  a leggere </p>}
 
                     {!this.props.hidePlayButton &&
                         <div className='slot-playbutton'>
@@ -53,7 +52,7 @@ class Description extends Component {
                         </div>
                     }
                 </Container>
-            </Segment >
+            </Segment>
         )
     }
 

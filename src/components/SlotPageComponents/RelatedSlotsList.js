@@ -34,10 +34,10 @@ const RelatedSlotList = (props) => {
 
 
     return (
-        <div style={{ padding: '0 0' , marginBottom:'7%'}}>
-            <div style={{marginBottom : '7%'}}>
-                <div id='slot-page-bonus' style={{ paddingTop: '8rem', marginBottom: '8rem', textAlign: 'center' }}>
-                    <div className='home-page-intro-container' style={{ width: '100%', marginBottom: '8rem' }}>
+        <div style={{ padding: '0 0', marginBottom: '4%' }}>
+            <div style={{ marginBottom: '3%' }}>
+                <div id='slot-page-bonus' style={{ paddingTop: '4rem', marginBottom: '4rem', textAlign: 'center' }}>
+                    <div className='home-page-intro-container' style={{ width: '100%', marginBottom: '4rem' }}>
                         <div className='home-page-intro-outer' style={{ width: '100%' }}>
                             <div className='home-page-intro-bg' style={{ width: '100%' }}>
                                 <div className='home-page-intro' style={{ width: '100%' }}>

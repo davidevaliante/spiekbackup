@@ -45,7 +45,7 @@ class NavbarSearchBar extends Component {
                 this.props.history.push(`${ROUTE.PRODUCERS}/${result.title}`)
                 break;
             default:
-
+                console.log(result);
         }
     };
 

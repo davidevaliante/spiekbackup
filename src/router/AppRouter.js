@@ -2,7 +2,13 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import HomePage from '../components/HomeComponents/HomePage'
-
+import SlotPage from '../components/SlotPageComponents/SlotPage';
+import { PAGES, ROUTE } from "../enums/Constants";
+import NotFound from "../components/NotFound"
+import AboutPage from '../components/AboutPage'
+import ProducerPage from "../components/ProducerComponents/ProducerPage";
+import Article from '../components/Extra/Article'
+import BonusGuide from '../components/Extra/BonusGuide'
 import AdminDashboard from './../admin/AdminDashboard';
 import AddSlot from '../admin/Slots/AddSlot';
 import AddBonus from '../admin/Bonus/AddBonus';
@@ -17,13 +23,7 @@ import ProducerDashboard from "../admin/Producer/ProducerDashboard";
 import ExtraDashBoard from '../admin/Extra/ExtraDashboard'
 import AddBanners from '../admin/AddBanners'
 import Test from './Test'
-import SlotPage from '../components/SlotPageComponents/SlotPage';
-import { PAGES, ROUTE } from "../enums/Constants";
-import NotFound from "../components/NotFound"
-import AboutPage from '../components/AboutPage'
-import ProducerPage from "../components/ProducerComponents/ProducerPage";
-import Article from '../components/Extra/Article'
-import BonusGuide from '../components/Extra/BonusGuide'
+
 
 
 const AppRouter = () => {
@@ -48,6 +48,7 @@ const AppRouter = () => {
                     <Route path={ROUTE.SLOT_BAR} component={HomePage} exact={true} page={PAGES.SLOT_BAR} />
                     <Route path={ROUTE.ARTICLE} component={HomePage} exact={true} page={PAGES.ARTICLE} />
                     <Route path={ROUTE.PRODUCER} component={ProducerPage} exact={true} page={PAGES.PRODUCER} />
+                    <Route path='/bonus-guide/:guideId' component={BonusGuide} />
 
 
                     <Route path={ROUTE.EXTRA} component={Article} />
@@ -75,9 +76,7 @@ const AppRouter = () => {
                     <Route path={ROUTE.EDITEXTRA} component={AddExtraFromHtml} />
                     <Route path={ROUTE.BANNERS} component={AddBanners} />
 
-
                     {/* <Route path='/test' component={BonusGuide} /> */}
-                    <Route path='/test/:guideId' component={BonusGuide} />
                     {/* Error */}
                     <Route path={ROUTE.ERROR404} component={NotFound} />
                     <Route path='*' component={NotFound} />
