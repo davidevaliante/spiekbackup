@@ -122,6 +122,7 @@ class AddExtraFromHtml extends Component {
 
                                 <ImagePicker
                                     onImageSelected={this.onImageSelected}
+                                    imageType='articleImage'
                                     imagePreview={getImageLinkFromName('article', this.state.extraToEdit.title)} />
                             </Form.Field>
                             <Button
@@ -183,6 +184,7 @@ class AddExtraFromHtml extends Component {
 
                             <ImagePicker
                                 onImageSelected={this.onImageSelected}
+                                imageType='articleImage'
                                 imagePreview={getImageLinkFromName('article', this.state.currentArticle.name, 'medium')} />
                         </Form.Field>
 
